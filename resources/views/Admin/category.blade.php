@@ -36,6 +36,13 @@
                     <div class="title m-b-md">
                         Add Category
                     </div>
+                    @if(Session::has('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ Session::get('success') }}
+                    </div>
+                    @endif
+
+                      <br>
 
                 <form method="POST" action="{{route('category.store')}}">
 
@@ -45,6 +52,9 @@
                         <div class="form-group">
                           <label>Category Name </label>
                           <input type="text" id="category_name" class="form-control" name="cat_name_en" placeholder="Enter Category Name english">
+                          @error('cat_name_en')
+                          <small class="form-text text-danger">{{$message}}</small>
+                          @enderror
                         </div>
                       </div>
                       <div class="col-12">
@@ -52,6 +62,9 @@
                         <div class="form-group">
                           <label>Category Name </label>
                           <input type="text" id="category_name" class="form-control" name="cat_name_ar" placeholder="Enter Category Name arabic">
+                          @error('cat_name_ar')
+                          <small class="form-text text-danger">{{$message}}</small>
+                          @enderror
                         </div>
                       </div>
                       <div class="col-12">
@@ -59,7 +72,7 @@
                             <label>is Active </label>
                             <select class="form-control category_list"   name="is_active" id="is_active">
                             <option value=1>yes</opiton>
-                            <option value=0>No</option>;
+                            <option value=0>No</option>
                             </select>
                             </div>
                             </div>
