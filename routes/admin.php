@@ -43,19 +43,32 @@ Route::get('/admin', function () {
 // Route::get('/dashboard','Admin\DahshboradController@index');
 
 //  Route::get('fillable','CategoryController@getcategory');
+Auth::routes();
 
-Route::group(['namespace'=>'Admin','prefix'=>'category'],function(){
-
-    Route::get('create','CategoryController@create');
-    Route::post('store','CategoryController@store')->name('category.store');
-
-
-});
+// Route::group(['prefix' => LaravelLocalization::setLocale(),
+// 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){
 
 
-// Route::get('/category', function () {
-//     return view ('Admin.category');
-// });
+
+    Route::group(['namespace'=>'Admin','prefix'=>'category','middleware'=>'auth'],function(){
+        Route::get('create','CategoryController@create');
+        Route::post('store','CategoryController@store')->name('category.store');
+
+        Route::get('edit/{cat_id}','CategoryController@editcategory');
+        Route::post('update','CategoryController@updatecategory')->name('category.update');
+
+        Route::get('showcategory', 'CategoryController@getAllCategory')->name('category.show');
+
+
+    });
+
+//});
+
+
+
+
+
+
 
 
 

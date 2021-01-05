@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Session;
 use Illuminate\Http\Request;
 
-
+use LaravelLocalization;
 class CategoryController extends Controller
 {
     //
@@ -19,22 +19,26 @@ class CategoryController extends Controller
 //        return Category::select('id','name')->get();
 //     }
 
-    // public function add_category(Request $req){
-    //    $id=Auth::User()->id;
-    //     Category::create([
-    //         'cat_id' =>6,
-    //         'user_id'=>4,
-    //         'cat_name_en' => 'consulting',
-    //         'cat_name_ar'=>'اسنشارات',
-    //     ]);
+    public function add_category(Request $req){
+       $id=Auth::User()->id;
+        Category::create([
+            'cat_id' =>$req->cat_id,
+            'user_id'=>$req->id,
+            'cat_name_en' =>$req->cat_name_en,
+            'cat_name_ar'=>$req->cat_name_ar,
+            'is_active'=>$req->is_active,
+            'parent'=>$req->parent,
+            ]);
 
-    //        return 'admin' ;
-    // }
+
+           return 'admin' ;
+    }
 
     public function create(){
         return view('Admin.category');
 
     }
+
 
     public function store(Request $request){
 
@@ -62,8 +66,8 @@ class CategoryController extends Controller
         protected function getMessages()
         {
             return $messages = [
-                'cat_name_en.required'  => 'اسم الصنف مطلوب',
-                'cat_name_en.unique'    => 'اسم الصنف موجود',
+                'cat_name_en.required'  =>  __('messages.catgory name required'),
+                'cat_name_en.unique'    =>  __('messages.category must be unique'),
                 'cat_name_ar.required'  => 'اسم الصنف مطلوب',
                 'cat_name_ar.unique'    => 'اسم الصنف موجود',
             ];
@@ -77,4 +81,58 @@ class CategoryController extends Controller
                 'parent'    => 'required',
             ];
         }
+
+
+
+    public function getAllCategory()
+    {
+        $Categorys = Category::select('cat_id','user_id',
+            'cat_name_en',
+            'cat_name_ar',
+            'is_active',
+            'parent',
+
+            )->get(); // return collection of all result*/
+
+       return view('Admin.showcategory',['Categorys'=> $Categorys]);
+    }
+
+
+    // public function editcategory($cat_id)
+    // {
+
+    //     $Category =Category::where('cat_id',$cat_id)->get();  // search in given table id only
+
+    //     if (!$Category)
+    //     {
+    //         return redirect()->back();
+    //     }
+    //      else
+    //      {
+    //         $Category = Category::select('cat_id ', 'user_id', 'cat_name_en', 'cat_name_ar', 'is_active', 'parent')->find($cat_id);
+
+    //     return view('category.edit', compact('category'));
+    //      }
+
+    // }
+
+
+    public function editcategory($cat_id)
+    {
+
+        $Categorys =Category::find($cat_id);
+
+        if (!$Categorys)
+        {
+            return redirect()->back();
+        }
+         else
+         {
+            $Categorys = Category::select('user_id','cat_name_en', 'cat_name_ar', 'is_active', 'parent')->find($cat_id);
+
+        return view('editcategory', ['Categorys'=>$Categorys]);
+         }
+
+    }
+
 }
