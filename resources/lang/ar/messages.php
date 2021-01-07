@@ -13,13 +13,37 @@ return [
     |
     */
 
-    "hellow guse"=> 'اهلا بكم',
-     "welcome" => 'بكم',
+    ################ translate category#########################
     "catgory name required" => 'اسم الصنف مطلوب',
     "category must be unique" => 'اسم الصنف يجب ان لا يتكرر',
     "Add your Category" => 'أضف صنف جديد',
     "Category Name en" => 'اسم التصنيف',
     "Category Name ar" => 'اسم التصنيف بالعربي',
     "Add Category" => ' اضافة الصنف ',
+    "cat_id"=>'رقم الصنف',
+    "user_id"=>'رقم المستخدم',
+    "cat_name_ar"=>'اسم الصنف',
+    "cat_name_ar"=>'اسم الصنف',
+    "is_active"=>'حالة الصنف',
+    "parent"=>'رئيسى',
+    "operation"=>'العمليات',
+    "category not exist"=>'الصنف غير موجود',
+    "update"=>'تعديل',
+    "delete" => 'حذف',
+
+################ End  translate category#########################
+
+################ translate services #########################
+    "Services Name en"=>' اسم الخدمة',
+    "Services Name ar"=>'اسم الخدمة',
+    "Servicess describe en"=>' وصف الخدمة',
+    "Servicess describe ar"=>' وصف الخدمة',
+    "is Active"=>'is Active',
+    "Add Services"=>'إرسال',
+
+
+################ End translate services #########################
+
+
 
 ];

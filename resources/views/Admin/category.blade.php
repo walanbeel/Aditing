@@ -47,6 +47,8 @@
                 <form method="POST" action="{{route('category.store')}}">
 
                     @csrf
+
+
                     <div class="col-12">
                         <input type="hidden">
                         <div class="form-group">
@@ -57,8 +59,6 @@
                           @enderror
                         </div>
                       </div>
-                      <input type="text" id="category_name" value="1" class="form-control" name="user_id" placeholder="{{__('messages.user_id')}}">
-
 
 
                       <div class="col-12">
@@ -81,23 +81,24 @@
                             </div>
                             </div>
 
-                   <div class="col-12">
-        			<div class="form-group">
-		        		<label>Parent </label>
-		        		<select class="form-control category_list" id="parent_catergory" name="parent">
-                         <option value='0'>parent</opiton>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Parent </label>
+                                    <select class="form-control category_list" id="parent_catergory" name="parent">
+                                    <option value='0'>parent</opiton>
+                                    <option value='0'>parent</opiton>
 
-		        		</select>
-                       </div>
-        		</div>
+                                    </select>
+                                </div>
+                            </div>
 
 
-                <div class="col-12">
-                 <button type="submit" class="btn btn-primary">{{__('messages.Add Category')}}</button>
+                            <div class="col-12">
+                            <button type="submit" class="btn btn-primary">{{__('messages.Add Category')}}</button>
 
-                 </div>
-                </form>
+                            </div>
+                            </form>
 
-                </div>
+                            </div>
 
-                        @endsection
+             @endsection

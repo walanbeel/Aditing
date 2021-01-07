@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ServicesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,10 +44,12 @@ Route::get('/admin', function () {
 // Route::get('/dashboard','Admin\DahshboradController@index');
 
 //  Route::get('fillable','CategoryController@getcategory');
-Auth::routes();
+//
 
-// Route::group(['prefix' => LaravelLocalization::setLocale(),
-// 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){
+
+#################### Category route ####################
+//  Route::group(['prefix' => LaravelLocalization::setLocale(),
+//  'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){
 
 
 
@@ -54,8 +57,9 @@ Auth::routes();
         Route::get('create','CategoryController@create');
         Route::post('store','CategoryController@store')->name('category.store');
 
-        Route::get('edit/{cat_id}','CategoryController@editcategory');
-        Route::post('update','CategoryController@updatecategory')->name('category.update');
+        Route::get('edit/{category_id}','CategoryController@editcategory');
+        Route::post('update','CategoryController@update')->name('category.update');
+        Route::get('delete/{category_id}','CategoryController@deletecategory')->name('category.delete');
 
         Route::get('showcategory', 'CategoryController@getAllCategory')->name('category.show');
 
@@ -63,6 +67,26 @@ Auth::routes();
     });
 
 //});
+
+#################### End Category route ####################
+
+#################### Services route ####################
+Route::group(['namespace'=>'Admin','prefix'=>'services','middleware'=>'auth'],function(){
+
+    Route::get('create','ServicesController@create');
+    Route::post('add','ServicesController@add')->name('services.add');
+
+    Route::get('edit/{s_id}','ServicesController@editservice');
+    Route::post('update/{s_id}','ServicesController@updateservice')->name('services.update');
+    Route::get('delete/{s_id}','ServicesController@deleteservice')->name('services.delete');;
+
+    Route::get('allservices', 'ServicesControllerr@getAllService')->name('services.all');
+
+
+
+});
+#################### End Services route ####################
+
 
 
 

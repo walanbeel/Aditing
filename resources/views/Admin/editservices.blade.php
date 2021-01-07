@@ -44,21 +44,20 @@
 
                       <br>
 
-                <form method="POST" action="{{route('category.update')}}">
-                 @foreach($category as $item)
+                <form method="POST" action="{{route('services.update',$services -> s_id)}}">
+
                     @csrf
                     <div class="col-12">
-                        <input type="hidden" name="cat_id" value="{{$item->cat_id}}">
-
-                        {{-- <input type="hidden" value="{{$Category->id}}"> --}}
+                        <input type="hidden">
                         <div class="form-group">
                           <label>{{__('messages.Category Name en')}} </label>
-                          <input type="text" id="category_name" class="form-control" name="cat_name_en" value="{{ $item->cat_name_en}}" placeholder="{{__('messages.Category Name en')}}">
+                          <input type="text" id="category_name" class="form-control" name="cat_name_en" value="{{$services -> cat_name_en}}" placeholder="{{__('messages.Category Name en')}}">
                           @error('cat_name_en')
                           <small class="form-text text-danger">{{$message}}</small>
                           @enderror
                         </div>
                       </div>
+                      <input type="text" id="category_name"  class="form-control" name="id" value="{{$services ->id}}" placeholder="{{__('messages.user_id')}}">
 
 
 
@@ -66,7 +65,7 @@
                         <input type="hidden">
                         <div class="form-group">
                           <label>{{__('messages.Category Name ar')}}  </label>
-                          <input type="text" id="category_name" class="form-control" name="cat_name_ar" value="{{$item->cat_name_ar}}" placeholder="{{__('messages.Category Name ar')}}">
+                          <input type="text" id="category_name" class="form-control" name="cat_name_ar" value="{{$services -> cat_name_ar}}" placeholder="{{__('messages.Category Name ar')}}">
                           @error('cat_name_ar')
                           <small class="form-text text-danger">{{$message}}</small>
                           @enderror
@@ -75,7 +74,7 @@
                       <div class="col-12">
                         <div class="form-group">
                             <label>is Active </label>
-                            <select class="form-control category_list"   name="is_active" value="{{$item->is_active}}" id="is_active">
+                            <select class="form-control category_list"   name="is_active" value="{{$services ->is_active}}" id="is_active">
                             <option value=1>yes</opiton>
                             <option value=0>No</option>
                             </select>
@@ -85,9 +84,8 @@
                    <div class="col-12">
         			<div class="form-group">
 		        		<label>Parent </label>
-		        		<select class="form-control category_list" id="parent_catergory" name="parent" value="{{$item->parent}}">
+		        		<select class="form-control category_list" id="parent_catergory" name="parent" value="{{$services ->parent}}">
                          <option value='0'>parent</opiton>
-                            <option value='0'>parent</opiton>
 
 		        		</select>
                        </div>
@@ -95,11 +93,11 @@
 
 
                 <div class="col-12">
-                 <button type="submit" class="btn btn-primary">{{__('messages.Add Category')}}</button>
+                 <button type="submit" class="btn btn-primary">{{__('messages.Add services')}}</button>
 
                  </div>
                 </form>
 
                 </div>
-                @endforeach
+
                         @endsection

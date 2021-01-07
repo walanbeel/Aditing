@@ -12,6 +12,7 @@ return [
     | has failed, such as for an invalid token or invalid new password.
     |
     */
+################ translate category#########################
 
     "hellow guse"=> 'hellow',
     "welcome" => 'welcom',
@@ -21,6 +22,28 @@ return [
     "Category Name en" => 'Category Name en',
     "Category Name ar" => 'Category Name ar ',
     "Add Category" => 'Add Category',
+    "cat_id"=>'number',
+    "user_id"=>'ID',
+    "cat_name_en"=>'Category Name en',
+    "cat_name_ar"=>'Category Name ar',
+    "is_active"=>'is_active',
+    "parent"=>'parent',
+    "operation"=>'operation',
+    "category not exist"=>'category not exist',
+    "update"=>'edit',
+    "delete" => 'delete',
+################ End  translate category#########################
+
+
+ ################ translate services #########################
+    "Services Name en"=>' Services Name',
+    "Services Name ar"=>'Services Name',
+    "Servicess describe en"=>' Servicess describe ',
+    "Servicess describe ar"=>' Servicess describe ',
+    "is Active"=>'is Active',
+    "Add Services"=>'Submit',
+
+################ End translate services #########################
 
 
 

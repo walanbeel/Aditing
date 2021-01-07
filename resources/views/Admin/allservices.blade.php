@@ -36,7 +36,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title m-b-0">Category</h5>
+                                <h5 class="card-title m-b-0">Services</h5>
                             </div>
                             @if(Session::has('success'))
 
@@ -54,28 +54,32 @@
                             <table class="table">
                                   <thead>
                                     <tr>
-                                      <th scope="col">{{__('messages.cat_id')}}</th>
+                                      <th scope="col">{{__('messages.s_id')}}</th>
                                       <th scope="col">{{__('messages.id')}}</th>
-                                      <th scope="col">{{__('messages.cat_name_en')}}</th>
-                                      <th scope="col">{{__('messages.cat_name_ar')}}</th>
+                                      <th scope="col">{{__('messages.cat_id')}}</th>
+                                      <th scope="col">{{__('messages.s_name_en')}}</th>
+                                      <th scope="col">{{__('messages.s_name_ar')}}</th>
+                                      <th scope="col">{{__('messages.s_describe_en')}}</th>
+                                      <th scope="col">{{__('messages.s_describe_ar')}}</th>
                                       <th scope="col">{{__('messages.is_active')}}</th>
-                                      <th scope="col">{{__('messages.parent')}}</th>
                                       <th scope="col">{{__('messages.operation')}}</th>
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    @foreach($Categorys as $category)
+                                    @foreach($services as $service)
 
                                     <tr>
-                                      <th scope="row">{{$category->cat_id}}</th>
-                                      <td>{{$category->id}}</td>
-                                      <td>{{$category->cat_name_en}}</td>
-                                      <td>{{$category->cat_name_ar}}</td>
-                                      <td>{{$category->is_active}}</td>
-                                      <td>{{$category->parent}}</td>
+                                      <th scope="row">{{$service-> s_id}}</th>
+                                      <td>{{$service->id}}</td>
+                                      <td>{{$service->cat_id}}</td>
+                                      <td>{{$service->s_name_en}}</td>
+                                      <td>{{$service->s_name_ar}}</td>
+                                      <td>{{$service->s_describe_en}}</td>
+                                      <td>{{$service->s_describe_ar}}</td>
+                                      <td>{{$service->is_active}}</td>
                                       <td>
-                                        <a href="category/edit/.$category->cat_id" class="btn btn-success"> {{__('messages.update')}}</a>
-                                        <a href="{{route('category.delete',$category->cat_id)}}" class="btn btn-danger"> {{__('messages.delete')}}</a>
+                                        <a href="{{url('services/edit/'.$service -> s_id)}}" class="btn btn-success"> {{__('messages.update')}}</a>
+                                        <a href="{{route('services.delete',$service -> s_id)}}" class="btn btn-danger"> {{__('messages.delete')}}</a>
 
                                        </td>
 
