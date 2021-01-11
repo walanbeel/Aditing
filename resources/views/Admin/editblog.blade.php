@@ -52,7 +52,7 @@
                                         @foreach($blogs  as $item)
                                       @csrf
                                         <div class="col-12">
-                                            <input type="hidden">
+                                            <input type="hidden" name="blog_id" value="{{$item->blog_id}}">
                                             <div class="form-group">
                                               <label>{{__('messages.News title en')}} </label>
                                               <input type="text"  class="form-control" name="title_en" value="{{$item->title_en}}"  placeholder="{{__('messages.New title en')}}">

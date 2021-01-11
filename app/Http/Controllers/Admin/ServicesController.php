@@ -99,7 +99,7 @@ class ServicesController extends Controller
 
 
     ################## Edit services ##################
-  
+
     public function editservice($s_id)
     {
 
@@ -118,10 +118,11 @@ class ServicesController extends Controller
 
  public function updateservice(Request $request)
     {
+        $id=Auth::user()->id;
         $services=new Service;
 
         $services::where('s_id',$request->s_id)
-        ->update(['id'=>$request->id,
+        ->update(['id'=>$id,
         'cat_id'=>$request->cat_id,
         's_name_en'=>$request->s_name_en,
         's_name_ar'=>$request->s_name_ar,
@@ -130,8 +131,12 @@ class ServicesController extends Controller
         'is_active'=>$request->is_active,
          ]);
 
-        $services['service'] = Service::get();
-        return redirect('service/allservices')->with($services);
+        // print_r($request->s_id);
+        $servicesss['services'] = Service::get();
+
+      return redirect('/services/allservices')->with($servicesss);
+     //  return view('Admin.allservices',['services'=> $services]);
+
 
     }
 

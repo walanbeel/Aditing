@@ -14,9 +14,9 @@ class BlogController extends Controller
 {
     //
     public function create(){
-        $cat ['category']=Blog::all();
+        $cat['category']=Category::all();
 
-        return view('Admin.createblog', $cat);
+        return view('Admin.createblog',$cat);
 
 
     }
@@ -31,7 +31,47 @@ class BlogController extends Controller
          if( $validator ->fails()){
             return redirect()->back()->withErrors($validator)->withInputs($request->all());
          }
-        //insert,
+       // insert,
+        $blog=new Blog;
+        $main_img='';
+        $blog_img='';
+        $blog='';
+
+print_r($_FILES['main_img']);
+        if($request->hasfile('main_img'))
+     {
+        $imgFile =$request->file('main_img') ;
+        $imgName =time().basename($_FILES["main_img"]["name"]);
+        $main_img=$imgFile->move('images/books/',$imgName);
+
+     }
+    //  if($request->hasfile('blog_img'))
+    //  {
+    //     $attchmentFile =$request->file('blog_img') ;
+    //     $num=count($attchmentFile);
+    //    for($i=0;$i<$num;$i++){
+    //       $ext=$attchmentFile[$i]->getClientOriginalExtension();
+    //     $attchmentName =rand(123456,999999).".".$ext;
+    //     $blog=$attchmentFile[$i]->move('images/books/',$attchmentName);
+    //     $blog_img .=$attchmentName.',';
+    //    }
+    //    }
+
+
+    if($request->hasfile('blog_img'))
+    {
+       $attchmentFile =$request->file('blog_img') ;
+       $num=count((array)$request->file('blog_img'));
+      for($i=0;$i<$num;$i++){
+         $ext=$attchmentFile[$i]->getClientOriginalExtension();
+       $attchmentName =rand(123456,999999).".".$ext;
+       $attchment=$attchmentFile[$i]->move('images/books/',$attchmentName);
+       //$bus->attachment=$attchmentName;
+       $blog_img .=$attchmentName.',';
+
+       }
+
+
         $id=Auth::user()->id;
         Blog::create([
              'id'=>$id,
@@ -40,14 +80,14 @@ class BlogController extends Controller
             'title_ar'=>$request->title_ar,
             'content_en'=>$request->content_en,
             'content_ar'=>$request->content_ar,
-            'main_img'=>$request->main_img,
-            'blog_img'=>$request->blog_img,
+            'main_img'=>$imgName,
+            'blog_img'=>$blog_img,
 
                ]);
-                return redirect()->back()->with(['success' => 'تم اضافه المقال بنجاح ']);
+               return redirect()->back()->with(['success' => 'تم اضافه المقال بنجاح ']);
             }
 
-
+        }
         protected function getMessages()
         {
             return $messages = [
@@ -91,7 +131,7 @@ class BlogController extends Controller
         $blogs = Blog::where('blog_id',$blog_id)->get();
         $category = Category::select()->get();
 
-        return view('Admin.editblog',['services'=>  $blogs , 'category' => $category]);
+        return view('Admin.editblog',['blogs'=>  $blogs , 'category' => $category]);
 
     }
 ################## Eidt services ##################
@@ -103,9 +143,10 @@ class BlogController extends Controller
  public function updateblog(Request $request)
     {
         $blogs=new Blog;
+        $id=Auth::user()->id;
 
         $blogs::where('blog_id',$request->blog_id)
-        ->update(['id'=>$request->id,
+        ->update(['id'=>$id,
         'cat_id'=>$request->cat_id,
         'title_en'=>$request->title_en,
         'title_ar'=>$request->title_ar,
@@ -115,8 +156,8 @@ class BlogController extends Controller
         'blog_img'=>$request->blog_img,
          ]);
 
-         $blogs['blogs'] = Blog::get();
-        return redirect('blogs/allblog')->with($blogs);
+         $blogss['blogs'] = Blog::get();
+        return redirect('/blogs/allblog')->with($blogss);
 
     }
 

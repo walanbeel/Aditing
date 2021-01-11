@@ -33,7 +33,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title"> Add Services </h4>
+                                <h4 class="card-title"> Add News </h4>
                                 @if(Session::has('success'))
                                 <div class="alert alert-success" role="alert">
                                     {{ Session::get('success') }}
@@ -42,13 +42,13 @@
 
                                   <br>
 
-                                <form method="POST" action="{{route('blogs.add')}}">
+                                <form method="POST" action="{{route('blogs.add')}}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="col-12">
                                         <input type="hidden">
                                         <div class="form-group">
                                           <label>{{__('messages.News title en')}} </label>
-                                          <input type="text"  class="form-control" name="title_en" value="{{$item->title_en}}"  placeholder="{{__('messages.New title en')}}">
+                                          <input type="text"  class="form-control" name="title_en"  placeholder="{{__('messages.title_en')}}">
                                           @error('title_en')
                                           <small class="form-text text-danger">{{$message}}</small>
                                           @enderror
@@ -58,7 +58,7 @@
                                         <input type="hidden">
                                         <div class="form-group">
                                           <label>{{__('messages.News title ar')}}  </label>
-                                          <input type="text"  class="form-control" name="title_ar" value="{{$item->title_ar}}"  placeholder="{{__('messages.News title ar')}}">
+                                          <input type="text"  class="form-control" name="title_ar"   placeholder="{{__('messages.title_ar')}}">
                                           @error('title_ar')
                                           <small class="form-text text-danger">{{$message}}</small>
                                           @enderror
@@ -69,7 +69,7 @@
                                       <div class="form-group">
                                         <label>{{__('messages.News content en')}}  </label>
                                         <div class="col-12">
-                                            <textarea class="form-control" name="content_en"  placeholder="{{__('messages.News content en')}}">{{$item->content_en}}</textarea>
+                                            <textarea class="form-control" name="content_en"  placeholder="{{__('messages.content_en')}}"></textarea>
                                             @error('content_en')
                                             <small class="form-text text-danger">{{$message}}</small>
                                             @enderror
@@ -81,7 +81,7 @@
                                         <div class="form-group">
                                         <label>{{__('messages.News content ar')}}  </label>
                                         <div class="col-12">
-                                            <textarea class="form-control" name="content_ar"  placeholder="{{__('messages.s_describe_ar')}}"> {{$item->content_ar}}</textarea>
+                                            <textarea class="form-control" name="content_ar"  placeholder="{{__('messages.content_ar')}}"></textarea>
                                             @error('content_ar')
                                             <small class="form-text text-danger">{{$message}}</small>
                                             @enderror
@@ -90,21 +90,23 @@
                                     </div>
                                     <div class="col-12">
                                         <input type="hidden">
-                                        <label for="exampleFormControlFile1"> @error('main_img')<small>{{$message}}</small> @enderror</label>
-                                        <input type="file" id="file-ip-1" onchange="showPreview(event);"  accept="image/*" class="form-control-file" name='main_img'>
-                                       <br>
-                                        <img  class="img-fluid" id="file-ip-1-preview" width="70">
+                                        <label for="exampleFormControlFile1">{{__('messages.News main img')}}</label>
+                                        <input type="file" id="file-ip-1"  class="form-control-file" name="main_img"  placeholder="{{__('messages.main_img')}}">
+                                        @error('main_img')
+                                        <small>{{$message}}</small>
+                                        @enderror
                                     </div>
                                     <div class="col-12">
                                         <input type="hidden">
-                                        <label for="exampleFormControlFile1"> @error('blog_img')<small>{{$message}}</small> @enderror</label>
-                                        <input type="file" id="file-ip-1" onchange="showPreview(event);"  accept="image/*" class="form-control-file" name='blog_img'>
-                                       <br>
-                                        <img  class="img-fluid" id="file-ip-1-preview" width="70">
+                                        <label for="exampleFormControlFile1">{{__('messages.News blog img')}}</label>
+                                        <input type="file" id="file-ip-1"  class="form-control-file" name="blog_img"  multiple placeholder="{{__('messages.blog_img')}}">
+                                        @error('blog_img')
+                                        <small>{{$message}}</small>
+                                        @enderror
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label>{{__('messages.Category')}} </label>
+                                            <label>{{__('messages. News Category')}} </label>
                                             <select class="form-control category_list" name="cat_id">
 
                                                 @foreach($category as $item)
@@ -115,9 +117,9 @@
 
                                             </div>
                                             </div>
-                                            
+
                                     <div class="col-12">
-                                     <button type="submit" class="btn btn-primary">{{__('messages.Add Services')}}</button>
+                                     <button type="submit" class="btn btn-primary">{{__('messages.Add News')}}</button>
                                     </div>
 
                                 </form>
