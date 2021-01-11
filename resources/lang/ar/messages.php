@@ -53,6 +53,47 @@ return [
 
 ################ End translate services #########################
 
+################ translate News #########################
+"News title en"=>' العنوان',
+"News title ar"=>'العنوان',
+"News content en"=>' المحتوى',
+"News content ar"=>'المحتوي',
+"News main img"=>'الصورة',
+"News blog img"=>'الصورة',
+"News Category"=>'القسم',
+"id"=>'رقم المستخدم',
+"cat_id"=>'رقم الصنف',
+"s_name_en"=>'اسم الخدمة',
+"s_name_ar"=>'اسم الخدمة',
+"s_describe_en"=>'وصف الخدمة',
+"s_describe_ar"=>'وصف الخدمة',
+"is_active"=>'is_active',
+"operation"=>'العمليات',
 
+
+################ End translate News #########################
+
+
+################ translate News #########################
+"News title en"=>' العنوان',
+"News title ar"=>'العنوان',
+"News content en"=>' المحتوى',
+"News content ar"=>'المحتوي',
+"News main img"=>'الصورة',
+"News blog img"=>'الصورة',
+"News Category"=>'القسم',
+"Add News"=>'إضافة الخبر',
+"blog_id"=>'الرقم',
+"title_en"=>'العنوان',
+"title_ar"=>'العنوان',
+"content_en"=>'المحتوى',
+"content_ar"=>'المحتوى',
+"main_img"=>'الصورة',
+"blog_img"=>'الصورة',
+"is_active"=>'is_active',
+"operation"=>'العمليات',
+
+
+################ End translate News #########################
 
 ];

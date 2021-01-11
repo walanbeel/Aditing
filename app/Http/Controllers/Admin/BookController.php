@@ -6,7 +6,6 @@ use App\Models\Category;
 use App\Http\Controllers\Controller;
 use App\Traits\BookTrait;
 use App\Models\Book;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -17,7 +16,7 @@ class BookController extends Controller
      //use BookTrait;
 
        public function create(){
-        $cat ['category']=Book::all();
+        $cat ['category']=Category::all();
 
         return view('Admin.createbook',$cat);
 
@@ -38,7 +37,6 @@ class BookController extends Controller
         //insert,
 
      // $file_name = $this->saveImage($request->photo,'images/books');
-
         $id=Auth::user()->id;
         Book::create([
              'id'=>$id,
@@ -47,7 +45,7 @@ class BookController extends Controller
             'authoer_name_ar'=>$request->authoer_name_ar,
             'B_name_en'=>$request->B_name_en,
             'B_name_ar'=>$request->B_name_ar,
-            'image'=> $request->image,
+            'image'=>$request->image,
             'B_preface_en'=>$request->B_preface_en,
             'B_preface_ar'=>$request->B_preface_ar,
 
@@ -132,7 +130,7 @@ class BookController extends Controller
         'authoer_name_ar'=>$request->authoer_name_ar,
         'B_name_en'=>$request->B_name_en,
         'B_name_ar'=>$request->B_name_ar,
-        'image'=>$request->B_img,
+        'image'=>$request->image,
         'B_img'=>$request->B_img,
 
         'is_active'=>$request->is_active,

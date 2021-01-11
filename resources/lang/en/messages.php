@@ -55,6 +55,28 @@ return [
 ################ End translate services #########################
 
 
+################ translate News #########################
+"News title en"=>' title',
+"News title ar"=>'title',
+"News content en"=>' content',
+"News content ar"=>'content',
+"News main img"=>'main img',
+"News blog img"=>'images',
+"News Category"=>'Category',
+"Add News"=>'Add News',
+"blog_id"=>'ID',
+"title_en"=>'title',
+"title_ar"=>'title',
+"content_en"=>'content',
+"content_ar"=>'content',
+"main_img"=>'main img',
+"blog_img"=>'images',
+"is_active"=>'is_active',
+"operation"=>'operation',
+
+
+################ End translate News #########################
+
 
 
 

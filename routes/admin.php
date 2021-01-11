@@ -96,7 +96,7 @@ Route::group(['namespace'=>'Admin','prefix'=>'blogs','middleware'=>'auth'],funct
     Route::post('update','BlogController@updateblog')->name('blogs.update');
     Route::get('delete/{blog_id}','BlogController@deleteblog')->name('blogs.delete');;
 
-    Route::get('allblog', 'BlogController@getAllblog')->name('blogs.all');
+    Route::get('allblog','BlogController@getAllblog')->name('blogs.all');
 
 
 
