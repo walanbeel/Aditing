@@ -44,16 +44,16 @@
 
                       <br>
 
-                <form method="POST" action="{{route('category.update')}}">
-                 @foreach($Categorys as $item)
-                    @csrf
-                    <div class="col-12">
-                        <input type="hidden" name="cat_id" value="{{$item->cat_id}}">
+                <form method="POST" action="{{route('category.store')}}">
 
-                        {{-- <input type="hidden" value="{{$Category->id}}"> --}}
+                    @csrf
+
+
+                    <div class="col-12">
+                        <input type="hidden">
                         <div class="form-group">
                           <label>{{__('messages.Category Name en')}} </label>
-                          <input type="text" id="category_name" class="form-control" name="cat_name_en" value="{{$item->cat_name_en}}" placeholder="{{__('messages.Category Name en')}}">
+                          <input type="text" id="category_name" class="form-control" name="cat_name_en" placeholder="{{__('messages.Category Name en')}}">
                           @error('cat_name_en')
                           <small class="form-text text-danger">{{$message}}</small>
                           @enderror
@@ -61,12 +61,11 @@
                       </div>
 
 
-
                       <div class="col-12">
                         <input type="hidden">
                         <div class="form-group">
                           <label>{{__('messages.Category Name ar')}}  </label>
-                          <input type="text" id="category_name" class="form-control" name="cat_name_ar" value="{{$item->cat_name_ar}}" placeholder="{{__('messages.Category Name ar')}}">
+                          <input type="text" id="category_name" class="form-control" name="cat_name_ar" placeholder="{{__('messages.Category Name ar')}}">
                           @error('cat_name_ar')
                           <small class="form-text text-danger">{{$message}}</small>
                           @enderror
@@ -75,33 +74,31 @@
                       <div class="col-12">
                         <div class="form-group">
                             <label>is Active </label>
-                            <select class="form-control category_list"   name="is_active" value="{{$item->is_active}}" id="is_active">
+                            <select class="form-control category_list"   name="is_active" id="is_active">
                             <option value=1>yes</opiton>
                             <option value=0>No</option>
                             </select>
                             </div>
                             </div>
 
-                          
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Parent </label>
+                                    <select class="form-control category_list" id="parent_catergory" name="parent">
+                                    <option value='0'>parent</opiton>
+                                    <option value='0'>parent</opiton>
 
-                   <div class="col-12">
-        			<div class="form-group">
-		        		<label>Parent </label>
-		        		<select class="form-control category_list" id="parent_catergory" name="parent" value="{{$item->parent}}">
-                         <option value='0'>parent</opiton>
-                            <option value='0'>parent</opiton>
-
-		        		</select>
-                       </div>
-        		</div>
+                                    </select>
+                                </div>
+                            </div>
 
 
-                <div class="col-12">
-                 <button type="submit" class="btn btn-primary">{{__('messages.Add Category')}}</button>
+                            <div class="col-12">
+                            <button type="submit" class="btn btn-primary">{{__('messages.Add Category')}}</button>
 
-                 </div>
-                </form>
+                            </div>
+                            </form>
 
-                </div>
-                @endforeach
-               @endsection
+                            </div>
+
+             @endsection

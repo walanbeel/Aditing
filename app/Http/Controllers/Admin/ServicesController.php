@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Service;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class ServicesController extends Controller
@@ -26,25 +27,24 @@ class ServicesController extends Controller
     //  }
 
 
-    // public function create(){
-    //     return view('Admin.createservic');
-    //     $cat ['category']=Category::all ();
-    //      @foreach ($category as $item)
+    public function create(){
+        $cat ['category']=Category::all();
+
+        return view('Admin.createservic', $cat);
 
 
-
-    // }
+    }
 
     public function add(Request $request){
 
         //viladate data before insert to databse
 
-    //    $rules=$this ->getRules();
-    //     $messages=$this ->getMessages();
-    //     $validator = Validator::make($request->all(),$rules, $messages);
-    //      if( $validator ->fails()){
-    //         return redirect()->back()->withErrors($validator)->withInputs($request->all());
-    //      }
+       $rules=$this ->getRules();
+        $messages=$this ->getMessages();
+        $validator = Validator::make($request->all(),$rules, $messages);
+         if( $validator ->fails()){
+            return redirect()->back()->withErrors($validator)->withInputs($request->all());
+         }
         //insert,
         $id=Auth::user()->id;
         Service::create([
@@ -60,68 +60,54 @@ class ServicesController extends Controller
             }
 
 
-        // protected function getMessages()
-        // {
-        //     return $messages = [
-        //          's_name_en.required'  =>  __('messages.service name required'),
-        //         's_name_en.unique'    =>  __('messages.service  must be unique'),
-        //         's_name_ar.required'  =>  __('messages.service name required'),
-        //         's_name_ar.unique'    =>  __('messages.service  must be unique'),
-        //         's_describe_ar'       =>  __('messages.service name required'),
-        //         's_describe_en'       =>  __('messages.service name required'),
-        //         's_describe_ar.unique'  =>  __('messages.service  must be unique'),
-        //         's_describe_en.unique'  =>  __('messages.service  must be unique'),
+        protected function getMessages()
+        {
+            return $messages = [
+                 's_name_en.required'  =>  __('messages.service name required'),
+                's_name_en.unique'    =>  __('messages.service  must be unique'),
+                's_name_ar.required'  =>  __('messages.service name required'),
+                's_name_ar.unique'    =>  __('messages.service  must be unique'),
+                's_describe_ar'       =>  __('messages.service name required'),
+                's_describe_en'       =>  __('messages.service name required'),
+                's_describe_ar.unique'  =>  __('messages.service  must be unique'),
+                's_describe_en.unique'  =>  __('messages.service  must be unique'),
 
 
-        //     ];
-        // }
-        // protected function getRules()
-        // {
-        //     return $rules = [
-        //         's_name_en' => 'required|unique:categories,cat_name_en',
-        //         's_name_ar' => 'required|unique:categories,cat_name_ar',
-        //         's_describe_en' => 'required|unique:categories,cat_name_en',
-        //         's_describe_ar' => 'required|unique:categories,cat_name_ar',
-        //         'is_active' => 'required',
-        //     ];
-        // }
+            ];
+        }
+        protected function getRules()
+        {
+            return $rules = [
+                's_name_en' => 'required|unique:categories,cat_name_en',
+                's_name_ar' => 'required|unique:categories,cat_name_ar',
+                's_describe_en' => 'required|unique:categories,cat_name_en',
+                's_describe_ar' => 'required|unique:categories,cat_name_ar',
+                'is_active' => 'required',
+            ];
+        }
 
 
-        public function getAllServices()
+        public function getAllService()
     {
-        $services = Service::select(
-            's_id',
-            'id',
-            'cat_id',
-            's_name_en' ,/*. LaravelLocalization::getCurrentLocale() . ' as cat_name',*/
-            's_name_ar',
-            's_describe_en',
-            's_describe_ar',
-            'is_active',
+        $services = DB::table('services')->join('users','services.id','=','users.id')
+        ->join('categories','services.cat_id','=','categories.cat_id')
+        ->get(); // return collection of all result*/
 
-            )->get(); // return collection of all result*/
-
-       return view('Admin.allservices',['service'=> $services]);
+       return view('Admin.allservices',['services'=> $services]);
     }
 
 
+
     ################## Edit services ##################
+  
     public function editservice($s_id)
     {
 
-        $services =Service::find($s_id);
 
-        if (!$services)
-        {
-            return redirect()->back();
-        }
-         else
-         {
-            $services = Service::select('s_id','id','cat_id', 's_name_en', 's_name_ar','s_describe_en','s_describe_ar', 'is_active')->find($s_id);
+        $services = Service::where('s_id',$s_id)->get();
+        $category = Category::select()->get();
 
-        return view('editservice',compact('service'));
-
-         }
+        return view('Admin.editservices',['services'=>  $services , 'category' => $category]);
 
     }
 ################## Eidt services ##################
@@ -130,39 +116,41 @@ class ServicesController extends Controller
 
  ################## Update services ##################
 
- public function updateservice(/*OfferRequ*/ $request, $s_id)
+ public function updateservice(Request $request)
     {
-        //validtion
+        $services=new Service;
 
-        // chek if offer exists
+        $services::where('s_id',$request->s_id)
+        ->update(['id'=>$request->id,
+        'cat_id'=>$request->cat_id,
+        's_name_en'=>$request->s_name_en,
+        's_name_ar'=>$request->s_name_ar,
+        's_describe_en'=>$request->s_describe_en,
+        's_describe_ar'=>$request->s_describe_ar,
+        'is_active'=>$request->is_active,
+         ]);
 
-        $services = Service::find($s_id);
-        if (!$services)
-            return redirect()->back();
-
-        //update data
-
-        $services->update($request->all());
-
-        return redirect()->back()->with(['success' => ' تم التحديث بنجاح ']);
+        $services['service'] = Service::get();
+        return redirect('service/allservices')->with($services);
 
     }
+
 
 ################## Update services ##################
 
 ################## Delete services ##################
     public function deleteservice($s_id){
 
-        $services=Service::find($s_id);
+        $services=Service::where('s_id',$s_id)->delete();
 
-        if(!$s_id)
+        // if(!$s_id)
 
-        return redirect()->back()->with(['error' => __('messages.category not exist')]);
+        // return redirect()->back()->with(['error' => __('messages.category not exist')]);
 
-        $services->delete();
+        // $services->delete();
 
         return redirect()
-            ->route('services.all',$s_id)
+            ->route('services.all')
             ->with(['success' => __('messages.category deleted successfully')]);
 
 

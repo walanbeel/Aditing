@@ -36,7 +36,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title m-b-0">Category</h5>
+                                <h5 class="card-title m-b-0">Services</h5>
                             </div>
                             @if(Session::has('success'))
 
@@ -54,33 +54,38 @@
                             <table class="table">
                                   <thead>
                                     <tr>
-                                      <th scope="col">{{__('messages.cat_id')}}</th>
+                                      <th scope="col">{{__('messages.B_id ')}}</th>
                                       <th scope="col">{{__('messages.id')}}</th>
-                                      <th scope="col">{{__('messages.cat_name_en')}}</th>
-                                      <th scope="col">{{__('messages.cat_name_ar')}}</th>
-                                      <th scope="col">{{__('messages.is_active')}}</th>
-                                      <th scope="col">{{__('messages.parent')}}</th>
+                                      <th scope="col">{{__('messages.cat_id')}}</th>
+                                      <th scope="col">{{__('messages.authoer_name_en')}}</th>
+                                      <th scope="col">{{__('messages.authoer_name_ar')}}</th>
+                                      <th scope="col">{{__('messages.B_name_en')}}</th>
+                                      <th scope="col">{{__('messages.B_name_ar')}}</th>
+                                      <th scope="col">{{__('messages.image')}}</th>
+                                      <th scope="col">{{__('messages.B_preface_en')}}</th>
+                                      <th scope="col">{{__('messages.B_preface_ar')}}</th>
                                       <th scope="col">{{__('messages.operation')}}</th>
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    @foreach($Categorys as $category)
+                                    @foreach($books as $book)
 
                                     <tr>
-                                      <th scope="row">{{$category->cat_id}}</th>
-                                      <td>{{$category->name}}</td>
-                                      <td>{{$category->cat_name_en}}</td>
-                                      <td>{{$category->cat_name_ar}}</td>
+                                      <th scope="row">{{$book->B_id }}</th>
+                                      <td>{{$book->id}}</td>
+                                      <td>{{$book->cat_id}}</td>
+                                      <td>{{$book->authoer_name_en}}</td>
+                                      <td>{{$book->authoer_name_ar}}</td>
+                                      <td>{{$book->B_name_en}}</td>
+                                      <td>{{$book->B_name_ar}}</td>
+                                      <td>{{$book->image}}</td>
+                                      <td>{{$book->B_preface_en}}</td>
+                                      <td>{{$book->B_preface_ar}}</td>
                                       <td>
-                                          
-                                        <div class="switch-button switch-button-success">
-                                            <input type="checkbox" checked="" name="is_active" value="{{$category->is_active}}" id="switch16"><span>
-                                        <label for="switch16"></label></span>
-                                        </div></td>
-                                      <td>{{$category->parent}}</td>
-                                      <td>
-                                        <a href="{{route('category.edit',$category->cat_id)}}" class="btn btn-success"> {{__('messages.update')}}</a>
-                                        <a href="{{route('category.delete',[$category->cat_id])}}" class="btn btn-danger"> {{__('messages.delete')}}</a>
+                                        <a href="{{route('books.edit',$book->B_id)}}" class="btn btn-success"> {{__('messages.update')}}</a>
+
+                                        {{-- <a href="{{url('services/edit/'.$service->s_id)}}" class="btn btn-success"> {{__('messages.update')}}</a> --}}
+                                        <a href="{{route('books.delete',$book->B_id)}}" class="btn btn-danger"> {{__('messages.delete')}}</a>
 
                                        </td>
 

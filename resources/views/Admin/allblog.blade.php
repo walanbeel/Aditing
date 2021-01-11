@@ -36,7 +36,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title m-b-0">Category</h5>
+                                <h5 class="card-title m-b-0">Blogs</h5>
                             </div>
                             @if(Session::has('success'))
 
@@ -54,33 +54,37 @@
                             <table class="table">
                                   <thead>
                                     <tr>
-                                      <th scope="col">{{__('messages.cat_id')}}</th>
+                                      <th scope="col">{{__('messages.blog_id')}}</th>
                                       <th scope="col">{{__('messages.id')}}</th>
-                                      <th scope="col">{{__('messages.cat_name_en')}}</th>
-                                      <th scope="col">{{__('messages.cat_name_ar')}}</th>
-                                      <th scope="col">{{__('messages.is_active')}}</th>
-                                      <th scope="col">{{__('messages.parent')}}</th>
+                                      <th scope="col">{{__('messages.cat_id')}}</th>
+                                      <th scope="col">{{__('messages.title_en')}}</th>
+                                      <th scope="col">{{__('messages.title_ar')}}</th>
+                                      <th scope="col">{{__('messages.content_en')}}</th>
+                                      <th scope="col">{{__('messages.content_ar')}}</th>
+                                      <th scope="col">{{__('messages.main_img')}}</th>
+                                      <th scope="col">{{__('messages.blog_img')}}</th>
                                       <th scope="col">{{__('messages.operation')}}</th>
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    @foreach($Categorys as $category)
+                                    @foreach($blogs as $blog)
 
                                     <tr>
-                                      <th scope="row">{{$category->cat_id}}</th>
-                                      <td>{{$category->name}}</td>
-                                      <td>{{$category->cat_name_en}}</td>
-                                      <td>{{$category->cat_name_ar}}</td>
+                                      <th scope="row">{{$blog->blog_id}}</th>
+                                      <td>{{$blog->id}}</td>
+                                      <td>{{$blog->cat_id}}</td>
+                                      <td>{{$blog->title_en}}</td>
+                                      <td>{{$blog->title_ar}}</td>
+                                      <td>{{$blog->content_en}}</td>
+                                      <td>{{$blog->content_ar}}</td>
+                                      <td>{{$blog->main_img}}</td>
+                                      <td>{{$blog->blog_img}}</td>
+
                                       <td>
-                                          
-                                        <div class="switch-button switch-button-success">
-                                            <input type="checkbox" checked="" name="is_active" value="{{$category->is_active}}" id="switch16"><span>
-                                        <label for="switch16"></label></span>
-                                        </div></td>
-                                      <td>{{$category->parent}}</td>
-                                      <td>
-                                        <a href="{{route('category.edit',$category->cat_id)}}" class="btn btn-success"> {{__('messages.update')}}</a>
-                                        <a href="{{route('category.delete',[$category->cat_id])}}" class="btn btn-danger"> {{__('messages.delete')}}</a>
+
+                                        <a href="{{route('blogs.edit',$blog->blog_id)}}" class="btn btn-success"> {{__('messages.update')}}</a>
+                                        {{-- <a href="{{url('services/edit/'.$service->s_id)}}" class="btn btn-success"> {{__('messages.update')}}</a> --}}
+                                        <a href="{{route('blogs.delete',$blog->blog_id)}}" class="btn btn-danger"> {{__('messages.delete')}}</a>
 
                                        </td>
 

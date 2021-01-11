@@ -5,34 +5,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use LaravelLocalization;
-use Auth;
-use Session;
-
 
 class CategoryController extends Controller
 {
-    //
-//    public function getcategory(){
 
-//        return Category::select('id','name')->get();
-//     }
-
-    // public function add_category(Request $req){
-    //    $id=Auth::User()->id;
-    //     Category::create([
-    //         'cat_id' =>$req-> cat_id,
-    //         'id'=>$req->id,
-    //         'cat_name_en' =>$req-> cat_name_en,
-    //         'cat_name_ar'=>$req-> cat_name_ar,
-    //         'is_active'=>$req-> is_active,
-    //         'parent'=>$req-> parent,
-    //         ]);
-
-
-    //        return 'admin' ;
-    // }
 
     public function create(){
         return view('Admin.category');
@@ -87,58 +66,27 @@ class CategoryController extends Controller
         }
 
 
+################## display category ##################
 
     public function getAllCategory()
     {
-        $Categorys = Category::select(
-            'cat_id',
-            'id',
-            'cat_name_en' ,/*. LaravelLocalization::getCurrentLocale() . ' as cat_name',*/
-            'cat_name_ar',
-            'is_active',
-            'parent',
-
-            )->get(); // return collection of all result*/
+        $Categorys =DB::table('categories')->join('users','categories.id','=','users.id')->get(); // return collection of all result*/
 
        return view('Admin.showcategory',['Categorys'=> $Categorys]);
     }
 
 
-    // public function editcategory($cat_id)
-    // {
 
-    //     $Category =Category::where('cat_id',$cat_id)->get();  // search in given table id only
-
-    //     if (!$Category)
-    //     {
-    //         return redirect()->back();
-    //     }
-    //      else
-    //      {
-    //         $Category = Category::select('cat_id ', 'user_id', 'cat_name_en', 'cat_name_ar', 'is_active', 'parent')->find($cat_id);
-
-    //     return view('category.edit', compact('category'));
-    //      }
-
-    // }
 
 ################## Edit category ##################
-    public function editcategory($category_id)
+
+    public function edit($cat_id)
     {
 
-        $Categorys =Category::find($category_id);
 
-        if (!$Categorys)
-        {
-            return redirect()->back();
-        }
-         else
-         {
-            $Categorys['category'] = Category::where('cat_id',$category_id)->get();
+        $Categorys = Category::where('cat_id',$cat_id)->get();
 
-
-        return view('Admin.editcategory', $Categorys);
-         }
+        return view('Admin.editcategory',['Categorys'=> $Categorys ]);
 
     }
 ################## Eidt category ##################
@@ -159,6 +107,8 @@ class CategoryController extends Controller
         $data['category'] = Category::get();
         return redirect('category/showcategory')->with($data);
 
+
+
     }
 
 
@@ -167,15 +117,11 @@ class CategoryController extends Controller
 ################## Update category ##################
 
 ################## Delete category ##################
-    public function deletecategory($category_id){
+    public function deletecategory($cat_id){
 
-        $Categorys=Category::where('cat_id',$category_id)->delete();
+        $Categorys=Category::where('cat_id',$cat_id)->delete();
 
-        // if(!$category_id)
 
-        // return redirect()->back()->with(['error' => __('messages.category not exist')]);
-
-        // $Categorys->delete();
 
         return redirect()
             ->route('category.show')
