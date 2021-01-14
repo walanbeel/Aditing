@@ -104,6 +104,24 @@ Route::group(['namespace'=>'Admin','prefix'=>'blogs','middleware'=>'auth'],funct
 
 #################### End Blogs route ####################
 
+#################### Setting ####################
+Route::group(['namespace'=>'Admin','prefix'=>'setting','middleware'=>'auth'],function(){
+
+    Route::get('create','SettingController@create')->name('setting.create');
+    Route::post('add','SettingController@add')->name('setting.add');
+
+    Route::get('edit/{set_id}','SettingController@editblog')->name('setting.edit');
+    Route::post('update','SettingController@updateblog')->name('setting.update');
+    Route::get('delete/{set_id}','SettingController@deleteblog')->name('setting.delete');;
+
+    Route::get('allblog','SettingController@getAllblog')->name('setting.all');
+
+
+
+});
+
+#################### End Setting ####################
+
 
 
 
