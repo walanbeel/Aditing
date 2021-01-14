@@ -37,7 +37,7 @@ class BlogController extends Controller
         $blog_img='';
         $blog='';
 
-print_r($_FILES['main_img']);
+        print_r($_FILES['main_img']);
         if($request->hasfile('main_img'))
      {
         $imgFile =$request->file('main_img') ;

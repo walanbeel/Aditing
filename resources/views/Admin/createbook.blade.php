@@ -85,8 +85,12 @@
                                         </div>
                                       </div>
                                       <div class="col-12">
-                                        <input type="file" name="images">
-
+                                        <input type="hidden">
+                                        <label for="exampleFormControlFile1">{{__('messages.News main img')}}</label>
+                                        <input type="file" id="file-ip-1"  class="form-control-file" name="image"  placeholder="{{__('messages.image')}}">
+                                        @error('image')
+                                        <small>{{$message}}</small>
+                                        @enderror
                                     </div>
                                     <div class="col-12">
                                         <input type="hidden">

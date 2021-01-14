@@ -2,23 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Category;
 use App\Http\Controllers\Controller;
-use App\Traits\BookTrait;
-use App\Models\Book;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class BookController extends Controller
+class SettingController extends Controller
 {
     //
-     //use BookTrait;
+    public function create(){
 
-       public function create(){
-        $cat ['category']=Category::all();
 
-        return view('Admin.createbook',$cat);
+        return view('Admin.createsetting');
 
 
     }
@@ -35,44 +31,37 @@ class BookController extends Controller
             return redirect()->back()->withErrors($validator)->withInputs($request->all());
          }
         //insert,
-
-        $book=new Book;
-        $main_img='';
-        $image='';
-        $imgName='';
-
-        if($request->hasfile('image'))
-     {
-        $imgFile =$request->file('image') ;
-        $imgName =time().basename($_FILES["image"]["name"]);
-        $book=$imgFile->move('images/books/',$imgName);
-
-     }
-    //     if($request->hasfile('blog_img'))
-    // {
-    //    $attchmentFile =$request->file('blog_img') ;
-    //    $num=count((array)$request->file('blog_img'));
-    //   for($i=0;$i<$num;$i++){
-    //      $ext=$attchmentFile[$i]->getClientOriginalExtension();
-    //    $attchmentName =rand(123456,999999).".".$ext;
-    //    $attchment=$attchmentFile[$i]->move('images/books/',$attchmentName);
-    //    //$bus->attachment=$attchmentName;
-    //    $blog_img .=$attchmentName.',';
-
-    //    }
+    //     $logo='';
+    //     if(isset($_FILES["logo"]["name"]))
+    //     {
+    //         if($request->hasfile('logo'))
+    //     {
+    //        $imgFile =$request->file('logo') ;
+    //        $imgName =time().basename($_FILES["logo"]["name"]);
+    //        $logo=$imgFile->move('images/books/',$imgName);
+    //        $logo=$imgName;
+    //     }
+    //     else
+    //     $logo=$request->image;
+    // }
 
      // $file_name = $this->saveImage($request->photo,'images/books');
         $id=Auth::user()->id;
-        Book::create([
+        Setting::create([
              'id'=>$id,
-             'cat_id'=>$request->cat_id,
-            'authoer_name_en' =>$request->authoer_name_en,
-            'authoer_name_ar'=>$request->authoer_name_ar,
-            'B_name_en'=>$request->B_name_en,
-            'B_name_ar'=>$request->B_name_ar,
-            'image'=> $imgName,
-            'B_preface_en'=>$request->B_preface_en,
-            'B_preface_ar'=>$request->B_preface_ar,
+            'Website_name_en' =>$request->Website_name_en,
+            'Website_name_ar'=>$request->Website_name_ar,
+            'mobile_num'=>$request->mobile_num,
+            'icon'=>$request->icon,
+            'logo'=>$request->logo,
+            'email_web'=> $request->email_web,
+            'aboutus_en'=>$request->aboutus_en,
+            'aboutus_ar'=>$request->aboutus_ar,
+            'slider'=>$request->slider,
+            'Facebook'=>$request->Facebook,
+            'LinkedIn'=>$request->LinkedIn,
+            'Twitter'=>$request->Twitter,
+
 
                ]);
                 return redirect()->back()->with(['success' => 'تم اضافه الصنف بنجاح ']);
@@ -119,7 +108,7 @@ class BookController extends Controller
                ->join('categories','books.cat_id','=','categories.cat_id')
                ->get();
 
-        return view('Admin.allbook',['books'=> $books]);
+        return view('Admin.allbooks',['books'=> $books]);
     }
 
 
@@ -131,9 +120,8 @@ class BookController extends Controller
     {
 
 
-        $books = Book::where('B_id',$B_id)->get();
-        $category = Category::select()->get();
-        return view('Admin.editbook',['books'=>  $books , 'category' => $category]);
+        $setting = Setting::where('B_id',$B_id)->get();
+        return view('Admin.editbook',);
 
     }
 
@@ -146,9 +134,9 @@ class BookController extends Controller
 
  public function updatebook(Request $request)
     {
-        $books=new Book;
+        $settings=new Setting;
 
-        $books::where('B_id',$request->B_id )
+        $settings::where('B_id',$request->B_id )
         ->update(['id'=>$request->id,
         'cat_id'=>$request->cat_id,
         'authoer_name_en'=>$request->sauthoer_name_en,
@@ -161,7 +149,7 @@ class BookController extends Controller
         'is_active'=>$request->is_active,
          ]);
 
-        $data['books'] = Book::get();
+        $data['books'] = Setting::get();
         return redirect('books/allbooks')->with($data);
 
     }
@@ -172,7 +160,7 @@ class BookController extends Controller
 ################## Delete services ##################
     public function deletebook($s_id){
 
-        $services=Book::where('s_id',$s_id)->delete();
+        $settings=Setting::where('s_id',$s_id)->delete();
 
         // if(!$s_id)
 
