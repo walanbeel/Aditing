@@ -54,7 +54,7 @@
                             <table class="table">
                                   <thead>
                                     <tr>
-                                      <th scope="col">{{__('messages.B_id ')}}</th>
+                                      <th scope="col">{{__('messages.B_id')}}</th>
                                       <th scope="col">{{__('messages.id')}}</th>
                                       <th scope="col">{{__('messages.cat_id')}}</th>
                                       <th scope="col">{{__('messages.authoer_name_en')}}</th>
@@ -71,7 +71,7 @@
                                     @foreach($books as $book)
 
                                     <tr>
-                                      <th scope="row">{{$book->B_id }}</th>
+                                      <td scope="row">{{$book->B_id}}</td>
                                       <td>{{$book->id}}</td>
                                       <td>{{$book->cat_id}}</td>
                                       <td>{{$book->authoer_name_en}}</td>

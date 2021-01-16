@@ -74,8 +74,8 @@ Route::group(['namespace'=>'Admin','prefix'=>'books','middleware'=>'auth'],funct
     Route::get('create','BookController@create')->name('books.create');
     Route::post('add','BookController@add')->name('books.add');
 
-    Route::get('edit/{B_id}','BookController@editbook');
-    Route::post('update/{B_id}','BookController@updatebook')->name('books.update');
+    Route::get('edit/{B_id}','BookController@editbook')->name('books.edit');
+    Route::post('update','BookController@updatebook')->name('books.update');
     Route::get('delete/{B_id}','BookController@deletebook')->name('books.delete');;
 
     Route::get('allbooks','BookController@getAllbooks')->name('books.all');
@@ -123,7 +123,12 @@ Route::group(['namespace'=>'Admin','prefix'=>'setting','middleware'=>'auth'],fun
 #################### End Setting ####################
 
 
+Route::group(['namespace'=>'Admin','prefix'=>'dashboard','middleware'=>'auth'], function () {
 
+    Route::get('dashboard','DahshboradController@index')->name('dashboard.show');
+
+
+});
 
 
 

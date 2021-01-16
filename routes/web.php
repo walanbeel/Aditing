@@ -38,7 +38,9 @@ Route::get('/services',function(){
     return view('services');
 });
 
-
+Route::get('/books',function(){
+    return view('books');
+});
 
 Auth::routes();
 

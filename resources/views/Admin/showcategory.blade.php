@@ -72,11 +72,12 @@
                                       <td>{{$category->cat_name_en}}</td>
                                       <td>{{$category->cat_name_ar}}</td>
                                       <td>
-                                          
+
                                         <div class="switch-button switch-button-success">
                                             <input type="checkbox" checked="" name="is_active" value="{{$category->is_active}}" id="switch16"><span>
                                         <label for="switch16"></label></span>
-                                        </div></td>
+                                        </div>
+                                    </td>
                                       <td>{{$category->parent}}</td>
                                       <td>
                                         <a href="{{route('category.edit',$category->cat_id)}}" class="btn btn-success"> {{__('messages.update')}}</a>

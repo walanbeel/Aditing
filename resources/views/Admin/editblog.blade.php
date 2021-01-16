@@ -98,14 +98,14 @@
                                         <div class="col-12">
                                             <input type="hidden">
                                             <label for="exampleFormControlFile1"> @error('main_img')<small>{{$message}}</small> @enderror</label>
-                                            <input type="file" id="file-ip-1" onchange="showPreview(event);"  accept="image/*" class="form-control-file" name='main_img'>
+                                            <input type="file" id="file-ip-1" onchange="showPreview(event);"  accept="image/*" class="form-control-file" name='main_img[]' value="{{$item->main_img}}">
                                            <br>
                                             <img  class="img-fluid" id="file-ip-1-preview" width="70">
                                         </div>
                                         <div class="col-12">
                                             <input type="hidden">
                                             <label for="exampleFormControlFile1"> @error('blog_img')<small>{{$message}}</small> @enderror</label>
-                                            <input type="file" id="file-ip-1" onchange="showPreview(event);"  accept="image/*" class="form-control-file" name='blog_img'>
+                                            <input type="file" id="file-ip-1" onchange="showPreview(event);"  accept="image/*" class="form-control-file" name='blog_img[]' value="{{$item->blog_img}}">
                                            <br>
                                             <img  class="img-fluid" id="file-ip-1-preview" width="70">
                                         </div>

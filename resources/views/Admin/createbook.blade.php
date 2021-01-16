@@ -116,10 +116,6 @@
                                 </div>
                                 </div>
                                </div>
-
-
-
-
                                <div class="col-12">
                                 <div class="form-group">
                                     <label>{{__('messages.Category')}} </label>
@@ -134,9 +130,9 @@
                                     </div>
                                     </div>
 
-                                                <div class="col-12">
-                                                <button type="submit" class="btn btn-primary">{{__('messages.Add books')}}</button>
-                                                </div>
+                                 <div class="col-12">
+                                 <button type="submit" class="btn btn-primary">{{__('messages.Add books')}}</button>
+                                 </div>
 
                              </form>
 

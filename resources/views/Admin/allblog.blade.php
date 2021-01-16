@@ -70,7 +70,7 @@
                                     @foreach($blogs as $blog)
 
                                     <tr>
-                                      <th scope="row">{{$blog->blog_id}}</th>
+                                      <td scope="row">{{$blog->blog_id}}</td>
                                       <td>{{$blog->id}}</td>
                                       <td>{{$blog->cat_id}}</td>
                                       <td>{{$blog->title_en}}</td>

@@ -89,7 +89,7 @@
                                             <div class="card">
                                                 <h5 class="card-header">General settings</h5>
                                                 <div class="card-body">
-                                                    <form method="POST" action="{{route('settings.add')}}" enctype="multipart/form-data">
+                                                    <form method="POST" action="{{route('setting.add')}}" enctype="multipart/form-data">
                                                         <div class="form-group">
                                                             <label for="inputText3" class="col-form-label">Website Name</label>
                                                             <input id="inputText3" type="text" class="form-control" name="Website_name_en">
@@ -140,7 +140,7 @@
                                             <div class="card">
                                                 <h5 class="card-header">Social settings</h5>
                                                 <div class="card-body">
-                                                    <form method="POST" action="{{route('settings.add')}}" enctype="multipart/form-data">
+                                                    <form method="POST" action="{{route('setting.add')}}" enctype="multipart/form-data">
                                                         <div class="form-group">
                                                             <label for="inputEmail">Facebook address</label>
                                                             <input id="inputEmail" type="email" placeholder="name@example.com" class="form-control" name="Facebook">
@@ -175,7 +175,7 @@
                                                                 <div class="card">
                                                                         <h5 class="card-header">About Us</h5>
                                                                         <div class="card-body">
-                                                                            <form method="POST" action="{{route('settings.add')}}" enctype="multipart/form-data">
+                                                                            <form method="POST" action="{{route('setting.add')}}" enctype="multipart/form-data">
 
                                                                                 <div class="form-group">
                                                                                     <label for="exampleFormControlTextarea1">Page Content</label>
@@ -186,6 +186,9 @@
                                                                                     <label for="exampleFormControlTextarea1">Page Content</label>
                                                                                     <textarea class="form-control" name="aboutus_ar"  id="exampleFormControlTextarea1" rows="3"></textarea>
                                                                                 </div>
+
+                                                                                <a href="#" type="submit" class="btn btn-secondary">Save</a>
+
                                                                             </form>
                                                                         </div>
 
@@ -223,7 +226,7 @@
                                             <div class="card">
                                                 <h5 class="card-header">General settings</h5>
                                                 <div class="card-body">
-                                                    <form method="POST" action="{{route('settings.add')}}" enctype="multipart/form-data">
+                                                    <form method="POST" action="{{route('setting.add')}}" enctype="multipart/form-data">
 
                                                          <div class="custom-file mb-3">
                                                             <input type="file" class="custom-file-input" id="customFile" name="slider">
@@ -254,7 +257,7 @@
                                             <div class="card">
                                                 <h5 class="card-header">Email settings</h5>
                                                 <div class="card-body">
-                                                    <form method="POST" action="{{route('settings.add')}}" enctype="multipart/form-data">
+                                                    <form method="POST" action="{{route('setting.add')}}" enctype="multipart/form-data">
 
                                                             <div class="form-group">
                                                                 <label>Phone <small class="text-muted">(967) 999-9999</small></label>
@@ -265,6 +268,7 @@
                                                                 <input id="inputEmail" type="email"  name="email_web" placeholder="name@example.com" class="form-control">
                                                             </div>
 
+                                                            <a href="#" type="submit" class="btn btn-secondary">Save</a>
 
 
                                                     </form>

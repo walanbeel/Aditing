@@ -37,31 +37,31 @@ class BookController extends Controller
         //insert,
 
         $book=new Book;
-        $main_img='';
         $image='';
         $imgName='';
+        $attchment='';
 
         if($request->hasfile('image'))
      {
         $imgFile =$request->file('image') ;
         $imgName =time().basename($_FILES["image"]["name"]);
-        $book=$imgFile->move('images/books/',$imgName);
+        $book=$imgFile->move('images/news/',$imgName);
 
      }
-    //     if($request->hasfile('blog_img'))
-    // {
-    //    $attchmentFile =$request->file('blog_img') ;
-    //    $num=count((array)$request->file('blog_img'));
-    //   for($i=0;$i<$num;$i++){
-    //      $ext=$attchmentFile[$i]->getClientOriginalExtension();
-    //    $attchmentName =rand(123456,999999).".".$ext;
-    //    $attchment=$attchmentFile[$i]->move('images/books/',$attchmentName);
-    //    //$bus->attachment=$attchmentName;
-    //    $blog_img .=$attchmentName.',';
+        if($request->hasfile('attachment'))
+       {
+       $attchmentFile =$request->file('attachment') ;
+       $num=count('$attchmentFile');
+       for($i=0;$i<$num;$i++){
+       $ext=$attchmentFile[$i]->getClientOriginalExtension();
+       $attchmentName =rand(123456,999999).".".$ext;
+       $attachment=$attchmentFile[$i]->move('images/news/',$attchmentName);
+       $book->attachment.=$attchmentName.',';
 
-    //    }
+       }
 
-     // $file_name = $this->saveImage($request->photo,'images/books');
+
+
         $id=Auth::user()->id;
         Book::create([
              'id'=>$id,
@@ -70,13 +70,14 @@ class BookController extends Controller
             'authoer_name_ar'=>$request->authoer_name_ar,
             'B_name_en'=>$request->B_name_en,
             'B_name_ar'=>$request->B_name_ar,
-            'image'=> $imgName,
+            'image'=>$image,
             'B_preface_en'=>$request->B_preface_en,
             'B_preface_ar'=>$request->B_preface_ar,
 
                ]);
-                return redirect()->back()->with(['success' => 'تم اضافه الصنف بنجاح ']);
+                return redirect()->back()->with(['success' => 'تم اضافه الكتاب بنجاح ']);
             }
+        }
 
 
         protected function getMessages()
@@ -90,6 +91,7 @@ class BookController extends Controller
 
             ];
         }
+
         protected function getRules()
         {
             return $rules = [
@@ -119,7 +121,7 @@ class BookController extends Controller
                ->join('categories','books.cat_id','=','categories.cat_id')
                ->get();
 
-        return view('Admin.allbook',['books'=> $books]);
+        return view('Admin.allbooks',['books'=> $books]);
     }
 
 
@@ -133,7 +135,7 @@ class BookController extends Controller
 
         $books = Book::where('B_id',$B_id)->get();
         $category = Category::select()->get();
-        return view('Admin.editbook',['books'=>  $books , 'category' => $category]);
+        return view('Admin.editbooks',['books'=>  $books , 'category' => $category]);
 
     }
 
@@ -151,18 +153,18 @@ class BookController extends Controller
         $books::where('B_id',$request->B_id )
         ->update(['id'=>$request->id,
         'cat_id'=>$request->cat_id,
-        'authoer_name_en'=>$request->sauthoer_name_en,
+        'authoer_name_en'=>$request->authoer_name_en,
         'authoer_name_ar'=>$request->authoer_name_ar,
         'B_name_en'=>$request->B_name_en,
         'B_name_ar'=>$request->B_name_ar,
         'image'=>$request->image,
-        'B_img'=>$request->B_img,
+        // 'B_img'=>$request->B_img,
 
         'is_active'=>$request->is_active,
          ]);
 
         $data['books'] = Book::get();
-        return redirect('books/allbooks')->with($data);
+        return redirect('/books/allbooks')->with($data);
 
     }
 
@@ -170,9 +172,9 @@ class BookController extends Controller
 ################## Update services ##################
 
 ################## Delete services ##################
-    public function deletebook($s_id){
+    public function deletebook($B_id){
 
-        $services=Book::where('s_id',$s_id)->delete();
+        $services=Book::where('B_id',$B_id)->delete();
 
         // if(!$s_id)
 

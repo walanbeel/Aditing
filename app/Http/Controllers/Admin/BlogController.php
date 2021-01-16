@@ -45,31 +45,31 @@ class BlogController extends Controller
         $main_img=$imgFile->move('images/books/',$imgName);
 
      }
-    //  if($request->hasfile('blog_img'))
-    //  {
-    //     $attchmentFile =$request->file('blog_img') ;
-    //     $num=count($attchmentFile);
-    //    for($i=0;$i<$num;$i++){
-    //       $ext=$attchmentFile[$i]->getClientOriginalExtension();
-    //     $attchmentName =rand(123456,999999).".".$ext;
-    //     $blog=$attchmentFile[$i]->move('images/books/',$attchmentName);
-    //     $blog_img .=$attchmentName.',';
-    //    }
-    //    }
-
-
-    if($request->hasfile('blog_img'))
-    {
-       $attchmentFile =$request->file('blog_img') ;
-       $num=count((array)$request->file('blog_img'));
-      for($i=0;$i<$num;$i++){
-         $ext=$attchmentFile[$i]->getClientOriginalExtension();
-       $attchmentName =rand(123456,999999).".".$ext;
-       $attchment=$attchmentFile[$i]->move('images/books/',$attchmentName);
-       //$bus->attachment=$attchmentName;
-       $blog_img .=$attchmentName.',';
-
+     if($request->hasfile('blog_img'))
+     {
+        $attchmentFile =$request->file('blog_img') ;
+        $num=count($attchmentFile);
+       for($i=0;$i<$num;$i++){
+          $ext=$attchmentFile[$i]->getClientOriginalExtension();
+        $attchmentName =rand(123456,999999).".".$ext;
+        $attchment=$attchmentFile[$i]->move('images/books/',$attchmentName);
+        $blog_img .=$attchmentName.',';
        }
+    //    }
+
+
+    // if($request->hasfile('blog_img'))
+    // {
+    //    $attchmentFile =$request->file('blog_img') ;
+    //    $num=count((array)$request->file('blog_img'));
+    //   for($i=0;$i<$num;$i++){
+    //      $ext=$attchmentFile[$i]->getClientOriginalExtension();
+    //    $attchmentName =rand(123456,999999).".".$ext;
+    //    $attchment=$attchmentFile[$i]->move('images/books/',$attchmentName);
+    //    //$bus->attachment=$attchmentName;
+    //    $blog_img .=$attchmentName.',';
+
+    //    }
 
 
         $id=Auth::user()->id;
@@ -86,8 +86,8 @@ class BlogController extends Controller
                ]);
                return redirect()->back()->with(['success' => 'تم اضافه المقال بنجاح ']);
             }
-
         }
+
         protected function getMessages()
         {
             return $messages = [
