@@ -69,7 +69,7 @@
                                     @foreach($services as $service)
 
                                     <tr>
-                                      <th scope="row">{{$service->s_id}}</th>
+                                      <td scope="row">{{$service->s_id}}</td>
                                       <td>{{$service->id}}</td>
                                       <td>{{$service->cat_id}}</td>
                                       <td>{{$service->s_name_en}}</td>

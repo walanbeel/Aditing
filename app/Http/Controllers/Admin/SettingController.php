@@ -52,19 +52,35 @@ class SettingController extends Controller
             'Website_name_en' =>$request->Website_name_en,
             'Website_name_ar'=>$request->Website_name_ar,
             'mobile_num'=>$request->mobile_num,
+            'location'=>$request->location,
             'icon'=>$request->icon,
             'logo'=>$request->logo,
             'email_web'=> $request->email_web,
             'aboutus_en'=>$request->aboutus_en,
             'aboutus_ar'=>$request->aboutus_ar,
-            'slider'=>$request->slider,
             'Facebook'=>$request->Facebook,
             'LinkedIn'=>$request->LinkedIn,
             'Twitter'=>$request->Twitter,
 
 
                ]);
-                return redirect()->back()->with(['success' => 'تم اضافه الصنف بنجاح ']);
+                // return redirect()->back()->with(['success' => 'تم اضافه الصنف بنجاح ']);
+                echo "$request->Website_name_en";
+                echo "$request->Website_name_ar";
+                echo "$request->mobile_num";
+                echo "$request->location";
+                echo "$request->icon";
+                echo "$request->logo";
+                echo "$request->email_web";
+                echo "$request->aboutus_en";
+                echo "$request->aboutus_ar";
+                echo "$request->slider";
+                echo "$request->Facebook";
+                echo "$request->LinkedIn";
+                echo "$request->Twitter";
+
+
+
             }
 
 

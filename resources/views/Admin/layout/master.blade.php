@@ -155,47 +155,47 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('dashboard.show')}}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
                         {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="Services.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Services</span></a></li> --}}
                         {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="News.html" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">News</span></a></li> --}}
                         {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="Books.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Books</span></a></li> --}}
                         {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="Category.html" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span class="hide-menu">Category</span></a></li> --}}
 
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Category</span></a>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-view-module"></i><span class="hide-menu">Category</span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="{{ route('category.create')}}" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Add Category </span></a></li>
                                 <li class="sidebar-item"><a href="{{ route('category.show')}}" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> All Category </span></a></li>
                             </ul>
                         </li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Services</span></a>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-chart-pie"></i><span class="hide-menu">Services</span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="{{ route('services.create')}}" class="sidebar-link"><i class="mdi mdi-chart-bar"></i><span class="hide-menu"> Add Services </span></a></li>
                                 <li class="sidebar-item"><a href="{{ route('services.all')}}" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> All Services </span></a></li>
                             </ul>
                         </li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">News</span></a>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-pencil"></i><span class="hide-menu">News</span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="{{ route('blogs.create')}}" class="sidebar-link"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu"> Add News </span></a></li>
                                 <li class="sidebar-item"><a href="{{ route('blogs.all')}}" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> All News </span></a></li>
                             </ul>
                         </li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Library </span></a>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-file-pdf"></i><span class="hide-menu">Library </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="{{ route('books.create')}}" class="sidebar-link"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu"> Add Library  </span></a></li>
                                 <li class="sidebar-item"><a href="{{ route('books.all')}}" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> All Library  </span></a></li>
                             </ul>
                         </li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Setting</span></a></li>
+                        {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('setting.create')}}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Setting</span></a></li> --}}
 
 
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-key"></i><span class="hide-menu">Authentication </span></a>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-settings-box"></i><span class="hide-menu">Setting</span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="authentication-login.html" class="sidebar-link"><i class="mdi mdi-all-inclusive"></i><span class="hide-menu"> Login </span></a></li>
-                                <li class="sidebar-item"><a href="authentication-register.html" class="sidebar-link"><i class="mdi mdi-all-inclusive"></i><span class="hide-menu"> Register </span></a></li>
+                                <li class="sidebar-item"><a href="{{ route('setting.create')}}" class="sidebar-link"><i class="mdi mdi-all-inclusive"></i><span class="hide-menu"> Add Setting </span></a></li>
+                                <li class="sidebar-item"><a href="{{ route('setting.all')}}" class="sidebar-link"><i class="mdi mdi-all-inclusive"></i><span class="hide-menu"> display setting </span></a></li>
                             </ul>
                         </li>
 

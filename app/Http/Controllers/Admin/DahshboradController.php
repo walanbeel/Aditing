@@ -9,6 +9,6 @@ class DahshboradController extends Controller
 {
     //
     function index(){
-        return view('Admin.home');
+        return view('Admin.dashboard');
     }
 }

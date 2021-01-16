@@ -74,8 +74,32 @@ return [
 "is_active"=>'is_active',
 "operation"=>'operation',
 
-
 ################ End translate News #########################
+
+
+################ translate books #########################
+"News title en"=>' title',
+"News title ar"=>'title',
+"News content en"=>' content',
+"News content ar"=>'content',
+"News main img"=>'main img',
+"News blog img"=>'images',
+"News Category"=>'Category',
+"Add News"=>'Add News',
+"B_id"=>'ID',
+"id"=>'user',
+"cat_id"=>'category',
+"authoer_name_en"=>'Author name',
+"authoer_name_ar"=>'Author name',
+"B_name_en"=>'book name',
+"B_name_ar"=>'book name',
+"image"=>'image',
+"B_preface_en"=>'perface',
+"B_preface_ar"=>'perface',
+"operation"=>'operation',
+
+
+################ End books #########################
 
 
 

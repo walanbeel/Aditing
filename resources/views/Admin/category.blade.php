@@ -85,7 +85,7 @@
                                 <div class="form-group">
                                     <label>Parent </label>
                                     <select class="form-control category_list" id="parent_catergory" name="parent">
-                                    <option value='0'>parent</opiton>
+                                    <option value='1'>parent</opiton>
                                     <option value='0'>parent</opiton>
 
                                     </select>
