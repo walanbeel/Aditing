@@ -63,7 +63,13 @@
         </div>
 
         <div class="col-lg-6">
-          <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            @if(Session::has('message_sent'))
+            <div class="alert alert-success" role="alert">
+                {{ Session::get('message_sent') }}
+            </div>
+            @endif
+          <form  method="POST" action="{{route('contact.send')}}" role="form" class="php-email-form" enctype="multipart/form-data">
+            @csrf
             <div class="form-row">
               <div class="col form-group">
                 <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />

@@ -31,19 +31,32 @@ class SettingController extends Controller
             return redirect()->back()->withErrors($validator)->withInputs($request->all());
          }
         //insert,
-    //     $logo='';
-    //     if(isset($_FILES["logo"]["name"]))
-    //     {
-    //         if($request->hasfile('logo'))
-    //     {
-    //        $imgFile =$request->file('logo') ;
-    //        $imgName =time().basename($_FILES["logo"]["name"]);
-    //        $logo=$imgFile->move('images/books/',$imgName);
-    //        $logo=$imgName;
-    //     }
-    //     else
-    //     $logo=$request->image;
-    // }
+        $set=new Setting;
+        $logo='';
+        $icon='';
+         $imgName='';
+         $attchment='';
+
+        if($request->hasfile('logo'))
+     {
+        $imgFile =$request->file('logo') ;
+        $imgName =time().basename($_FILES["logo"]["name"]);
+        $set=$imgFile->move('images/news/',$imgName);
+
+     }
+
+
+        if($request->hasfile('logo'))
+       {
+       $attchmentFile =$request->file('logo') ;
+       $num=count((array)$request->file('$attchmentFile'));
+       for($i=0;$i<$num;$i++){
+       $ext=$attchmentFile[$i]->getClientOriginalExtension();
+       $attchmentName =rand(123456,999999).".".$ext;
+       $attachment=$attchmentFile[$i]->move('images/news/',$attchmentName);
+       $set->attachment.=$attchmentName.',';
+
+       }
 
      // $file_name = $this->saveImage($request->photo,'images/books');
         $id=Auth::user()->id;
@@ -53,8 +66,8 @@ class SettingController extends Controller
             'Website_name_ar'=>$request->Website_name_ar,
             'mobile_num'=>$request->mobile_num,
             'location'=>$request->location,
-            'icon'=>$request->icon,
-            'logo'=>$request->logo,
+            'icon'=>$icon,
+            'logo'=>$imgName,
             'email_web'=> $request->email_web,
             'aboutus_en'=>$request->aboutus_en,
             'aboutus_ar'=>$request->aboutus_ar,
@@ -64,24 +77,25 @@ class SettingController extends Controller
 
 
                ]);
-                // return redirect()->back()->with(['success' => 'تم اضافه الصنف بنجاح ']);
-                echo "$request->Website_name_en";
-                echo "$request->Website_name_ar";
-                echo "$request->mobile_num";
-                echo "$request->location";
-                echo "$request->icon";
-                echo "$request->logo";
-                echo "$request->email_web";
-                echo "$request->aboutus_en";
-                echo "$request->aboutus_ar";
-                echo "$request->slider";
-                echo "$request->Facebook";
-                echo "$request->LinkedIn";
-                echo "$request->Twitter";
+                return redirect()->back()->with(['success' => 'تم اضافه الصنف بنجاح ']);
+                // echo "$request->Website_name_en";
+                // echo "$request->Website_name_ar";
+                // echo "$request->mobile_num";
+                // echo "$request->location";
+                // echo "$request->icon";
+                // echo "$request->logo";
+                // echo "$request->email_web";
+                // echo "$request->aboutus_en";
+                // echo "$request->aboutus_ar";
+                // echo "$request->slider";
+                // echo "$request->Facebook";
+                // echo "$request->LinkedIn";
+                // echo "$request->Twitter";
 
 
 
             }
+        }
 
 
         protected function getMessages()
@@ -117,14 +131,13 @@ class SettingController extends Controller
         // }
 
 
-        public function getAllbooks()
+        public function getAllsetting()
     {
-        $books = DB::table('books')->join('users','books.id','=','users.id')
 
-               ->join('categories','books.cat_id','=','categories.cat_id')
-               ->get();
+        $settings =DB::table('settings')->join('users','settings.id','=','users.id')->get(); // return collection of all result*/
 
-        return view('Admin.allbooks',['books'=> $books]);
+        return view('Admin.allsetting',['settings'=> $settings]);
+
     }
 
 
@@ -132,12 +145,12 @@ class SettingController extends Controller
 
     ################## Edit services ##################
 
-    public function editbook($B_id)
+    public function editsettings($set_id)
     {
 
 
-        $setting = Setting::where('B_id',$B_id)->get();
-        return view('Admin.editbook',);
+        $setting = Setting::where('set_id',$set_id)->get();
+        return view('Admin.editsettings',['setting'=>  $setting]);
 
     }
 
@@ -148,25 +161,30 @@ class SettingController extends Controller
 
  ################## Update services ##################
 
- public function updatebook(Request $request)
+ public function updatesettings(Request $request)
     {
         $settings=new Setting;
 
-        $settings::where('B_id',$request->B_id )
+        $settings::where('set_id',$request->set_id )
         ->update(['id'=>$request->id,
         'cat_id'=>$request->cat_id,
-        'authoer_name_en'=>$request->sauthoer_name_en,
-        'authoer_name_ar'=>$request->authoer_name_ar,
-        'B_name_en'=>$request->B_name_en,
-        'B_name_ar'=>$request->B_name_ar,
-        'image'=>$request->image,
-        'B_img'=>$request->B_img,
+        'logo'=>$request->logo,
+        'icon'=>$request->icon,
+        'Website_name_en'=>$request->Website_name_en,
+        'Website_name_ar'=>$request->Website_name_ar,
+        'mobile_num'=>$request->mobile_num,
+        'location'=>$request->location,
+        'email_web'=>$request->email_web,
+        'aboutus_en'=>$request->aboutus_en,
+        'aboutus_ar'=>$request->aboutus_ar,
+        'Facebook'=>$request->Facebook,
+        'LinkedIn'=>$request->LinkedIn,
+        'Twitter'=>$request->Twitter,
 
-        'is_active'=>$request->is_active,
          ]);
 
-        $data['books'] = Setting::get();
-        return redirect('books/allbooks')->with($data);
+        $data['settings'] = Setting::get();
+        return redirect('setting/allsettings')->with($data);
 
     }
 
@@ -174,9 +192,9 @@ class SettingController extends Controller
 ################## Update services ##################
 
 ################## Delete services ##################
-    public function deletebook($s_id){
+    public function deletesettings($set_id){
 
-        $settings=Setting::where('s_id',$s_id)->delete();
+        $settings=Setting::where('set_id',$set_id)->delete();
 
         // if(!$s_id)
 
@@ -185,7 +203,7 @@ class SettingController extends Controller
         // $services->delete();
 
         return redirect()
-            ->route('books.all')
+            ->route('setting.all')
             ->with(['success' => __('messages.book deleted successfully')]);
 
 

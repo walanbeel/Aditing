@@ -71,7 +71,7 @@ class CategoryController extends Controller
     public function getAllCategory()
     {
         $Categorys =DB::table('categories')->join('users','categories.id','=','users.id')->get(); // return collection of all result*/
-
+                    
        return view('Admin.showcategory',['Categorys'=> $Categorys]);
     }
 
