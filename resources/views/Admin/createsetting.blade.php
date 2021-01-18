@@ -90,6 +90,7 @@
                                                 <h5 class="card-header">General settings</h5>
                                                 <div class="card-body">
                                                     <form method="POST" action="{{route('setting.add')}}" enctype="multipart/form-data">
+                                                        @csrf
                                                         <div class="form-group">
                                                             <label for="inputText3" class="col-form-label">Website Name</label>
                                                             <input id="inputText3" type="text" class="form-control" name="Website_name_en">
@@ -110,16 +111,17 @@
 
 
                                                         <div class="custom-file mb-3">
-                                                            <input type="file" class="custom-file-input" id="customFile" name="logo">
+                                                            <input type="file" class="custom-file-input" id="customFile" name="logo[]">
                                                             <label class="custom-file-label" for="customFile">File Input</label>
                                                         </div>
 
                                                         <div class="custom-file mb-3">
-                                                            <input type="file" class="custom-file-input" id="customFile" name="	icon">
+                                                            <input type="file" class="custom-file-input" id="customFile" name="	icon[]">
                                                             <label class="custom-file-label" for="customFile">File Input</label>
                                                         </div>
-                                                        <a href="#" type="submit" class="btn btn-secondary">Save</a>
-
+                                                        <div class="col-12">
+                                                            <button type="submit" class="btn btn-secondary">{{__('messages.Add Services')}}</button>
+                                                            </div>
                                                     </form>
                                                 </div>
 
@@ -141,20 +143,22 @@
                                                 <h5 class="card-header">Social settings</h5>
                                                 <div class="card-body">
                                                     <form method="POST" action="{{route('setting.add')}}" enctype="multipart/form-data">
+                                                        @csrf
                                                         <div class="form-group">
                                                             <label for="inputEmail">Facebook address</label>
-                                                            <input id="inputEmail" type="email" placeholder="name@example.com" class="form-control" name="Facebook">
+                                                            <input id="inputEmail" type="url" placeholder="name@example.com" class="form-control" name="Facebook">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputEmail">Tiwtter address</label>
-                                                            <input id="inputEmail" type="email" placeholder="name@example.com" class="form-control" name="LinkedIn">
+                                                            <input id="inputEmail" type="url" placeholder="name@example.com" class="form-control" name="LinkedIn">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputEmail">Linkind address</label>
-                                                            <input id="inputEmail" type="email" placeholder="name@example.com" class="form-control" name="Twitter">
+                                                            <input id="inputEmail" type="url" placeholder="name@example.com" class="form-control" name="Twitter">
                                                         </div>
-                                                         <a href="#" class="btn btn-secondary">Save</a>
-
+                                                         <div class="col-12">
+                                                            <button type="submit" class="btn btn-secondary">{{__('messages.Add Services')}}</button>
+                                                            </div>
                                                     </form>
                                                 </div>
 
@@ -176,6 +180,7 @@
                                                                         <h5 class="card-header">About Us</h5>
                                                                         <div class="card-body">
                                                                             <form method="POST" action="{{route('setting.add')}}" enctype="multipart/form-data">
+                                                                                @csrf
 
                                                                                 <div class="form-group">
                                                                                     <label for="exampleFormControlTextarea1">Page Content</label>
@@ -187,7 +192,9 @@
                                                                                     <textarea class="form-control" name="aboutus_ar"  id="exampleFormControlTextarea1" rows="3"></textarea>
                                                                                 </div>
 
-                                                                                <a href="#" type="submit" class="btn btn-secondary">Save</a>
+                                                                                <div class="col-12">
+                                                                                    <button type="submit" class="btn btn-secondary">{{__('messages.Add Services')}}</button>
+                                                                                    </div>
 
                                                                             </form>
                                                                         </div>
@@ -205,7 +212,6 @@
                                         <!-- ============================================================== -->
                                         <!-- vertical tabs  -->
                                         <!-- ============================================================== -->
-                                        {{-- <a href="#" class="btn btn-secondary">Go somewhere</a> --}}
                                     </div>
 
 
@@ -221,24 +227,26 @@
                                     <!-- basic form  -->
                                     <!-- ============================================================== -->
                                     <div class="row">
-                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        {{-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
                                             <div class="card">
                                                 <h5 class="card-header">General settings</h5>
                                                 <div class="card-body">
                                                     <form method="POST" action="{{route('setting.add')}}" enctype="multipart/form-data">
+                                                        @csrf
 
                                                          <div class="custom-file mb-3">
                                                             <input type="file" class="custom-file-input" id="customFile" name="slider">
                                                             <label class="custom-file-label" for="customFile">File Input</label>
                                                         </div>
-                                                        <a href="#" type="submit" class="btn btn-secondary">Save</a>
-
+                                                        <div class="col-12">
+                                                            <button type="submit" class="btn btn-secondary">{{__('messages.Add Services')}}</button>
+                                                            </div>
                                                     </form>
                                                 </div>
 
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <!-- ============================================================== -->
                                     <!-- end basic form  -->
@@ -258,18 +266,19 @@
                                                 <h5 class="card-header">Email settings</h5>
                                                 <div class="card-body">
                                                     <form method="POST" action="{{route('setting.add')}}" enctype="multipart/form-data">
-
-                                                            <div class="form-group">
+                                                        @csrf
+                                                            {{-- <div class="form-group">
                                                                 <label>Phone <small class="text-muted">(967) 999-9999</small></label>
                                                                 <input type="text" class="form-control phone-inputmask"  name="mobile_num" id="phone-mask" placeholder="">
-                                                            </div>
+                                                            </div> --}}
                                                             <div class="form-group">
                                                                 <label for="inputEmail">Email address</label>
                                                                 <input id="inputEmail" type="email"  name="email_web" placeholder="name@example.com" class="form-control">
                                                             </div>
 
-                                                            <a href="#" type="submit" class="btn btn-secondary">Save</a>
-
+                                                            <div class="col-12">
+                                                                <button type="submit" class="btn btn-secondary">{{__('messages.Add Services')}}</button>
+                                                                </div>
 
                                                     </form>
                                                 </div>

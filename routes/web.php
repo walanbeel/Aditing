@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
+use App\Http\Controllers\ContactController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,4 +48,8 @@ Auth::routes();
 Route::get('/home', function(){
     return view('home');
 })->name('home');
+/*************Route contact page************ */
+Route::get('/contact-us',[ContactController::class,'contact']);
+
+Route::post('/send_massage',[ContactController::class,'sendEmail'])->name('contact.send');
 

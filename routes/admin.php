@@ -110,11 +110,11 @@ Route::group(['namespace'=>'Admin','prefix'=>'setting','middleware'=>'auth'],fun
     Route::get('create','SettingController@create')->name('setting.create');
     Route::post('add','SettingController@add')->name('setting.add');
 
-    Route::get('edit/{set_id}','SettingController@editblog')->name('setting.edit');
-    Route::post('update','SettingController@updateblog')->name('setting.update');
-    Route::get('delete/{set_id}','SettingController@deleteblog')->name('setting.delete');;
+    Route::get('edit/{set_id}','SettingController@editsettings')->name('setting.edit');
+    Route::post('update','SettingController@updatesettings')->name('setting.update');
+    Route::get('delete/{set_id}','SettingController@deletesettings')->name('setting.delete');;
 
-    Route::get('allblog','SettingController@getAllblog')->name('setting.all');
+    Route::get('allsetting','SettingController@getAllsetting')->name('setting.all');
 
 
 

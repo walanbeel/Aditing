@@ -34,22 +34,21 @@
                 <!-- ============================================================== -->
                 <div class="row">
                      <!-- Column -->
-                     {{-- <div class="col-md-6 col-lg-2 col-xlg-3">
-                         @php
-                         $rows=$data['users'];
-                         $count = count($rows);
-                        <div class="card card-hover">
+                     @foreach ($users as $user)
+
+                     <div class="col-md-6 col-lg-2 col-xlg-3">
+                         <div class="card card-hover">
                             <div class="box bg-cyan text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-account-plus"></i></h1>
-                               <h6 class="text-white">{{ $rows}}</h6>
-                                <h3 class="text-white">{{$count}}</h3>
-
+                               <h6 class="text-white">USers</h6>
+                                <h3 class="text-white"> {{$user->users()->count()}}</h3>
                             </div>
                         </div>
-                        @endphp
-                    </div> --}}
+                    </div>
+                    @endforeach
+
                     <!-- Column -->
-                    <div class="col-md-6 col-lg-2 col-xlg-3">
+                    {{-- <div class="col-md-6 col-lg-2 col-xlg-3">
                         <div class="card card-hover">
                             <div class="box bg-cyan text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-account-plus"></i></h1>
@@ -58,7 +57,7 @@
 
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- Column -->
 
                      <!-- Column -->

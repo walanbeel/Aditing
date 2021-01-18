@@ -121,6 +121,8 @@ class ServicesController extends Controller
         $id=Auth::user()->id;
         $services=new Service;
 
+    
+
         $services::where('s_id',$request->s_id)
         ->update(['id'=>$id,
         'cat_id'=>$request->cat_id,

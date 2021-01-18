@@ -75,8 +75,8 @@
                                       <td>{{$blog->cat_id}}</td>
                                       <td>{{$blog->title_en}}</td>
                                       <td>{{$blog->title_ar}}</td>
-                                      <td>{{$blog->content_en}}</td>
-                                      <td>{{$blog->content_ar}}</td>
+                                      <td style="width:10px">{{$blog->content_en}}</td>
+                                      <td style="width:10px">{{$blog->content_ar}}</td>
                                       <td>{{$blog->main_img}}</td>
                                       <td>{{$blog->blog_img}}</td>
 

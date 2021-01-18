@@ -35,6 +35,7 @@ class BlogController extends Controller
         $blog=new Blog;
         $main_img='';
         $blog_img='';
+        $imgName='';
         $blog='';
 
         print_r($_FILES['main_img']);
@@ -45,7 +46,7 @@ class BlogController extends Controller
         $main_img=$imgFile->move('images/books/',$imgName);
 
      }
-     if($request->hasfile('blog_img'))
+     if($request->hasfile('main_img'))
      {
         $attchmentFile =$request->file('blog_img') ;
         $num=count($attchmentFile);
@@ -145,6 +146,20 @@ class BlogController extends Controller
         $blogs=new Blog;
         $id=Auth::user()->id;
 
+        $img='';
+
+        if($request->hasfile('attachment'))
+        {
+           $attchmentFile =$request->file('attachment') ;
+           $num=count($attchmentFile);
+          for($i=0;$i<$num;$i++){
+             $ext=$attchmentFile[$i]->getClientOriginalExtension();
+           $attchmentName =rand(123456,999999).".".$ext;
+           $attchment=$attchmentFile[$i]->move('images/books/',$attchmentName);
+           $img.=$attchmentName.',';
+
+           }
+
         $blogs::where('blog_id',$request->blog_id)
         ->update(['id'=>$id,
         'cat_id'=>$request->cat_id,
@@ -152,15 +167,15 @@ class BlogController extends Controller
         'title_ar'=>$request->title_ar,
         'content_en'=>$request->content_en,
         'content_ar'=>$request->content_ar,
-        'main_img'=>$request->main_img,
-        'blog_img'=>$request->blog_img,
+        'main_img'=>$request->img,
+        'blog_img'=>$request->img,
          ]);
 
          $blogss['blogs'] = Blog::get();
         return redirect('/blogs/allblog')->with($blogss);
 
     }
-
+    }
 
 ################## Update services ##################
 

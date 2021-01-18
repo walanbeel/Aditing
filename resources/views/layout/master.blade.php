@@ -105,7 +105,7 @@
           <a class="nav-link" href="#">News</a>
         </li>
          <li class="nav-item">
-           <a class="nav-link" href="contactus.html">Contact Us</a>
+           <a class="nav-link" href="{{ route('contact.send')}}">Contact Us</a>
          </li>
 
        </ul>
