@@ -74,7 +74,7 @@
                       <div class="col-12">
                         <div class="form-group">
                             <label>is Active </label>
-                            <select class="form-control category_list"   name="is_active" id="is_active">
+                            <select class="form-control category_list"   name="is_active" id="is_active" checked=1>
                             <option value=1>yes</opiton>
                             <option value=0>No</option>
                             </select>

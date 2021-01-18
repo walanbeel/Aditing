@@ -51,50 +51,54 @@
                                     {{Session::get('error')}}
                                 </div>
                             @endif
-                            <table class="table">
-                                  <thead>
-                                    <tr>
-                                      <th scope="col">{{__('messages.blog_id')}}</th>
-                                      <th scope="col">{{__('messages.id')}}</th>
-                                      <th scope="col">{{__('messages.cat_id')}}</th>
-                                      <th scope="col">{{__('messages.title_en')}}</th>
-                                      <th scope="col">{{__('messages.title_ar')}}</th>
-                                      <th scope="col">{{__('messages.content_en')}}</th>
-                                      <th scope="col">{{__('messages.content_ar')}}</th>
-                                      <th scope="col">{{__('messages.main_img')}}</th>
-                                      <th scope="col">{{__('messages.blog_img')}}</th>
-                                      <th scope="col">{{__('messages.operation')}}</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    @foreach($blogs as $blog)
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">{{__('messages.blog_id')}}</th>
+                                        <th scope="col">{{__('messages.id')}}</th>
+                                        <th scope="col">{{__('messages.cat_id')}}</th>
+                                        <th scope="col">{{__('messages.title_en')}}</th>
+                                        <th scope="col">{{__('messages.title_ar')}}</th>
+                                        <th scope="col">{{__('messages.content_en')}}</th>
+                                        <th scope="col">{{__('messages.content_ar')}}</th>
+                                        <th scope="col">{{__('messages.main_img')}}</th>
+                                        {{-- <th scope="col">{{__('messages.blog_img')}}</th> --}}
+                                        <th scope="col">{{__('messages.operation')}}</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      @foreach($blogs as $blog)
 
-                                    <tr>
-                                      <td scope="row">{{$blog->blog_id}}</td>
-                                      <td>{{$blog->id}}</td>
-                                      <td>{{$blog->cat_id}}</td>
-                                      <td>{{$blog->title_en}}</td>
-                                      <td>{{$blog->title_ar}}</td>
-                                      <td style="width:10px">{{$blog->content_en}}</td>
-                                      <td style="width:10px">{{$blog->content_ar}}</td>
-                                      <td>{{$blog->main_img}}</td>
-                                      <td>{{$blog->blog_img}}</td>
+                                      <tr>
+                                        <td scope="row">{{$blog->blog_id}}</td>
+                                        <td>{{$blog->id}}</td>
+                                        <td>{{$blog->cat_id}}</td>
+                                        <td>{{$blog->title_en}}</td>
+                                        <td>{{$blog->title_ar}}</td>
 
-                                      <td>
+                                        <td style="width:100px">{!! $blog->content_en !!}</td>
+                                        <td style="width:100px">{!! $blog->content_ar !!}</td>
+                                        <td>{{$blog->main_img}}</td>
+                                        {{-- <td>{{$blog->blog_img}}</td> --}}
 
-                                        <a href="{{route('blogs.edit',$blog->blog_id)}}" class="btn btn-success"> {{__('messages.update')}}</a>
-                                        {{-- <a href="{{url('services/edit/'.$service->s_id)}}" class="btn btn-success"> {{__('messages.update')}}</a> --}}
-                                        <a href="{{route('blogs.delete',$blog->blog_id)}}" class="btn btn-danger"> {{__('messages.delete')}}</a>
+                                        <td>
 
-                                       </td>
+                                          <a href="{{route('blogs.edit',$blog->blog_id)}}" class="btn btn-success"> {{__('messages.update')}}</a>
+                                          {{-- <a href="{{url('services/edit/'.$service->s_id)}}" class="btn btn-success"> {{__('messages.update')}}</a> --}}
+                                          <a href="{{route('blogs.delete',$blog->blog_id)}}" class="btn btn-danger"> {{__('messages.delete')}}</a>
+
+                                         </td>
 
 
-                                    </tr>
+                                      </tr>
 
-                                    @endforeach
+                                      @endforeach
 
-                                  </tbody>
-                            </table>
+                                    </tbody>
+                              </table>
+                            </div>
+
                         </div>
 
                         @endsection

@@ -100,11 +100,11 @@
                                         {{-- <input type="file" name="images" value="{{$item->images}}"> --}}
                                          <div class="form-group">
                                             <label>books Image </label>
+                                             <input type="hidden" name="images1" value="{{$item->images}}">
                                             <input type="file"  id="file-ip-1" name="images" class="form-control" onchange="showPreview(event)" value="{{$item->images}}">
                                             <br>
-                                            <img src="{{$item->images}}" class="img-fluid" id="file-ip-1-preview" width="70">
+                                            {{-- <img src="{{$item->images}}" class="img-fluid" id="file-ip-1-preview" width="70"> --}}
                                           </div>
-
                                     </div>
                                     <div class="col-12">
                                         <input type="hidden">

@@ -89,14 +89,14 @@
                                             <div class="card">
                                                 <h5 class="card-header">General settings</h5>
                                                 <div class="card-body">
-                                                    <form method="POST" action="{{route('setting.add')}}" enctype="multipart/form-data">
+                                                    <form method="POST" action="{{route('setting.addc')}}" enctype="multipart/form-data">
                                                         @csrf
                                                         <div class="form-group">
-                                                            <label for="inputText3" class="col-form-label">Website Name</label>
+                                                            <label for="inputText3" class="col-form-label">Website Name en</label>
                                                             <input id="inputText3" type="text" class="form-control" name="Website_name_en">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="inputText3" class="col-form-label">Website Name</label>
+                                                            <label for="inputText3" class="col-form-label">Website Name ar</label>
                                                             <input id="inputText3" type="text" class="form-control" name="Website_name_ar">
                                                         </div>
 
@@ -142,7 +142,7 @@
                                             <div class="card">
                                                 <h5 class="card-header">Social settings</h5>
                                                 <div class="card-body">
-                                                    <form method="POST" action="{{route('setting.add')}}" enctype="multipart/form-data">
+                                                    <form method="POST" action="{{route('setting.addf')}}" enctype="multipart/form-data">
                                                         @csrf
                                                         <div class="form-group">
                                                             <label for="inputEmail">Facebook address</label>
@@ -179,7 +179,7 @@
                                                                 <div class="card">
                                                                         <h5 class="card-header">About Us</h5>
                                                                         <div class="card-body">
-                                                                            <form method="POST" action="{{route('setting.add')}}" enctype="multipart/form-data">
+                                                                            <form method="POST" action="{{route('setting.addh')}}" enctype="multipart/form-data">
                                                                                 @csrf
 
                                                                                 <div class="form-group">
@@ -289,7 +289,7 @@
                                     <!-- ============================================================== -->
                                     <!-- end basic form  -->
                                     <!-- ============================================================== -->
-                        </div>
+                            </div>
                             </div>
                         </div>
                     </div>
