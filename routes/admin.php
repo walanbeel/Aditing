@@ -128,6 +128,7 @@ Route::group(['namespace'=>'Admin','prefix'=>'dashboard','middleware'=>'auth'], 
     Route::get('dashboard','DahshboradController@index')->name('dashboard.show');
 
 
+
 });
 
 

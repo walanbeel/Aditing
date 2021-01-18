@@ -37,28 +37,28 @@ class BookController extends Controller
         //insert,
 
          $book=new Book;
-        $image='';
+         $image='';
          $imgName='';
-         $attchment='';
+        //  $attchment='';
 
         if($request->hasfile('image'))
      {
         $imgFile =$request->file('image') ;
         $imgName =time().basename($_FILES["image"]["name"]);
-        $book=$imgFile->move('images/news/',$imgName);
+        $book=$imgFile->move('images/books/',$imgName);
 
      }
-        if($request->hasfile('image'))
-       {
-       $attchmentFile =$request->file('image') ;
-       $num=count((array)$request->file('$attchmentFile'));
-       for($i=0;$i<$num;$i++){
-       $ext=$attchmentFile[$i]->getClientOriginalExtension();
-       $attchmentName =rand(123456,999999).".".$ext;
-       $attachment=$attchmentFile[$i]->move('images/news/',$attchmentName);
-       $book->attachment.=$attchmentName.',';
+    //     if($request->hasfile('image'))
+    //    {
+    //    $attchmentFile =$request->file('image') ;
+    //    $num=count((array)$request->file('$attchmentFile'));
+    //    for($i=0;$i<$num;$i++){
+    //    $ext=$attchmentFile[$i]->getClientOriginalExtension();
+    //    $attchmentName =rand(123456,999999).".".$ext;
+    //    $attachment=$attchmentFile[$i]->move('images/news/',$attchmentName);
+    //    $book->attachment.=$attchmentName.',';
 
-       }
+    //    }
 
 
 
@@ -77,7 +77,7 @@ class BookController extends Controller
                ]);
                 return redirect()->back()->with(['success' => 'تم اضافه الكتاب بنجاح ']);
             }
-        }
+
 
 
         protected function getMessages()
@@ -127,7 +127,7 @@ class BookController extends Controller
 
 
 
-    ################## Edit services ##################
+################## Edit services ##################
 
     public function editbook($B_id)
     {
@@ -148,34 +148,28 @@ class BookController extends Controller
 
  public function updatebook(Request $request)
     {
+
+
         $books=new Book;
 
-        $img='';
-
-        if($request->hasfile('attachment'))
+        if($request->hasfile('image'))
         {
-           $attchmentFile =$request->file('attachment') ;
-           $num=count($attchmentFile);
-          for($i=0;$i<$num;$i++){
-             $ext=$attchmentFile[$i]->getClientOriginalExtension();
-           $attchmentName =rand(123456,999999).".".$ext;
-           $attchment=$attchmentFile[$i]->move('images/news/',$attchmentName);
-           $img.=$attchmentName.',';
+           $imgFile =$request->file('image') ;
+           $imgName =time().basename($_FILES["image"]["name"]);
+           $book=$imgFile->move('images/books/',$imgName);
+           $img=$imgName;
 
-           }
+           $books::where('B_id',$request->B_id )
+           ->update(['id'=>$request->id,
+           'cat_id'=>$request->cat_id,
+           'authoer_name_en'=>$request->authoer_name_en,
+           'authoer_name_ar'=>$request->authoer_name_ar,
+           'B_name_en'=>$request->B_name_en,
+           'B_name_ar'=>$request->B_name_ar,
+           'image'=>$img,
+           // 'B_img'=>$request->B_img,
 
-        $books::where('B_id',$request->B_id )
-        ->update(['id'=>$request->id,
-        'cat_id'=>$request->cat_id,
-        'authoer_name_en'=>$request->authoer_name_en,
-        'authoer_name_ar'=>$request->authoer_name_ar,
-        'B_name_en'=>$request->B_name_en,
-        'B_name_ar'=>$request->B_name_ar,
-        'image'=>$request->$img,
-        // 'B_img'=>$request->B_img,
-
-        'is_active'=>$request->is_active,
-         ]);
+            ]);
         }
         else{
             $books::where('B_id',$request->B_id )
@@ -185,15 +179,18 @@ class BookController extends Controller
             'authoer_name_ar'=>$request->authoer_name_ar,
             'B_name_en'=>$request->B_name_en,
             'B_name_ar'=>$request->B_name_ar,
-            'image'=>$request->$img,
+            
             // 'B_img'=>$request->B_img,
 
              ]);
             }
+
+
         $data['books'] = Book::get();
-        return redirect('/books/allbooks')->with($data);
+       return redirect('/books/allbooks')->with($data);
 
     }
+
 
 
 ################## Update services ##################

@@ -91,19 +91,20 @@
                                     <div class="col-12">
                                         <input type="hidden">
                                         <label for="exampleFormControlFile1">{{__('messages.News main img')}}</label>
-                                        <input type="file" id="file-ip-1"  class="form-control-file" name="main_img[]"  placeholder="{{__('messages.main_img')}}">
+                                        <input type="file" id="file-ip-1"  class="form-control-file" name="main_img"  placeholder="{{__('messages.main_img')}}">
+
                                         @error('main_img')
                                         <small>{{$message}}</small>
                                         @enderror
                                     </div>
-                                    <div class="col-12">
+                                    {{-- <div class="col-12">
                                         <input type="hidden">
                                         <label for="exampleFormControlFile1">{{__('messages.News blog img')}}</label>
                                         <input type="file" id="file-ip-1"  class="form-control-file" name="blog_img[]"  multiple placeholder="{{__('messages.blog_img')}}">
                                         @error('blog_img')
                                         <small>{{$message}}</small>
                                         @enderror
-                                    </div>
+                                    </div> --}}
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label>{{__('messages. News Category')}} </label>

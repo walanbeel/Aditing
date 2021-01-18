@@ -6,26 +6,38 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\User;
+use App\Models\Category;
+use App\Models\Book;
+use App\Models\Service;
+use App\Models\Blog;
+
+
 
 class DahshboradController extends Controller
 {
     //
     function index(){
-        return view('Admin.dashboard');
-    }
-
-    public function count_user(){
         $authId = Auth::id();
 
-        $users = DB::table('users')->where('id',$authId)->get();
-            // ->select('select * from users')
-            // ->get()->count();
+        $users =User::get()->count();
 
-            // $users_count = $users->count();
 
-            return view('Admin.dashboard', ['users' => $users]);
+
+
+        $category =Category::get()->count();
+        $service =Service::get()->count();
+        $book =Book::get()->count();
+        $blog =Blog::get()->count();
+
+
+        return view('Admin.dashboard', ['category' => $category,'users' => $users,'service' => $service,'book'=> $book,'blog'=> $blog]);
+
+
 
 
     }
+
+
 
 }

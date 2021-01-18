@@ -82,7 +82,7 @@ return [
 "News title ar"=>'title',
 "News content en"=>' content',
 "News content ar"=>'content',
-"News main img"=>'main img',
+"books img"=>'main img',
 "News blog img"=>'images',
 "News Category"=>'Category',
 "Add News"=>'Add News',

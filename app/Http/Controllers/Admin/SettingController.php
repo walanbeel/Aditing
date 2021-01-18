@@ -78,19 +78,7 @@ class SettingController extends Controller
 
                ]);
                 return redirect()->back()->with(['success' => 'تم اضافه الصنف بنجاح ']);
-                // echo "$request->Website_name_en";
-                // echo "$request->Website_name_ar";
-                // echo "$request->mobile_num";
-                // echo "$request->location";
-                // echo "$request->icon";
-                // echo "$request->logo";
-                // echo "$request->email_web";
-                // echo "$request->aboutus_en";
-                // echo "$request->aboutus_ar";
-                // echo "$request->slider";
-                // echo "$request->Facebook";
-                // echo "$request->LinkedIn";
-                // echo "$request->Twitter";
+                
 
 
 

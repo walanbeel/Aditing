@@ -34,29 +34,29 @@ class BlogController extends Controller
        // insert,
         $blog=new Blog;
         $main_img='';
-        $blog_img='';
         $imgName='';
-        $blog='';
+        $attchment='';
 
         print_r($_FILES['main_img']);
+
         if($request->hasfile('main_img'))
      {
         $imgFile =$request->file('main_img') ;
         $imgName =time().basename($_FILES["main_img"]["name"]);
-        $main_img=$imgFile->move('images/books/',$imgName);
+        $blog=$imgFile->move('images/news/',$imgName);
 
      }
-     if($request->hasfile('main_img'))
-     {
-        $attchmentFile =$request->file('blog_img') ;
-        $num=count($attchmentFile);
-       for($i=0;$i<$num;$i++){
-          $ext=$attchmentFile[$i]->getClientOriginalExtension();
-        $attchmentName =rand(123456,999999).".".$ext;
-        $attchment=$attchmentFile[$i]->move('images/books/',$attchmentName);
-        $blog_img .=$attchmentName.',';
-       }
+    //  if($request->hasfile('main_img'))
+    //  {
+    //     $attchmentFile =$request->file('main_img') ;
+    //     $num=count($attchmentFile);
+    //     for($i=0;$i<$num;$i++){
+    //       $ext=$attchmentFile[$i]->getClientOriginalExtension();
+    //     $attchmentName =rand(123456,999999).".".$ext;
+    //     $attchment=$attchmentFile[$i]->move('images/news/',$attchmentName);
+    //     $main_img .=$attchmentName.',';
     //    }
+
 
 
     // if($request->hasfile('blog_img'))
@@ -82,12 +82,11 @@ class BlogController extends Controller
             'content_en'=>$request->content_en,
             'content_ar'=>$request->content_ar,
             'main_img'=>$imgName,
-            'blog_img'=>$blog_img,
 
                ]);
                return redirect()->back()->with(['success' => 'تم اضافه المقال بنجاح ']);
             }
-        }
+        
 
         protected function getMessages()
         {
@@ -146,19 +145,12 @@ class BlogController extends Controller
         $blogs=new Blog;
         $id=Auth::user()->id;
 
-        $img='';
-
-        if($request->hasfile('attachment'))
+        if($request->hasfile('main_img'))
         {
-           $attchmentFile =$request->file('attachment') ;
-           $num=count($attchmentFile);
-          for($i=0;$i<$num;$i++){
-             $ext=$attchmentFile[$i]->getClientOriginalExtension();
-           $attchmentName =rand(123456,999999).".".$ext;
-           $attchment=$attchmentFile[$i]->move('images/books/',$attchmentName);
-           $img.=$attchmentName.',';
-
-           }
+           $imgFile =$request->file('main_img') ;
+           $imgName =time().basename($_FILES["main_img"]["name"]);
+           $blog=$imgFile->move('images/books/',$imgName);
+           $img=$imgName;
 
         $blogs::where('blog_id',$request->blog_id)
         ->update(['id'=>$id,
@@ -167,14 +159,24 @@ class BlogController extends Controller
         'title_ar'=>$request->title_ar,
         'content_en'=>$request->content_en,
         'content_ar'=>$request->content_ar,
-        'main_img'=>$request->img,
-        'blog_img'=>$request->img,
+        'main_img'=>$img,
          ]);
+
+        }else{
+            $blogs::where('blog_id',$request->blog_id)
+            ->update(['id'=>$id,
+            'cat_id'=>$request->cat_id,
+            'title_en'=>$request->title_en,
+            'title_ar'=>$request->title_ar,
+            'content_en'=>$request->content_en,
+            'content_ar'=>$request->content_ar,
+             ]);
+        }
 
          $blogss['blogs'] = Blog::get();
         return redirect('/blogs/allblog')->with($blogss);
 
-    }
+
     }
 
 ################## Update services ##################

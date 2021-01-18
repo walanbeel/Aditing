@@ -34,18 +34,16 @@
                 <!-- ============================================================== -->
                 <div class="row">
                      <!-- Column -->
-                     @foreach ($users as $user)
 
                      <div class="col-md-6 col-lg-2 col-xlg-3">
                          <div class="card card-hover">
                             <div class="box bg-cyan text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-account-plus"></i></h1>
                                <h6 class="text-white">USers</h6>
-                                <h3 class="text-white"> {{$user->users()->count()}}</h3>
+                                <h3 class="text-white"> {{$users}}</h3>
                             </div>
                         </div>
                     </div>
-                    @endforeach
 
                     <!-- Column -->
                     {{-- <div class="col-md-6 col-lg-2 col-xlg-3">
@@ -66,7 +64,7 @@
                             <div class="box bg-warning text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-collage"></i></h1>
                                 <h6 class="text-white">Category</h6>
-                                <h3 class="text-white">10</h3>
+                                <h3 class="text-white">{{$category}}</h3>
 
                             </div>
                         </div>
@@ -77,7 +75,7 @@
                             <div class="box bg-danger text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-chart-pie"></i></h1>
                                 <h6 class="text-white">Services</h6>
-                                <h3 class="text-white">10</h3>
+                                <h3 class="text-white">{{$service}}</h3>
 
                             </div>
                         </div>
@@ -88,7 +86,7 @@
                             <div class="box bg-info text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-file-pdf"></i></h1>
                                 <h6 class="text-white">Books</h6>
-                                <h3 class="text-white">150</h3>
+                                <h3 class="text-white">{{$book}}</h3>
 
                             </div>
                         </div>
@@ -100,7 +98,7 @@
                             <div class="box bg-cyan text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-pencil"></i></h1>
                                 <h6 class="text-white">News</h6>
-                                <h3 class="text-white">150</h3>
+                                <h3 class="text-white">{{$blog}}</h3>
 
                             </div>
 
@@ -113,7 +111,7 @@
                             <div class="box bg-success text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-message-text"></i></h1>
                                 <h6 class="text-white">Commint</h6>
-                                <h3 class="text-white">50</h3>
+                                <h3 class="text-white">0</h3>
 
                             </div>
 
