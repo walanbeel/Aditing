@@ -23,13 +23,14 @@ Route::get('/admin', function () {
 
 
 #################### Category route ####################
-//  Route::group(['prefix' => LaravelLocalization::setLocale(),
-//  'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){
+  Route::group(['prefix' => LaravelLocalization::setLocale(),
+  'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){
 
 
 
     Route::group(['namespace'=>'Admin','prefix'=>'category','middleware'=>'auth'],function(){
         Route::get('create','CategoryController@create')->name('category.create');
+
         Route::post('store','CategoryController@store')->name('category.store');
 
         Route::get('edit/{cat_id}','CategoryController@edit')->name('category.edit');
@@ -42,12 +43,15 @@ Route::get('/admin', function () {
 
     });
 
-//});
+});
 
 #################### End Category route ####################
 
 
 #################### Services route ####################
+Route::group(['prefix' => LaravelLocalization::setLocale(),
+'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){
+
 Route::group(['namespace'=>'Admin','prefix'=>'services','middleware'=>'auth'],function(){
 
     Route::get('create','ServicesController@create')->name('services.create');;
@@ -55,20 +59,23 @@ Route::group(['namespace'=>'Admin','prefix'=>'services','middleware'=>'auth'],fu
 
     Route::get('edit/{s_id}','ServicesController@editservice')->name('services.edit');
     Route::post('update','ServicesController@updateservice')->name('services.update');
-    Route::get('delete/{s_id}','ServicesController@deleteservice')->name('services.delete');;
+    Route::get('delete/{s_id}','ServicesController@deleteservice')->name('services.delete');
 
     Route::get('allservices', 'ServicesController@getAllService')->name('services.all');
 
 
 
 });
-
+});
 #################### End Services route ####################
 
 
 
 
 #################### Books route ####################
+Route::group(['prefix' => LaravelLocalization::setLocale(),
+'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){
+
 Route::group(['namespace'=>'Admin','prefix'=>'books','middleware'=>'auth'],function(){
 
     Route::get('create','BookController@create')->name('books.create');
@@ -76,17 +83,21 @@ Route::group(['namespace'=>'Admin','prefix'=>'books','middleware'=>'auth'],funct
 
     Route::get('edit/{B_id}','BookController@editbook')->name('books.edit');
     Route::post('update','BookController@updatebook')->name('books.update');
-    Route::get('delete/{B_id}','BookController@deletebook')->name('books.delete');;
+    Route::get('delete/{B_id}','BookController@deletebook')->name('books.delete');
 
     Route::get('allbooks','BookController@getAllbooks')->name('books.all');
 
 
 
 });
+});
 #################### End Books route ####################
 
 
 #################### Blogs route ####################
+Route::group(['prefix' => LaravelLocalization::setLocale(),
+'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){
+
 Route::group(['namespace'=>'Admin','prefix'=>'blogs','middleware'=>'auth'],function(){
 
     Route::get('create','BlogController@create')->name('blogs.create');
@@ -94,17 +105,21 @@ Route::group(['namespace'=>'Admin','prefix'=>'blogs','middleware'=>'auth'],funct
 
     Route::get('edit/{blog_id}','BlogController@editblog')->name('blogs.edit');
     Route::post('update','BlogController@updateblog')->name('blogs.update');
-    Route::get('delete/{blog_id}','BlogController@deleteblog')->name('blogs.delete');;
+    Route::get('delete/{blog_id}','BlogController@deleteblog')->name('blogs.delete');
 
     Route::get('allblog','BlogController@getAllblog')->name('blogs.all');
 
 
 
 });
+});
 
 #################### End Blogs route ####################
 
 #################### Setting ####################
+Route::group(['prefix' => LaravelLocalization::setLocale(),
+'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){
+
 Route::group(['namespace'=>'Admin','prefix'=>'setting','middleware'=>'auth'],function(){
 
     Route::get('create','SettingController@create')->name('setting.create');
@@ -112,16 +127,18 @@ Route::group(['namespace'=>'Admin','prefix'=>'setting','middleware'=>'auth'],fun
 
     Route::get('edit/{set_id}','SettingController@editsettings')->name('setting.edit');
     Route::post('update','SettingController@updatesettings')->name('setting.update');
-    Route::get('delete/{set_id}','SettingController@deletesettings')->name('setting.delete');;
+    Route::get('delete/{set_id}','SettingController@deletesettings')->name('setting.delete');
 
     Route::get('allsetting','SettingController@getAllsetting')->name('setting.all');
 
 
 
 });
+});
 
 #################### End Setting ####################
-
+Route::group(['prefix' => LaravelLocalization::setLocale(),
+'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){
 
 Route::group(['namespace'=>'Admin','prefix'=>'dashboard','middleware'=>'auth'], function () {
 
@@ -129,6 +146,7 @@ Route::group(['namespace'=>'Admin','prefix'=>'dashboard','middleware'=>'auth'], 
 
 
 
+});
 });
 
 

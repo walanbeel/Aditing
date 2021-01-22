@@ -89,15 +89,12 @@
                                        </div>
                                     </div>
 
-                                        <div class="col-12">
-                                        <div class="form-group">
-                                            <label>{{__('messages.is Active')}} </label>
-                                            <select class="form-control category_list"   name="is_active"  id="is_active">
-                                            <option value=1>yes</opiton>
-                                            <option value=0>No</option>
-                                            </select>
-                                            </div>
-                                            </div>
+                                    <div class="col-12">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" value="1" name="is_active" id="customCheck1">
+                                            <label class="custom-control-label" for="customCheck1">is Active</label>
+                                          </div>
+                                       </div>
 
                                             <div class="col-12">
                                                 <div class="form-group">

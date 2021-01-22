@@ -37,29 +37,36 @@ class BookController extends Controller
         //insert,
 
          $book=new Book;
-         $image='';
+         $file='';
          $imgName='';
-        //  $attchment='';
+          $attchment='';
+        // if($request->hasfile('file'))
+        // {
+        //    $File =$request->file('file') ;
+        //    $filename =time().'.'. $File->getClientOriginalExtension();
+        //    $request->file->move('images/books/'.$filename);
+        //    $book->file=$filename;
 
-        if($request->hasfile('image'))
+        // }
+
+        if($request->hasfile('file'))
      {
-        $imgFile =$request->file('image') ;
-        $imgName =time().basename($_FILES["image"]["name"]);
+        $imgFile =$request->file('file') ;
+        $imgName =time().basename($_FILES["file"]["name"]);
         $book=$imgFile->move('images/books/',$imgName);
 
      }
-    //     if($request->hasfile('image'))
+    //     if($request->hasfile('file'))
     //    {
-    //    $attchmentFile =$request->file('image') ;
+    //    $attchmentFile =$request->file('file') ;
     //    $num=count((array)$request->file('$attchmentFile'));
     //    for($i=0;$i<$num;$i++){
     //    $ext=$attchmentFile[$i]->getClientOriginalExtension();
     //    $attchmentName =rand(123456,999999).".".$ext;
-    //    $attachment=$attchmentFile[$i]->move('images/news/',$attchmentName);
+    //    $attachment=$attchmentFile[$i]->move('images/books/',$attchmentName);
     //    $book->attachment.=$attchmentName.',';
 
     //    }
-
 
 
         $id=Auth::user()->id;
@@ -70,14 +77,14 @@ class BookController extends Controller
             'authoer_name_ar'=>$request->authoer_name_ar,
             'B_name_en'=>$request->B_name_en,
             'B_name_ar'=>$request->B_name_ar,
-            'image'=>$imgName,
+            'file'=>$imgName,
             'B_preface_en'=>$request->B_preface_en,
             'B_preface_ar'=>$request->B_preface_ar,
 
                ]);
                 return redirect()->back()->with(['success' => 'تم اضافه الكتاب بنجاح ']);
-            }
 
+        }
 
 
         protected function getMessages()
@@ -87,6 +94,8 @@ class BookController extends Controller
                 'authoer_name_ar.required'  =>  __('messages.book name required'),
                 'B_preface_en.required'  =>  __('messages.book  must be required'),
                 'B_preface_ar.required'  =>  __('messages.book  must be required'),
+                'image' => __('messages.images must be required'),
+
 
 
             ];
@@ -99,6 +108,8 @@ class BookController extends Controller
                 'authoer_name_ar' => 'required|unique:books,authoer_name_ar',
                 'B_preface_en' => 'required',
                 'B_preface_ar' => 'required',
+                'image' => 'required',
+
 
             ];
         }
@@ -166,7 +177,7 @@ class BookController extends Controller
            'authoer_name_ar'=>$request->authoer_name_ar,
            'B_name_en'=>$request->B_name_en,
            'B_name_ar'=>$request->B_name_ar,
-           'image'=>$img,
+           'file'=>$img,
            // 'B_img'=>$request->B_img,
 
             ]);
@@ -179,7 +190,7 @@ class BookController extends Controller
             'authoer_name_ar'=>$request->authoer_name_ar,
             'B_name_en'=>$request->B_name_en,
             'B_name_ar'=>$request->B_name_ar,
-            
+
             // 'B_img'=>$request->B_img,
 
              ]);

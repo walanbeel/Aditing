@@ -51,15 +51,17 @@
                                     {{Session::get('error')}}
                                 </div>
                             @endif
-                            <table class="table">
+                            <div class="table-responsive">
+
+                                <table class="table table-striped table-bordered dataTable">
                                   <thead>
                                     <tr>
                                       <th scope="col">{{__('messages.cat_id')}}</th>
-                                      <th scope="col">{{__('messages.id')}}</th>
                                       <th scope="col">{{__('messages.cat_name_en')}}</th>
                                       <th scope="col">{{__('messages.cat_name_ar')}}</th>
-                                      <th scope="col">{{__('messages.is_active')}}</th>
+                                      <th scope="col">{{__('messages.id')}}</th>
                                       <th scope="col">{{__('messages.parent')}}</th>
+                                      <th scope="col">{{__('messages.is_active')}}</th>
                                       <th scope="col">{{__('messages.operation')}}</th>
                                     </tr>
                                   </thead>
@@ -68,22 +70,37 @@
 
                                     <tr>
                                       <th scope="row">{{$category->cat_id}}</th>
-                                      <td>{{$category->name}}</td>
-                                      <td>{{$category->cat_name_en}}</td>
                                       <td>{{$category->cat_name_ar}}</td>
-                                      <td>
+                                      <td>{{$category->cat_name_ar}}</td>
+                                      <td>{{$category->name}}</td>
 
+                                     
+                                    {{-- <td>
+                                        <input data-id="{{$category->cat_id}}" id="switch16" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{$categorys->status ? 'checked' : '' }}>
+                                     </td> --}}
+                                     @if($category->is_active==0)
+                                      <td>Mean</td>
+                                      @elseif($category->is_active==1)
+                                      <td>{{$category->cat_name_en}}</td>
+                                      @endif
+
+                                      <td>
                                         <div class="switch-button switch-button-success">
                                             <input type="checkbox" checked="" name="is_active" value="{{$category->is_active}}" id="switch16"><span>
-                                        <label for="switch16"></label></span>
+                                                {{-- <input data-id="{{$category->cat_id}}" id="switch16" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{$categorys->status ? 'checked' : '' }}> --}}
+
+                                                <label for="switch16"></label></span>
                                         </div>
-                                    </td>
-                                      <td>{{$category->parent}}</td>
+                                      </td>
+
                                       <td>
-                                        <a href="{{route('category.edit',$category->cat_id)}}" class="btn btn-success"> {{__('messages.update')}}</a>
-                                        <a href="{{route('category.delete',[$category->cat_id])}}" class="btn btn-danger"> {{__('messages.delete')}}</a>
+                                        <a href="" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                                        <a href="{{route('category.edit',$category->cat_id)}}" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                                        <a href="{{route('category.delete',[$category->cat_id])}}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
 
                                        </td>
+
+                                       
 
 
                                     </tr>
@@ -93,5 +110,28 @@
                                   </tbody>
                             </table>
                         </div>
+                        <script>
+                            $(function() {
+                              $('.toggle-class').change(function() {
+                                  var status = $(this).prop('checked') == true ? 1 : 0; 
+                                  var cat_id = $(this).data('cat_id'); 
+                                   console.log(status);
+                                  $.ajax({
+                                      type: "GET",
+                                      dataType: "json",
+                                      url: '/getAllCategory',
+                                      data: {'status': status, 'cat_id': cat_id},
+                                      success: function(data){
+                                        console.log(data.success)
+                                      }
+                                  });
+                              })
+                            })
+                          </script>
+
+
+
+
+
 
                         @endsection

@@ -46,60 +46,64 @@
                                         <div class="card">
                                             <h5 class="card-header">General settings</h5>
                                             <div class="card-body">
-                                                <form method="POST" action="{{route('setting.add')}}" enctype="multipart/form-data">
+                                                <form method="POST" action="{{route('setting.update')}}" enctype="multipart/form-data">
+                                                    @foreach($setting as $item)
+
                                                     @csrf
                                                     <div class="form-group">
+                                                        <input type="hidden" name="set_id" value="{{$item->set_id}}">
+
                                                         <label for="inputText3" class="col-form-label">Website Name en</label>
-                                                        <input id="inputText3" type="text" class="form-control" name="Website_name_en">
+                                                        <input id="inputText3" type="text" class="form-control" name="Website_name_en" value="{{$item->Website_name_en}}">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="inputText3" class="col-form-label">Website Name ar</label>
-                                                        <input id="inputText3" type="text" class="form-control" name="Website_name_ar">
+                                                        <input id="inputText3" type="text" class="form-control" name="Website_name_ar" value="{{$item->Website_name_ar}}">
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label for="inputText3" class="col-form-label">Location</label>
-                                                        <input id="inputText3" type="text" class="form-control" name="location">
+                                                        <input id="inputText3" type="text" class="form-control" name="location" value="{{$item->location}}">
                                                     </div>
                                                         <div class="form-group">
                                                             <label>Phone <small class="text-muted">(967) 999-9999</small></label>
-                                                            <input type="text" class="form-control phone-inputmask" id="phone-mask" placeholder="" name="mobile_num">
+                                                            <input type="text" class="form-control phone-inputmask" id="phone-mask" placeholder="" name="mobile_num" value="{{$item->mobile_num}}">
                                                         </div>
 
 
                                                         <div class="col-12">
                                                             <input type="hidden">
-                                                            <input type="file" id="file-ip-1"  class="form-control-file" name="icon">
+                                                            <input type="file" id="file-ip-1"  class="form-control-file" name="icon" value="{{$item->icon}}">
                                                         </div>
                                                     <div class="col-12">
                                                         <input type="hidden">
-                                                        <input type="file" id="file-ip-1"  class="form-control-file" name="logo" >
+                                                        <input type="file" id="file-ip-1"  class="form-control-file" name="logo" value="{{$item->logo}}" >
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label for="inputEmail">Facebook address</label>
-                                                        <input id="inputEmail" type="url" placeholder="name@example.com" class="form-control" name="Facebook">
+                                                        <input id="inputEmail" type="url" placeholder="name@example.com" class="form-control" name="Facebook" value="{{$item->Facebook}}">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="inputEmail">Tiwtter address</label>
-                                                        <input id="inputEmail" type="url" placeholder="name@example.com" class="form-control" name="LinkedIn">
+                                                        <input id="inputEmail" type="url" placeholder="name@example.com" class="form-control" name="LinkedIn" value="{{$item->LinkedIn}}">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="inputEmail">Linkind address</label>
-                                                        <input id="inputEmail" type="url" placeholder="name@example.com" class="form-control" name="Twitter">
+                                                        <input id="inputEmail" type="url" placeholder="name@example.com" class="form-control" name="Twitter" value="{{$item->Twitter}}">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="inputEmail">Email address</label>
-                                                        <input id="inputEmail" type="email"  name="email_web" placeholder="name@example.com" class="form-control">
+                                                        <input id="inputEmail" type="email"  name="email_web" placeholder="name@example.com" class="form-control" value="{{$item->email_web}}">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleFormControlTextarea1">Page Content</label>
-                                                        <textarea class="form-control" name="aboutus_en"  id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                        <textarea class="form-control" name="aboutus_en"  id="exampleFormControlTextarea1" rows="3">value="{{$item->aboutus_en}}"</textarea>
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label for="exampleFormControlTextarea1">Page Content</label>
-                                                        <textarea class="form-control" name="aboutus_ar"  id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                        <textarea class="form-control" name="aboutus_ar"  id="exampleFormControlTextarea1" rows="3">value="{{$item->aboutus_ar}}"</textarea>
                                                     </div>
 
                                                     <div class="col-12">
@@ -111,6 +115,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
 
 
                              </div>

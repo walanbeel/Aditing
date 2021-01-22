@@ -72,7 +72,7 @@
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    @foreach($Settings as $setting)
+                                    @foreach($settings as $setting)
 
                                     <tr>
                                       <td scope="row">{{$setting->set_id}}</td>
@@ -84,8 +84,8 @@
                                       <td>{{$setting->mobile_num}}</td>
                                       <td>{{$setting->location}}</td>
                                       <td>{{$setting->email_web}}</td>
-                                      <td>{{$setting->aboutus_en}}</td>
-                                      <td>{{$setting->aboutus_ar}}</td>
+                                      <td>{!!$setting->aboutus_en!!}</td>
+                                      <td>{!!$setting->aboutus_ar!!}</td>
                                       <td>{{$setting->Facebook}}</td>
                                       <td>{{$setting->LinkedIn}}</td>
                                       <td>{{$setting->Twitter}}</td>

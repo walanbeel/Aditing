@@ -21,42 +21,37 @@ class SettingController extends Controller
 
 
     public function add(Request $request){
-
+        //   dd($request);
         //viladate data before insert to databse
 
-       $rules=$this ->getRules();
-        $messages=$this ->getMessages();
-        $validator = Validator::make($request->all(),$rules, $messages);
-         if( $validator ->fails()){
-            return redirect()->back()->withErrors($validator)->withInputs($request->all());
-         }
+    //    $rules=$this ->getRules();
+    //     $messages=$this ->getMessages();
+    //     $validator = Validator::make($request->all(),$rules, $messages);
+    //      if( $validator ->fails()){
+    //         return redirect()->back()->withErrors($validator)->withInputs($request->all());
+    //      }
         //insert,
         $set=new Setting;
         $logo='';
         $icon='';
-         $imgName='';
-         $attchment='';
 
-        if($request->hasfile('logo'))
-     {
-        $imgFile =$request->file('logo') ;
-        $imgName =time().basename($_FILES["logo"]["name"]);
-        $set=$imgFile->move('images/news/',$imgName);
+         if($request->hasfile('logo'))
+         {
+            $imgFile =$request->file('logo') ;
+            $imgName =time().basename($_FILES["logo"]["name"]);
+            $logo=$imgFile->move('images/set/',$imgName);
+            $set->logo=$imgName;
+         }
 
-     }
+         if($request->hasfile('icon'))
+         {
+            $imgFile =$request->file('icon') ;
+            $iconName =time().basename($_FILES["icon"]["name"]);
+            $logo=$imgFile->move('images/set/', $iconName );
+            $set->icon= $iconName ;
+         }
 
 
-        if($request->hasfile('logo'))
-       {
-       $attchmentFile =$request->file('logo') ;
-       $num=count((array)$request->file('$attchmentFile'));
-       for($i=0;$i<$num;$i++){
-       $ext=$attchmentFile[$i]->getClientOriginalExtension();
-       $attchmentName =rand(123456,999999).".".$ext;
-       $attachment=$attchmentFile[$i]->move('images/news/',$attchmentName);
-       $set->attachment.=$attchmentName.',';
-
-       }
 
      // $file_name = $this->saveImage($request->photo,'images/books');
         $id=Auth::user()->id;
@@ -66,7 +61,7 @@ class SettingController extends Controller
             'Website_name_ar'=>$request->Website_name_ar,
             'mobile_num'=>$request->mobile_num,
             'location'=>$request->location,
-            'icon'=>$icon,
+            'icon'=>$iconName,
             'logo'=>$imgName,
             'email_web'=> $request->email_web,
             'aboutus_en'=>$request->aboutus_en,
@@ -77,13 +72,11 @@ class SettingController extends Controller
 
 
                ]);
+
+
                 return redirect()->back()->with(['success' => 'تم اضافه الصنف بنجاح ']);
-                
-
-
-
             }
-        }
+
 
 
         protected function getMessages()
@@ -138,7 +131,7 @@ class SettingController extends Controller
 
 
         $setting = Setting::where('set_id',$set_id)->get();
-        return view('Admin.editsettings',['setting'=>  $setting]);
+        return view('Admin.editsetting',['setting'=> $setting]);
 
     }
 
@@ -152,12 +145,25 @@ class SettingController extends Controller
  public function updatesettings(Request $request)
     {
         $settings=new Setting;
+        $id=Auth::user()->id;
 
-        $settings::where('set_id',$request->set_id )
-        ->update(['id'=>$request->id,
-        'cat_id'=>$request->cat_id,
-        'logo'=>$request->logo,
-        'icon'=>$request->icon,
+        if($request->hasfile('logo'))
+        {
+           $imgFile =$request->file('logo') ;
+           $imgName =time().basename($_FILES["logo"]["name"]);
+           $book=$imgFile->move('images/set/',$imgName);
+           $imglogo=$imgName;
+           if($request->hasfile('icon'))
+           {
+              $imgFile =$request->file('icon') ;
+              $imgName =time().basename($_FILES["icon"]["name"]);
+              $book=$imgFile->move('images/set/',$imgName);
+              $imgicon=$imgName;
+
+        $settings::where('set_id',$request->set_id)
+        ->update(['id'=>$id,
+        'logo'=>$imglogo,
+        'icon'=>$imgicon,
         'Website_name_en'=>$request->Website_name_en,
         'Website_name_ar'=>$request->Website_name_ar,
         'mobile_num'=>$request->mobile_num,
@@ -168,11 +174,42 @@ class SettingController extends Controller
         'Facebook'=>$request->Facebook,
         'LinkedIn'=>$request->LinkedIn,
         'Twitter'=>$request->Twitter,
-
          ]);
+        }
+        else{
+            $settings::where('set_id',$request->set_id )
+        ->update(['id'=>$id,
+        'Website_name_en'=>$request->Website_name_en,
+        'Website_name_ar'=>$request->Website_name_ar,
+        'mobile_num'=>$request->mobile_num,
+        'location'=>$request->location,
+        'email_web'=>$request->email_web,
+        'aboutus_en'=>$request->aboutus_en,
+        'aboutus_ar'=>$request->aboutus_ar,
+        'Facebook'=>$request->Facebook,
+        'LinkedIn'=>$request->LinkedIn,
+        'Twitter'=>$request->Twitter,
+          ]);
+        }}
+        else{
+            $settings::where('set_id',$request->set_id )
+            ->update(['id'=>$id,
+            'Website_name_en'=>$request->Website_name_en,
+            'Website_name_ar'=>$request->Website_name_ar,
+            'mobile_num'=>$request->mobile_num,
+            'location'=>$request->location,
+            'email_web'=>$request->email_web,
+            'aboutus_en'=>$request->aboutus_en,
+            'aboutus_ar'=>$request->aboutus_ar,
+            'Facebook'=>$request->Facebook,
+            'LinkedIn'=>$request->LinkedIn,
+            'Twitter'=>$request->Twitter,
+
+            ]);
+        }
 
         $data['settings'] = Setting::get();
-        return redirect('setting/allsettings')->with($data);
+        return redirect('/setting/allsetting')->with($data);
 
     }
 
@@ -184,11 +221,7 @@ class SettingController extends Controller
 
         $settings=Setting::where('set_id',$set_id)->delete();
 
-        // if(!$s_id)
-
-        // return redirect()->back()->with(['error' => __('messages.category not exist')]);
-
-        // $services->delete();
+        
 
         return redirect()
             ->route('setting.all')

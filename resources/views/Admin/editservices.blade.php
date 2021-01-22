@@ -52,7 +52,9 @@
                                         @foreach($services  as $item)
                                       @csrf
                                         <div class="col-12">
-                                            <input type="hidden" name="s_id" value="{{$item->s_id}}">
+                                            <input type="hidden" name="set_id" value="{{$item->set_id}}">
+                                            <input type="hidden" name="id" value="{{$item->id}}">
+
                                             <div class="form-group">
                                               <label>{{__('messages.Services Name en')}} </label>
                                               <input type="text"  class="form-control" name="s_name_en" value="{{$item->s_name_en}}"  placeholder="{{__('messages.Services Name en')}}">

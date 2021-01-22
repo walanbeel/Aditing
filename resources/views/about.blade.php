@@ -36,15 +36,16 @@
           <div class="info col-lg-6">
               <img src="{{asset('Front/images/3.jpg')}}" alt=""/>
           </div>
+          @foreach ($set as $item)
+
+
           <div class="info col-lg-6">
               <h2 class="h1">About us </h2>
-              <p>We are a professional firm of Certified Public Accountants in Yemen. We pride ourselves in providing top quality services to our clients ranging from Audit Assurance, Taxation, Business Transformation Consulting, Due Diligence, Policies & Procedure, Risk Management, Internal Audit,
-                 Bankruptcy and expertise in Technology Audit with ERP systems. We are known in the market as trusted.</p>
-              <p>Our knowledge of local regulations, culture and customs in our areas of expertise provides us with repeat business as well as attracting new local clients and international ventures entering the region from outside Yemen.
-                </p>
+              <p>{!!$item->aboutus_en!!}</p>
+
 
           </div>
-
+          @endforeach
         </div>
       </div>
 

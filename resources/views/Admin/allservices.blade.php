@@ -53,16 +53,16 @@
                             @endif
                             <div class="table-responsive">
 
-                            <table class="table">
+                                <table class="table table-striped table-bordered dataTable">
                                   <thead>
                                     <tr>
                                       <th scope="col">{{__('messages.s_id')}}</th>
-                                      <th scope="col">{{__('messages.id')}}</th>
-                                      <th scope="col">{{__('messages.cat_id')}}</th>
                                       <th scope="col">{{__('messages.s_name_en')}}</th>
                                       <th scope="col">{{__('messages.s_name_ar')}}</th>
-                                      <th scope="col">{{__('messages.s_describe_en')}}</th>
-                                      <th scope="col">{{__('messages.s_describe_ar')}}</th>
+                                      <th scope="col">{{__('messages.id')}}</th>
+                                      <th scope="col">{{__('messages.cat_id')}}</th>
+                                     {{-- <th scope="col">{{__('messages.s_describe_en')}}</th>
+                                      <th scope="col">{{__('messages.s_describe_ar')}}</th> --}}
                                       <th scope="col">{{__('messages.is_active')}}</th>
                                       <th scope="col">{{__('messages.operation')}}</th>
                                     </tr>
@@ -72,18 +72,18 @@
 
                                     <tr>
                                       <td scope="row">{{$service->s_id}}</td>
-                                      <td>{{$service->id}}</td>
-                                      <td>{{$service->cat_id}}</td>
                                       <td>{{$service->s_name_en}}</td>
                                       <td>{{$service->s_name_ar}}</td>
-                                      <td>{{$service->s_describe_en}}</td>
-                                      <td>{{$service->s_describe_ar}}</td>
+                                      <td>{{$service->name}}</td>
+                                      <td> {{$service->cat_name_en}}</td>
+                                      {{-- <td>{!!$service->s_describe_en!!}</td>
+                                      <td>{!!$service->s_describe_ar!!}</td> --}}
                                       <td>{{$service->is_active}}</td>
                                       <td>
-
-                                        <a href="{{route('services.edit',$service->s_id)}}" class="btn btn-success"> {{__('messages.update')}}</a>
+                                        <a href="" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                                        <a href="{{route('services.edit',$service->s_id)}}" class="btn btn-success"><i class="fas fa-edit"></i></a>
                                         {{-- <a href="{{url('services/edit/'.$service->s_id)}}" class="btn btn-success"> {{__('messages.update')}}</a> --}}
-                                        <a href="{{route('services.delete',$service->s_id)}}" class="btn btn-danger"> {{__('messages.delete')}}</a>
+                                        <a href="{{route('services.delete',$service->s_id)}}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
 
                                        </td>
 
