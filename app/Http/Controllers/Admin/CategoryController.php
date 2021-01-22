@@ -14,21 +14,24 @@ class CategoryController extends Controller
 
 
     public function create(){
-        return view('Admin.category');
+        $category= Category::all()->where('is_active',1);
+
+        return view('Admin.category',['cate'=>$category]);
 
     }
 
 
     public function store(Request $request){
-
+        
         //viladate data before insert to databse
 
-       $rules=$this ->getRules();
-        $messages=$this ->getMessages();
-        $validator = Validator::make($request->all(),$rules, $messages);
-         if( $validator ->fails()){
-            return redirect()->back()->withErrors($validator)->withInputs($request->all());
-         }
+    //    $rules=$this ->getRules();
+    //     $messages=$this ->getMessages();
+    //     $validator = Validator::make($request->all(),$rules, $messages);
+    //      if( $validator ->fails()){
+    //         return redirect()->back()->withErrors($validator)->withInputs($request->all());
+    //      }
+
 
         //insert,
          $id=Auth::user()->id;
@@ -36,13 +39,19 @@ class CategoryController extends Controller
             'id'=>$id,
             'cat_name_en' =>$request->cat_name_en,
             'cat_name_ar'=>$request->cat_name_ar,
-            'is_active'=>$request->is_active,
+            'is_active'=>$request->active,
             'parent'=>$request->parent,
 
 
 
         ]);
-        return redirect()->back()->with(['success' => 'تم اضافه الصنف بنجاح ']);
+        print_r($request->cat_name_en);
+        print_r($request->cat_name_ar);
+        print_r($request->active);
+
+        print_r($request->parent);
+
+        // return redirect()->back()->with(['success' => 'تم اضافه الصنف بنجاح ']);
     }
 
 
@@ -71,10 +80,17 @@ class CategoryController extends Controller
     public function getAllCategory()
     {
         $Categorys =DB::table('categories')->join('users','categories.id','=','users.id')->get(); // return collection of all result*/
-                    
        return view('Admin.showcategory',['Categorys'=> $Categorys]);
     }
 
+    // public function changeCatStatus(Request $request)
+    // {
+    //     $cat = Category::find($request->cat_id);
+    //     $cat->status = $request->status;
+    //     $cat->save();
+
+    //     return response()->json(['success'=>'User status change successfully.']);
+    // }
 
 
 

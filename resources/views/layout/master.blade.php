@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Auditing &Consulting</title>
+    <title>MK Consulting</title>
     <!-- Favicons -->
   <link href="{{asset('Front/images/icon-01.png')}}" rel="icon">
   <link href="{{asset('Front/images/icon-01.png')}}"rel="apple-touch-icon">
@@ -17,6 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="{{asset('Front/css/main.css')}}" />
+    
 
   </head>
   <body>
@@ -27,6 +28,7 @@
      <div id="topbar" class="upper-bar d-lg-flex align-items-center fixed-top">
        <div class="container ">
         <div class="row">
+
           <div class="contact-info mr-auto">
             <i class="icofont-envelope"></i> <a href="mailto:info.mkyacpa.com">info.mkyacpa.com</a>
             <i class="icofont-phone"></i>  +01 517 519
@@ -105,7 +107,7 @@
           <a class="nav-link" href="#">News</a>
         </li>
          <li class="nav-item">
-           <a class="nav-link" href="{{ route('contact.send')}}">Contact Us</a>
+           <a class="nav-link" href="{{ route('contact.contact-us')}}">Contact Us</a>
          </li>
 
        </ul>

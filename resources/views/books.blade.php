@@ -30,28 +30,30 @@
     <br>
     <div class="container">
         <div class="row">
+            @foreach($books as $book)
             <div class="col-md-3 col-sm-6"  data-tag="Tax">
                 <div class="product-grid4">
                     <div class="product-image4">
                         <a href="#">
-                            <img class="pic-1" src="{{asset('Front/images/sh1.jpg')}}">
-
+                            <img class="pic-1" src="{{asset('/images/books/'.$book->file)}}">
                         </a>
                         <ul class="social">
                             <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="#" data-tip="Quick download"><i class="fa fa-download"></i></a></li>
+                            <li><a href="" data-tip="Quick download"><i class="fa fa-download"></i></a></li>
                         </ul>
-
                     </div>
                     <div class="product-content">
-                        <h3 class="title"><a href="#">IFRS 2 Share-based Payment</a></h3>
+                        <h3 class="title"><a href="#">{{$book->B_name_en}}</a></h3>
 
-                        <a class="add-to-cart" href="">View More</a>
+                        <a class="add-to-cart" href="{{url('file/download/'.$book->file)}}">View More</a>
                     </div>
                 </div>
             </div>
+            @endforeach
 
-            <div class="col-md-3 col-sm-6" data-tag="consulting">
+
+
+            {{-- <div class="col-md-3 col-sm-6" data-tag="consulting">
                 <div class="product-grid4">
                     <div class="product-image4">
                         <a href="#">
@@ -267,7 +269,7 @@
                         <a class="add-to-cart" href="">View More</a>
                     </div>
                 </div>
-        </div>
+        </div>--}}
         </div>
 
     </div>

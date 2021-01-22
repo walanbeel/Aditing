@@ -36,7 +36,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title m-b-0">Services</h5>
+                                <h5 class="card-title m-b-0">Library</h5>
                             </div>
                             @if(Session::has('success'))
 
@@ -53,7 +53,7 @@
                             @endif
                             <div class="table-responsive">
 
-                            <table class="table">
+                            <table class="table table-striped table-bordered dataTable">
                                   <thead>
                                     <tr>
                                       <th scope="col">{{__('messages.B_id')}}</th>
@@ -63,9 +63,9 @@
                                       <th scope="col">{{__('messages.authoer_name_ar')}}</th>
                                       <th scope="col">{{__('messages.B_name_en')}}</th>
                                       <th scope="col">{{__('messages.B_name_ar')}}</th>
-                                      <th scope="col">{{__('messages.image')}}</th>
-                                      <th scope="col">{{__('messages.B_preface_en')}}</th>
-                                      <th scope="col">{{__('messages.B_preface_ar')}}</th>
+                                      <th scope="col">{{__('messages.file')}}</th>
+                                      {{-- <th scope="col" >{{__('messages.B_preface_en')}}</th>
+                                      <th scope="col" >{{__('messages.B_preface_ar')}}</th> --}}
                                       <th scope="col">{{__('messages.operation')}}</th>
                                     </tr>
                                   </thead>
@@ -74,20 +74,19 @@
 
                                     <tr>
                                       <td scope="row">{{$book->B_id}}</td>
-                                      <td>{{$book->id}}</td>
+                                      <td>{{$book->name}}</td>
                                       <td>{{$book->cat_id}}</td>
-                                      <td>{{$book->authoer_name_en}}</td>
-                                      <td>{{$book->authoer_name_ar}}</td>
+                                      <td style="width:10px">{{$book->authoer_name_en}}</td>
+                                      <td style="width:10px">{{$book->authoer_name_ar}}</td>
                                       <td>{{$book->B_name_en}}</td>
                                       <td>{{$book->B_name_ar}}</td>
-                                      <td>{{$book->image}}</td>
-                                      <td>{{$book->B_preface_en}}</td>
-                                      <td>{{$book->B_preface_ar}}</td>
+                                      <td style="width:10px">{{$book->file}}</td>
+                                      {{-- <td  class="mycell">{!! $book->B_preface_en !!}</td>
+                                      <td  class="mycell">{!! $book->B_preface_ar !!}</td> --}}
                                       <td>
-                                        <a href="{{route('books.edit',$book->B_id)}}" class="btn btn-success"> {{__('messages.update')}}</a>
-
-                                        {{-- <a href="{{url('services/edit/'.$service->s_id)}}" class="btn btn-success"> {{__('messages.update')}}</a> --}}
-                                        <a href="{{route('books.delete',$book->B_id)}}" class="btn btn-danger"> {{__('messages.delete')}}</a>
+                                        <a href="" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                                        <a href="{{route('books.edit',$book->B_id)}}" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                                        <a href="{{route('books.delete',$book->B_id)}}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
 
                                        </td>
 

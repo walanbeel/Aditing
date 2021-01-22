@@ -19,13 +19,13 @@ return [
     "Add your Category" => 'أضف صنف جديد',
     "Category Name en" => 'اسم التصنيف',
     "Category Name ar" => 'اسم التصنيف بالعربي',
-    "Add Category" => ' اضافة الصنف ',
-    "cat_id"=>'رقم الصنف',
-    "user_id"=>'رقم المستخدم',
-    "cat_name_ar"=>'اسم الصنف',
-    "cat_name_ar"=>'اسم الصنف',
-    "is_active"=>'حالة الصنف',
-    "parent"=>'رئيسى',
+    "Add Category" => ' أضف القسم',
+    "cat_id"=>'القسم ',
+    "user_id"=>' المستخدم',
+    "cat_name_en"=>'القسم بالعربي',
+    "cat_name_ar"=>'القسم بالانجليزي',
+    "is_active"=>'الحالة',
+    "parent"=>'القسم',
     "operation"=>'العمليات',
     "category not exist"=>'الصنف غير موجود',
     "update"=>'تعديل',
@@ -48,6 +48,7 @@ return [
     "s_describe_en"=>'وصف الخدمة',
     "s_describe_ar"=>'وصف الخدمة',
     "is_active"=>'is_active',
+    "Category"=>'القسم',
     "operation"=>'العمليات',
 
 
@@ -74,26 +75,31 @@ return [
 ################ End translate News #########################
 
 
-################ translate News #########################
-"News title en"=>' العنوان',
-"News title ar"=>'العنوان',
-"News content en"=>' المحتوى',
-"News content ar"=>'المحتوي',
-"News main img"=>'الصورة',
-"News blog img"=>'الصورة',
-"News Category"=>'القسم',
-"Add News"=>'إضافة الخبر',
-"blog_id"=>'الرقم',
-"title_en"=>'العنوان',
-"title_ar"=>'العنوان',
-"content_en"=>'المحتوى',
-"content_ar"=>'المحتوى',
-"main_img"=>'الصورة',
-"blog_img"=>'الصورة',
-"is_active"=>'is_active',
+
+################ translate books #########################
+"images must be required"=>'book must be required',
+
+"News title en"=>' title en',
+"News title ar"=>'title ar',
+"News content en"=>' content en',
+"News content ar"=>'content ar',
+"books img"=>'main img',
+"B_preface_ar"=>'preface_ar',
+"B_preface_ar"=>'B_preface_ar',
+"Add books"=>'أضف الكتاب',
+"B_id"=>'الرقم',
+"id"=>'الرقم',
+"cat_id"=>'القسم',
+"authoer_name_en"=>'اسم المؤلف',
+"authoer_name_ar"=>'اسم المؤلف',
+"B_name_en"=>'اسم الكتاب',
+"B_name_ar"=>'السم الكتاب',
+"image"=>'الصورة',
+"B_preface_en"=>'نبذة',
+"B_preface_ar"=>'نبذة',
 "operation"=>'العمليات',
 
 
-################ End translate News #########################
+################ End books #########################
 
 ];

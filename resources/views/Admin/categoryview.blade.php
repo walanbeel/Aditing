@@ -48,6 +48,7 @@
 
                     @csrf
 
+
                     <div class="col-12">
                         <input type="hidden">
                         <div class="form-group">
@@ -91,8 +92,7 @@
                             <div class="col-12">
                                 <label>Parent </label>
                                 <div class="input-group mb-3">
-                                    
-                                    <select class="custom-select" name="parent" id="inputGroupSelect02">                                 
+                                    <select class="custom-select" name="parent" id="inputGroupSelect02">
                                         @foreach($cate as $cat)
                                     {{-- <option selected>Choose...</option> --}}
                                     <option value='{{$cat['cat_id']}}'>{{$cat['cat_name_en']}}</opiton>

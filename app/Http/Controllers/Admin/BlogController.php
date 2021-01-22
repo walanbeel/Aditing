@@ -37,7 +37,7 @@ class BlogController extends Controller
         $imgName='';
         $attchment='';
 
-        print_r($_FILES['main_img']);
+        // print_r($_FILES['main_img']);
 
         if($request->hasfile('main_img'))
      {
@@ -86,7 +86,7 @@ class BlogController extends Controller
                ]);
                return redirect()->back()->with(['success' => 'تم اضافه المقال بنجاح ']);
             }
-        
+
 
         protected function getMessages()
         {

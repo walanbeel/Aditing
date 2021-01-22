@@ -11,25 +11,12 @@ use Illuminate\Support\Facades\Validator;
 
 class ServicesController extends Controller
 {
-    //
-    // public function add_services(Request $req){
-    //         $service= new Service;
-
-    //         $service->s_name_en=$req->s_name_en;
-    //         $service->s_name_ar=$req->s_name_ar;
-    //         $service->s_describe_en=$req->s_describe_en;
-    //         $service->s_describe_en=$req->s_describe_en;
-    //         $service->_describe_ar=$req->s_describe_ar;
-    //         $service->save();
-
-
-    //         return redirect('add');
-    //  }
+   
 
 
     public function create(){
         $cat ['category']=Category::all();
-
+         
         return view('Admin.createservic', $cat);
 
 
