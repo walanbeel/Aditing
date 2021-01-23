@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Front;
 use App\Models\Category;
 use App\Models\Book;
 use Illuminate\Support\Facades\DB;
+use App\Documents;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use League\CommonMark\Block\Element\Document;
 
 class BookController extends Controller
 {
@@ -16,10 +18,20 @@ class BookController extends Controller
     $books =Book::join('categories','books.cat_id','=','categories.cat_id')
     ->select('*')
     ->get();
-     return  view('books',['books'=> $books]);
+    $sets =DB::table('settings')->join('users','settings.id','=','users.id')
+    ->get();
+     return  view('books',['books'=> $books],['sets'=> $sets]);
 
 
     }
+
+
+    // public function show($B_id)
+    // {
+    //     $data=Documents::find($B_id);
+    //     return  view('document.view',['data'=> $data]);
+
+    // }
 
     public function download($file)
     {

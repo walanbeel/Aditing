@@ -74,7 +74,7 @@
                                       <td>{{$category->cat_name_ar}}</td>
                                       <td>{{$category->name}}</td>
 
-                                     
+
                                     {{-- <td>
                                         <input data-id="{{$category->cat_id}}" id="switch16" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{$categorys->status ? 'checked' : '' }}>
                                      </td> --}}
@@ -100,7 +100,7 @@
 
                                        </td>
 
-                                       
+
 
 
                                     </tr>
@@ -113,8 +113,8 @@
                         <script>
                             $(function() {
                               $('.toggle-class').change(function() {
-                                  var status = $(this).prop('checked') == true ? 1 : 0; 
-                                  var cat_id = $(this).data('cat_id'); 
+                                  var status = $(this).prop('checked') == true ? 1 : 0;
+                                  var cat_id = $(this).data('cat_id');
                                    console.log(status);
                                   $.ajax({
                                       type: "GET",

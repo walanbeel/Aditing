@@ -98,12 +98,13 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleFormControlTextarea1">Page Content</label>
-                                                        <textarea class="form-control" name="aboutus_en"  id="exampleFormControlTextarea1" rows="3">value="{{$item->aboutus_en}}"</textarea>
+                                                        <textarea class="form-control" name="aboutus_en"  id="exampleFormControlTextarea1" rows="3">{{$item->aboutus_en}}</textarea>
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label for="exampleFormControlTextarea1">Page Content</label>
-                                                        <textarea class="form-control" name="aboutus_ar"  id="exampleFormControlTextarea1" rows="3">value="{{$item->aboutus_ar}}"</textarea>
+                                                        <textarea class="form-control" name="aboutus_ar"  id="exampleFormControlTextarea1"
+                                                        rows="3">{{$item->aboutus_ar}}</textarea>
                                                     </div>
 
                                                     <div class="col-12">

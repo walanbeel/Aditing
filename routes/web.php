@@ -35,9 +35,9 @@ Route::get('/', function () {
 //     return view('about');
 // });
 
-// Route::get('/services',function(){
-//     return view('services');
-// });
+Route::get('/services',function(){
+    return view('services');
+});
 
 // Route::get('/books',function(){
 //     return view('books');
@@ -62,7 +62,7 @@ Route::post('/send_massage',[ContactController::class,'sendEmail'])->name('conta
 Route::group(['namespace'=>'Front','prefix'=>'blogs'],function(){
 
 
-Route::get('/news', [BlogController::class,'show_news']);
+Route::get('/news', [BlogController::class,'show_news'])->name('blogs.news');
 // Route::get('/news','BlogController@show_news');
 Route::get('deatails/{blog_id}', [BlogController::class,'show_deatails'])->name('deatails/{blog_id}');
 // Route::get('/books', [BookController::class,'show_books']);
@@ -72,14 +72,21 @@ Route::get('deatails/{blog_id}', [BlogController::class,'show_deatails'])->name(
 });
 
 Route::group(['namespace'=>'Front','prefix'=>'books'],function(){
-    Route::get('/books','BookController@show_books')->name('books');
+    Route::get('/books','BookController@show_books')->name('books.show');
+    Route::get('/files/{B_id}','BookController@show')->name('books.view');
     Route::get('/file/dowenload/{images}','BookController@download');
 });
 
 Route::group(['namespace'=>'Front','prefix'=>'home'],function(){
-    Route::get('/master','SettingController@show_setting')->name('main');
-    Route::get('/about','SettingController@show_about')->name('about');
+    Route::get('/main','SettingController@show_setting')->name('home.master');
+    Route::get('/about','SettingController@show_about')->name('home.about');
     // Route::get('/file/dowenload/{images}','BookController@download');
+});
+
+
+Route::group(['namespace'=>'Front','prefix'=>'services'],function(){
+    Route::get('/services','ServiceController@show_services')->name('services.services');
+
 });
 
 

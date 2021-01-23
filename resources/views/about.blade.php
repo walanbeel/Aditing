@@ -17,7 +17,7 @@
     </section>
    <!-- end breadcrumb-->
 
-  </br></br>
+  <br><br>
   <section id="contactus" class="contactus">
     <div class="container" data-aos="fade-up">
 
@@ -28,7 +28,7 @@
       </div>
       </div>
       </section>
-    </br></br>
+    <br><br>
     <!-- Satrt About us  -->
     <div class="choose-us ">
       <div class="container-fluid">
@@ -36,14 +36,10 @@
           <div class="info col-lg-6">
               <img src="{{asset('Front/images/3.jpg')}}" alt=""/>
           </div>
-          @foreach ($set as $item)
-
-
+          @foreach ($aboutus as $item)
           <div class="info col-lg-6">
               <h2 class="h1">About us </h2>
               <p>{!!$item->aboutus_en!!}</p>
-
-
           </div>
           @endforeach
         </div>
@@ -52,7 +48,7 @@
     </div>
     <!-- end About us  -->
 
-  </br></br></br>
+  <br><br><br>
 
  <!-- satrt Contact Us  -->
  <div class="contact">
