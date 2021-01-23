@@ -17,17 +17,23 @@ class BlogController extends Controller
     $posts =DB::table('blogs')->join('users','blogs.id','=','users.id')
     ->join('categories','blogs.cat_id','=','categories.cat_id')
     ->get();
-     return  view('news',['posts'=> $posts]);
+     $blogs =DB::table('blogs')->select()->limit(6)->get();
+     $sets =DB::table('settings')->join('users','settings.id','=','users.id')
+    ->get();
+     return  view('news',['posts'=> $posts , 'blogs' => $blogs , 'sets'=> $sets ]);
 
     }
 
     public function show_deatails($blog_id)
     {
+        $sets =DB::table('settings')->join('users','settings.id','=','users.id')
+        ->get();
+        $blogs =Blog::join('categories','blogs.cat_id','=','categories.cat_id')
+       // $blogs = DB::table('blogs')->limit(3)->get();
 
-    $blogs =Blog::join('categories','blogs.cat_id','=','categories.cat_id')
+        ->select('categories.cat_name_en','blogs.*')
+        ->where('blogs.blog_id',$blog_id);
 
-    ->select('categories.cat_name_en','blogs.*')
-    ->where('blogs.blog_id',$blog_id);
     // return view('deatails_news',['blogs'=> $blogs ]);
 
 
@@ -35,7 +41,8 @@ class BlogController extends Controller
     {
         $blogs=$blogs->get();
         $posts=['blogs' => $blogs];
-        return  view('deatails_news',$posts);
+        $sets=['sets'=> $sets];
+        return  view('deatails_news',$posts,$sets);
 
     }
 

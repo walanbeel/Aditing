@@ -33,7 +33,7 @@
                 <h2 class="section-title">Popular</h2>
                 <div class="post clearfix ">
                     <img src="{{asset('/images/news/'.$blog->main_img)}}" style="width:90px;highet:90px" alt="">
-                    <a href="#" class="title">{{$blog->title_en}}</a>
+                    <a href="#" class="title"><h4>{{Illuminate\Support\Str::limit($blog->title_en,30, $end='...') }}</h4></a>
                 </div>
 
                 @endforeach

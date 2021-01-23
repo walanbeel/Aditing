@@ -1,5 +1,5 @@
 @extends('Admin.layout.master')
-{{-- 
+{{--
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -54,7 +54,7 @@
                 <!-- ============================================================== -->
                 <!-- Sales Cards  -->
                 <!-- ============================================================== -->
-                <div class="row">
+                {{-- <div class="row">
                     <!-- Column -->
                     <div class="col-md-6 col-lg-2 col-xlg-3">
                         <div class="card card-hover">
@@ -67,7 +67,7 @@
                         </div>
                     </div>
                     <!-- Column -->
-                   
+
                      <!-- Column -->
                     <div class="col-md-6 col-lg-2 col-xlg-3">
                         <div class="card card-hover">
@@ -102,7 +102,7 @@
                         </div>
                     </div>
                     <!-- Column -->
-                   
+
                     <div class="col-md-6 col-lg-2 col-xlg-3">
                         <div class="card card-hover">
                             <div class="box bg-cyan text-center">
@@ -111,11 +111,11 @@
                                 <h3 class="text-white">150</h3>
 
                             </div>
-                           
+
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- Column -->
-                  
+
                 </div>
                 <!-- ============================================================== -->
                 <!-- Sales chart -->

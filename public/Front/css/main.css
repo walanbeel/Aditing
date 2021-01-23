@@ -36,9 +36,9 @@ a {
 
 }
 
-.upper-bar .topbar-scrolled {
+/* .upper-bar .topbar-scrolled {
   top: -40px;
-}
+} */
 
 .upper-bar .contact-info {
   margin: 15px 0;
@@ -123,7 +123,7 @@ a {
 }
 /* End Upper Bar */
 /* Start NavBar */
-#header {
+#header{
   background: #fff;
   transition: all 0.5s;
   z-index: 997;
@@ -186,17 +186,17 @@ a {
 
 @media only screen and (max-width: 770px){
   .upper-bar{
-    position: relative;
-    padding-bottom: 20px;
+    /* position: relative; */
+    padding-bottom:2px;
     padding-top:10px;
 }
 .upper-bar .social-links{
-  margin-top: 2px;
-  margin-left: 51px;
+  margin-top: -10px;
+  margin-left: 90px;
 }
 .upper-bar .contact-info{
   margin-top: -7px;
-  margin-left: 51px;
+  margin-left: 65px;
 }
 .navbar {
     position: fixed;
@@ -214,18 +214,21 @@ header .navbar-toggler {
 }
 header .navbar-brand{
   margin-left: .5em;
-
 }
 .navbar-nav {
   width: 80%;
   background-color: #fff;
   margin-bottom: 800px;
   margin-top: -83px;
-
-
-
 }
 
+}
+@media only screen and (max-width: 770px){
+    #header{
+      /* position: relative; */
+      padding-bottom:10px;
+      padding-top:10px;
+  }
 }
 /* End NavBar */
 /* Start Silder */
@@ -262,6 +265,7 @@ header .navbar-brand{
     max-width: 100%;
     font-size:40px;
     left:auto;
+    margin-top: 20px;
   }
 }
 
@@ -269,7 +273,8 @@ header .navbar-brand{
   .slider .carousel-inner  h2
   {
 
-    font-size:50px;
+    font-size:40px;
+
 
   }
 }
@@ -551,6 +556,44 @@ width: 80%;
   font-size:18px ;
 
 }
+@media (max-width:360px) {
+    .carousel-item{
+       margin-right: 25px;
+    }
+    .carousel-indicators{
+        margin-bottom: 10px;
+    }
+    .testimonials{
+        height: auto;
+    }
+    .testimonials .carousel-caption
+    {
+      width: 100%;
+    }
+    testimonials .carousel-caption img{
+        border-radius: 50%;
+        width: 20%;
+        margin-bottom: 20px;
+      }
+
+      .testimonials .carousel-caption h2 {
+        margin-bottom: 5px;
+        font-size:16px ;
+
+      }
+      .testimonials .carousel-caption  span{
+        display: inline-block;
+        margin-bottom:20px;
+        font-size:16px ;
+
+      }
+      .testimonials .carousel-caption  p{
+        display: inline-block;
+        margin-bottom:20px;
+        font-size:16px ;
+
+      }
+  }
 
 /* end Testimonials  */
 
@@ -1136,9 +1179,18 @@ max-width: 50%;
   .card {
     height: 260px;
   }
+
 }
 
+@media screen and (max-width: 360px) {
+     .service-title p{
+        color: #5e5e57;
+        /* line-height:1.2; */
+        margin: 0 auto 15px;
+        width: 100%;
 
+    }
+  }
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
@@ -1382,8 +1434,8 @@ max-width: 50%;
   position: relative;
 }
 .service-title p {
-  padding: 0 190px;
-  margin-bottom: 10px;
+ /* padding: 0 190px;
+  margin-bottom: 10px;*/
 }
 .about-info-text h2 {
   margin-bottom: 23px;
@@ -1857,3 +1909,30 @@ padding-top:10px;
 }
 
 /***************end books*******************/
+
+
+/****************Newsin home************/
+
+
+.card-img {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+
+  .card-title {
+    margin-bottom: 0.3rem;
+  }
+
+  .cat {
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  .fa-users {
+    margin-left: 1rem;
+  }
+
+  .card-footer {
+    font-size: 0.8rem;
+  }
+/*************end new card home***************/

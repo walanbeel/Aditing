@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Mail\ContactMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail as FacadesMail;
 use Mail;
 class ContactController extends Controller
@@ -10,7 +11,9 @@ class ContactController extends Controller
     //
     public function contact()
     {
-      return view('contact-us');
+        $sets =DB::table('settings')->join('users','settings.id','=','users.id')
+        ->get();
+      return view('contact-us',['sets'=> $sets]);
     }
 
     public function sendEmail(Request $request)

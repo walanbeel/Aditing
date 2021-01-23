@@ -69,15 +69,15 @@
          <div class="info col-lg-6">
              <img src="{{asset('Front/images/3.jpg')}}" alt=""/>
          </div>
+         @foreach ($aboutus as $item)
+
          <div class="info col-lg-6">
              <h2 class="h1">About us </h2>
-             <p>We are a professional firm of Certified Public Accountants in Yemen. We pride ourselves in providing top quality services to our clients ranging from Audit Assurance, Taxation, Business Transformation Consulting, Due Diligence, Policies & Procedure, Risk Management, Internal Audit,
-                Bankruptcy and expertise in Technology Audit with ERP systems. We are known in the market as trusted.</p>
-             <p>Our knowledge of local regulations, culture and customs in our areas of expertise provides us with repeat business as well as attracting new local clients and international ventures entering the region from outside Yemen.
-               </p>
+             <p>{!!$item->aboutus_en!!}</p>
              <a href="about.html" class="read-more">View More</a>
 
          </div>
+         @endforeach
 
        </div>
      </div>
@@ -89,7 +89,7 @@
 <section class="service-grid pb-5 pt-5 text-center">
  <div class="container">
      <div class="row">
-         <div class="col-xl-12 text-center mb-4">
+         <div class="col-md-12 text-center mb-4">
              <div class="service-title">
                  <h2>Our Services</h2>
                  <p>Services By sharing a common set of values, our teams create tailored solutions and consistently deliver high levels of professional advice across
@@ -217,60 +217,30 @@
 
 
  <!-- start latest posts -->
-  <!-- <div class="latset-post ">
+  <div class="latset-post ">
     <div class="container">
       <h2 class="text-center">Latset News</h2>
 
         <div class="row">
+            @foreach ($blogs as $item)
           <div class="col-md-4 card-container" >
                <div class="cardn">
-                <img src="{{asset('Front/images/about us.jpg')}}"  class="card-img-top" alt=" " />
+                <img src="{{asset('/images/news/'.$item->main_img)}}"  class="card-img-top" alt=" " />
                 <div class="card-body">
-                  <h4 class="card-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit</h4>
-                  <h6 class="text-muted mb-2">March 24 2017 </h6>
-                  <p class="card-text">Lorem ipsum dolor sit amet,
-                    consectetur adipisicing elit, sed do eiusmod tempor
-                     incididunt ut labore et dolore magna aliqua. Ut enim
-                     ad minim veniam, quis nostrud exercitation ullamco laboris
-                     nisi ut aliquip ex ea commodo consequat. </p>
+                  <h4 class="card-title">{{$item->title_en}}</h4>
+                  <h6 class="text-muted mb-2">{{$item->created_at}} </h6>
+                  <p class="card-text">{!!$item->content_en!!}</p>
                      <a href="#" class="card-link">Read More</a>
                 </div>
                </div>
          </div>
-          <div class="col-md-4" >
-               <div class="cardn">
-                <img src="{{asset('Front/images/acciunting servicjpg.jpg')}}"  class="card-img-top" alt=" " />
-                <div class="card-body">
-                  <h4 class="card-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit</h4>
-                  <h6 class="text-muted mb-2">March 24 2017 </h6>
-                  <p class="card-text">Lorem ipsum dolor sit amet,
-                    consectetur adipisicing elit, sed do eiusmod tempor
-                     incididunt ut labore et dolore magna aliqua. Ut enim
-                     ad minim veniam, quis nostrud exercitation ullamco laboris
-                     nisi ut aliquip ex ea commodo consequat. </p>
-                     <a href="#" class="card-link">Read More</a>
-                </div>
-               </div>
-         </div>
-         <div class="col-md-4" >
-               <div class="cardn">
-                <img src="{{asset('Front/images/3.jpg')}}"  class="card-img-top" alt=" " />
-                <div class="card-body">
-                  <h4 class="card-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit</h4>
-                  <h6 class="text-muted mb-2">March 24 2017 </h6>
-                  <p class="card-text">Lorem ipsum dolor sit amet,
-                    consectetur adipisicing elit, sed do eiusmod tempor
-                     incididunt ut labore et dolore magna aliqua. Ut enim
-                     ad minim veniam, quis nostrud exercitation ullamco laboris
-                     nisi ut aliquip ex ea commodo consequat. </p>
-                     <a href="#" class="card-link">Read More</a>
-                </div>
-             </div>
-        </div>
+
+         @endforeach
      </div>
     </div>
-</div> -->
+</div>
  <!-- end latest posts -->
+
  <!-- start Testimonials -->
  <div class="testimonials">
    <div class="overly"></div>
@@ -340,6 +310,38 @@
     </div>
  </div>
  <!-- end Testimonials -->
+
+ {{-- <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+        <div class="card">
+          <img class="card-img" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg" alt="Bologna">
+          <div class="card-img-overlay">
+            <a href="#" class="btn btn-light btn-sm">Cooking</a>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">Pasta with Prosciutto</h4>
+            <small class="text-muted cat">
+              <i class="far fa-clock text-info"></i> 30 minutes
+              <i class="fas fa-users text-info"></i> 4 portions
+            </small>
+            <p class="card-text">I love quick, simple pasta dishes, and this is one of my favorite.</p>
+            <a href="#" class="btn btn-info">Read Recipe</a>
+          </div>
+          <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+            <div class="views">Oct 20, 12:45PM
+            </div>
+            <div class="stats">
+                 <i class="far fa-eye"></i> 1347
+              <i class="far fa-comment"></i> 12
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> --}}
+
 
 
  <!-- satrt stat -->

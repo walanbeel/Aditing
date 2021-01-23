@@ -35,17 +35,20 @@
                 <div class="product-grid4">
                     <div class="product-image4">
                         <a href="#">
+                            {{-- <iframe src="{{ asset('/images/books/'.$book->file) }}" width="50%" height="600">
+                                This browser does not support PDFs. Please download the PDF to view it: <a href="{{ url('file/download/'.$book->file }}">Download PDF</a>
+                        </iframe> --}}
                             <img class="pic-1" src="{{asset('/images/books/'.$book->file)}}">
                         </a>
                         <ul class="social">
                             <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="" data-tip="Quick download"><i class="fa fa-download"></i></a></li>
+                            <li><a href="{{url('file/download/'.$book->file)}}" data-tip="Quick download"><i class="fa fa-download"></i></a></li>
                         </ul>
                     </div>
                     <div class="product-content">
                         <h3 class="title"><a href="#">{{$book->B_name_en}}</a></h3>
 
-                        <a class="add-to-cart" href="{{url('file/download/'.$book->file)}}">View More</a>
+                        <a class="add-to-cart" href="#">View More</a>
                     </div>
                 </div>
             </div>
