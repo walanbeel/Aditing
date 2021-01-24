@@ -40,10 +40,22 @@ Route::get('/admin', function () {
 
         Route::get('showcategory', 'CategoryController@getAllCategory')->name('category.show');
 
+        Route::get('/display_row/{cat_id}','CategoryController@display_row');
+
+
+        Route::get('/category/{cat_id}','CategoryController@display_with_status');
+
+
+
+
 
     });
 
 });
+Route::get('/cat_active/{cat_id}','Admin\CategoryController@is_active');
+
+Route::get('/cat_no_active/{cat_id}','Admin\CategoryController@is_not_active');
+
 
 #################### End Category route ####################
 
@@ -137,6 +149,9 @@ Route::group(['namespace'=>'Admin','prefix'=>'setting','middleware'=>'auth'],fun
 });
 
 #################### End Setting ####################
+
+#################### Acount ####################
+
 Route::group(['prefix' => LaravelLocalization::setLocale(),
 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){
 
@@ -148,6 +163,12 @@ Route::group(['namespace'=>'Admin','prefix'=>'dashboard','middleware'=>'auth'], 
 
 });
 });
+
+#################### End Acount ####################
+
+
+
+
 
 
 

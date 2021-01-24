@@ -51,12 +51,12 @@
                 <ul>
                     <li><h5>
                     <a href="#">{{$blog->title_en}}
-
                     </a></h5></li>
-
                 </ul>
                 @endforeach
+
             </div>
+
         </div>
     </div>
     <!--End Content-->
