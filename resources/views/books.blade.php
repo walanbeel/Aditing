@@ -38,7 +38,7 @@
                             {{-- <iframe src="{{ asset('/images/books/'.$book->file) }}" width="50%" height="600">
                                 This browser does not support PDFs. Please download the PDF to view it: <a href="{{ url('file/download/'.$book->file }}">Download PDF</a>
                         </iframe> --}}
-                            <img class="pic-1" src="{{asset('/images/books/'.$book->file)}}">
+                            <img class="pic-1" src="{{asset('/images/books/'.$book->cover)}}">
                         </a>
                         <ul class="social">
                             <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>

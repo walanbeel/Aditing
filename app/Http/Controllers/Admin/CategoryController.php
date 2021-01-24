@@ -22,7 +22,7 @@ class CategoryController extends Controller
 
 
     public function store(Request $request){
-        
+
         //viladate data before insert to databse
 
     //    $rules=$this ->getRules();
@@ -35,23 +35,24 @@ class CategoryController extends Controller
 
         //insert,
          $id=Auth::user()->id;
+         $cat=new Category;
+
+         $active='';
+         if(isset($request->is_active))
+         $active=1;
+         else
+         $active=0;
+
         Category::create([
             'id'=>$id,
             'cat_name_en' =>$request->cat_name_en,
             'cat_name_ar'=>$request->cat_name_ar,
             'is_active'=>$request->active,
             'parent'=>$request->parent,
-
-
-
         ]);
-        print_r($request->cat_name_en);
-        print_r($request->cat_name_ar);
-        print_r($request->active);
 
-        print_r($request->parent);
 
-        // return redirect()->back()->with(['success' => 'تم اضافه الصنف بنجاح ']);
+        return redirect()->back()->with(['success' => 'تم اضافه الصنف بنجاح ']);
     }
 
 
@@ -128,25 +129,54 @@ class CategoryController extends Controller
     }
 
 
-
-
 ################## Update category ##################
 
 ################## Delete category ##################
     public function deletecategory($cat_id){
 
         $Categorys=Category::where('cat_id',$cat_id)->delete();
-
-
-
         return redirect()
             ->route('category.show')
             ->with(['success' => __('messages.category deleted successfully')]);
 
-
-
     }
 
 ################## Delete category ##################
+
+public function display_row($cat_id)
+{
+    $affected1 =[];
+    $data['dept'] = Category::where('cat_id',$cat_id)->get();
+    return view('update',$data);
+                }
+                public function is_active($cat_id){
+                    $affected1= Category::where('cat_id',$cat_id)
+                    ->update(['is_active'=>'1']);
+                    // $affected = Category::where('is_delete',0)->paginate(25);
+                    $Categorys =DB::table('categories')->join('users','categories.id','=','users.id')->get(); // return collection of all result*/
+                    return view('Admin.showcategory',['Categorys'=> $Categorys]);
+   
+                    }
+                    public function is_not_active($cat_id){
+                        $affected1= Category::where('cat_id',$cat_id)
+                        ->update(['is_active'=>'0']);
+                        $Categorys =DB::table('categories')->join('users','categories.id','=','users.id')->get(); // return collection of all result*/
+                        return view('Admin.showcategory',['Categorys'=> $Categorys]);
+
+                        }
+
+public function display_with_status($cat_id)
+    {
+        if($cat_id==1){
+            $affected1 =[];
+            $affected = Category::where(['is_active',1])->paginate(25);
+            return view('department',['cat'=>$affected,'data1'=>$affected1]);
+        }elseif($cat_id==0){
+            $affected1 =[];
+            $affected = Category::where(['is_active',0])->paginate(25);
+            return view('department',['cat'=>$affected,'data1'=>$affected1]);
+        }
+
+    }
 
 }

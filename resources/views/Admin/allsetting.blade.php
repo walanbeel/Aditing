@@ -51,7 +51,9 @@
                                     {{Session::get('error')}}
                                 </div>
                             @endif
-                            <table class="table">
+                            <div class="table-responsive">
+
+                                <table class="table table-striped table-bordered dataTable">
                                   <thead>
                                     <tr>
                                       <th scope="col">{{__('messages.set_id')}}</th>
@@ -105,5 +107,7 @@
                                   </tbody>
                             </table>
                         </div>
+                    </div>
+
 
                         @endsection

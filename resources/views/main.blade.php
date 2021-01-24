@@ -229,7 +229,9 @@
                 <div class="card-body">
                   <h4 class="card-title">{{$item->title_en}}</h4>
                   <h6 class="text-muted mb-2">{{$item->created_at}} </h6>
-                  <p class="card-text">{!!$item->content_en!!}</p>
+                  <p class="card-text">{!! Illuminate\Support\Str::limit($item->content_en, 130, $end='...')!!}</p>
+                  {{-- {!! Illuminate\Support\Str::limit($post->content_en, 130, $end='...') !!} --}}
+
                      <a href="#" class="card-link">Read More</a>
                 </div>
                </div>

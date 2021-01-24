@@ -28,34 +28,36 @@ class BookController extends Controller
 
         //viladate data before insert to databse
 
-       $rules=$this ->getRules();
-        $messages=$this ->getMessages();
-        $validator = Validator::make($request->all(),$rules, $messages);
-         if( $validator ->fails()){
-            return redirect()->back()->withErrors($validator)->withInputs($request->all());
-         }
+    //    $rules=$this ->getRules();
+    //     $messages=$this ->getMessages();
+    //     $validator = Validator::make($request->all(),$rules, $messages);
+    //      if( $validator ->fails()){
+    //         return redirect()->back()->withErrors($validator)->withInputs($request->all());
+    //      }
         //insert,
 
          $book=new Book;
          $file='';
-         $imgName='';
-          $attchment='';
-        // if($request->hasfile('file'))
-        // {
-        //    $File =$request->file('file') ;
-        //    $filename =time().'.'. $File->getClientOriginalExtension();
-        //    $request->file->move('images/books/'.$filename);
-        //    $book->file=$filename;
+         $cover='';
+         $fileName ='';
+         $coverName='';
 
-        // }
+         if($request->hasfile('cover'))
+         {
+            $imgFile =$request->file('cover') ;
+            $coverName =time().basename($_FILES["cover"]["name"]);
+            $cover=$imgFile->move('images/books/',$coverName);
+            $book->cover=$coverName;
+         }
 
-        if($request->hasfile('file'))
-     {
-        $imgFile =$request->file('file') ;
-        $imgName =time().basename($_FILES["file"]["name"]);
-        $book=$imgFile->move('images/books/',$imgName);
+         if($request->hasfile('file'))
+         {
+            $imgFile =$request->file('file') ;
+            $fileName =time().basename($_FILES["file"]["name"]);
+            $file=$imgFile->move('images/books/',$fileName);
+            $book->file=$fileName;
+         }
 
-     }
     //     if($request->hasfile('file'))
     //    {
     //    $attchmentFile =$request->file('file') ;
@@ -77,7 +79,8 @@ class BookController extends Controller
             'authoer_name_ar'=>$request->authoer_name_ar,
             'B_name_en'=>$request->B_name_en,
             'B_name_ar'=>$request->B_name_ar,
-            'file'=>$imgName,
+            'file'=>$fileName,
+            'cover'=>$coverName,
             'B_preface_en'=>$request->B_preface_en,
             'B_preface_ar'=>$request->B_preface_ar,
 
@@ -114,15 +117,6 @@ class BookController extends Controller
             ];
         }
 
-
-
-        // protected function saveImage($photo,$folder){
-        //  $file_extension=$photo->B_img->getCilentoriginalExtension();
-        // $file_name =time(). ' . '.$file_extension;
-        // $path=$folder;
-        // $photo ->B_img->move($path,$file_name);
-        // return  $file_name;
-        // }
 
 
         public function getAllbooks()
@@ -162,22 +156,34 @@ class BookController extends Controller
 
 
         $books=new Book;
+        $id=Auth::user()->id;
 
-        if($request->hasfile('image'))
+        if($request->hasfile('cover'))
         {
-           $imgFile =$request->file('image') ;
-           $imgName =time().basename($_FILES["image"]["name"]);
-           $book=$imgFile->move('images/books/',$imgName);
-           $img=$imgName;
+           $imgFile =$request->file('cover') ;
+           $coverName =time().basename($_FILES["cover"]["name"]);
+           $cover=$imgFile->move('images/books/',$coverName);
+           $books->cover=$coverName;
+        }
 
-           $books::where('B_id',$request->B_id )
+        if($request->hasfile('file'))
+        {
+           $imgFile =$request->file('file') ;
+           $fileName =time().basename($_FILES["file"]["name"]);
+           $file=$imgFile->move('images/books/',$fileName);
+           $books->file=$fileName;
+
+
+            $books::where('B_id',$request->B_id )
            ->update(['id'=>$request->id,
            'cat_id'=>$request->cat_id,
            'authoer_name_en'=>$request->authoer_name_en,
            'authoer_name_ar'=>$request->authoer_name_ar,
            'B_name_en'=>$request->B_name_en,
            'B_name_ar'=>$request->B_name_ar,
-           'file'=>$img,
+           'file'=>$fileName,
+           'cover'=>$coverName,
+
            // 'B_img'=>$request->B_img,
 
             ]);

@@ -29,7 +29,7 @@ class BlogController extends Controller
         $sets =DB::table('settings')->join('users','settings.id','=','users.id')
         ->get();
         $blogs =Blog::join('categories','blogs.cat_id','=','categories.cat_id')
-       // $blogs = DB::table('blogs')->limit(3)->get();
+        // $blogs =DB::table('blogs')->select()->get();
 
         ->select('categories.cat_name_en','blogs.*')
         ->where('blogs.blog_id',$blog_id);

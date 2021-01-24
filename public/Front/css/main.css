@@ -1639,7 +1639,7 @@ left: 200px;
 .content .sidebar .section.topic ul li a{
    display: block;
    padding:15px 0px 15px 0px;
-   border-bottom:1px solid #c0c0c0;
+   /* border-bottom:1px solid #c0c0c0; */
    transition: all 0.3s;
 }
 

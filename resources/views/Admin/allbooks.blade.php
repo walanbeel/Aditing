@@ -64,6 +64,7 @@
                                       <th scope="col">{{__('messages.B_name_en')}}</th>
                                       <th scope="col">{{__('messages.B_name_ar')}}</th>
                                       <th scope="col">{{__('messages.file')}}</th>
+                                      <th scope="col">{{__('messages.cover')}}</th>
                                       {{-- <th scope="col" >{{__('messages.B_preface_en')}}</th>
                                       <th scope="col" >{{__('messages.B_preface_ar')}}</th> --}}
                                       <th scope="col">{{__('messages.operation')}}</th>
@@ -81,6 +82,7 @@
                                       <td>{{$book->B_name_en}}</td>
                                       <td>{{$book->B_name_ar}}</td>
                                       <td style="width:10px">{{$book->file}}</td>
+                                      <td style="width:10px">{{$book->cover}}</td>
                                       {{-- <td  class="mycell">{!! $book->B_preface_en !!}</td>
                                       <td  class="mycell">{!! $book->B_preface_ar !!}</td> --}}
                                       <td>

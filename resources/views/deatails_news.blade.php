@@ -51,20 +51,22 @@
                     <li><a href="#"> Life Lessons</a></li>
                 </ul>
             </div>
+            {{-- <div class="section topic">
+                <h2 class="section-title">Topics</h2>
+                 @foreach ($blogs  as $blog)
+                <ul>
+                    <li><h5>
+                    <a href="#">{{$blog->title_en}}
+                    </a></h5></li>
+                </ul>
+                @endforeach
+
+            </div> --}}
+
         </div>
     </div>
     <!--End Content-->
 
-    <br><br><br>
-    <br><br><br><br><br><br>
-    <br><br><br>
-    <br><br><br><br><br><br>
-    <br><br><br>
-    <br><br><br><br><br><br>
-    <br><br><br>
-    <br><br><br><br><br><br>
-    <br><br><br>
-    <br><br><br>
 @endsection
 
 

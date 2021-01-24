@@ -221,7 +221,7 @@ class SettingController extends Controller
 
         $settings=Setting::where('set_id',$set_id)->delete();
 
-        
+
 
         return redirect()
             ->route('setting.all')

@@ -86,8 +86,16 @@
                                       </div>
                                       <div class="col-12">
                                         <input type="hidden">
-                                        <label for="exampleFormControlFile1">{{__('messages.Book image')}}</label>
-                                        <input type="file" id="file-ip-1"  class="form-control-file" name="file"  placeholder="{{__('messages.image')}}">
+                                        <label for="exampleFormControlFile1">{{__('messages.Book cover')}}</label>
+                                        <input type="file" id="file-ip-1"  class="form-control-file" name="cover"  placeholder="{{__('messages.cover')}}">
+                                        @error('cover')
+                                        <small>{{$message}}</small>
+                                        @enderror
+                                    </div>
+                                      <div class="col-12">
+                                        <input type="hidden">
+                                        <label for="exampleFormControlFile1">{{__('messages.Book file')}}</label>
+                                        <input type="file" id="file-ip-1"  class="form-control-file" name="file"  placeholder="{{__('messages.file')}}">
                                         @error('file')
                                         <small>{{$message}}</small>
                                         @enderror
