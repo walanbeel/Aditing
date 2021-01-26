@@ -124,7 +124,7 @@ class SettingController extends Controller
 
 
 
-    ################## Edit services ##################
+ ################## Edit services ##################
 
     public function editsettings($set_id)
     {
@@ -220,14 +220,9 @@ class SettingController extends Controller
     public function deletesettings($set_id){
 
         $settings=Setting::where('set_id',$set_id)->delete();
-
-
-
         return redirect()
             ->route('setting.all')
             ->with(['success' => __('messages.book deleted successfully')]);
-
-
 
     }
 

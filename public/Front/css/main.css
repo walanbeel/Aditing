@@ -526,7 +526,7 @@ width: 80%;
   z-index: 2;
 }
 
-.testimonials .carousel-inner
+.testimonials #inner-carousel
 {
   position: relative;
   z-index:3;

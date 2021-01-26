@@ -247,102 +247,42 @@
  <div class="testimonials">
    <div class="overly"></div>
     <div class="container">
+
       <div id="testimonials" class="carousel slide " data-ride="carousel" >
+           <div class="carousel-inner" id="inner-carousel">
+            @foreach ($teams as $item)
+              <div class="carousel-item">
+                     <div class="carousel-caption d-none d-block">
+                         <img src="{{asset('/images/teams/'.$item->t_profile)}}" alt="pic">
+                         <h2 >{{$item->name_en}}</h2>
+                         <span>{{$item->sub_title_en}}</span>
+                         <p>{!!$item->short_intro_en!!}</p>
 
-           <div class="carousel-inner">
-              <div class="carousel-item  active">
-
-                     <div class="carousel-caption d-none d-block" >
-                         <img src="{{asset('Front/images/photo 4.jpg')}}" alt="pic" >
-                         <h2 >Mohammed H. AL-Mufarrea</h2>
-                         <span>General Manager</span>
-                         <p >The responsible partner of the company holds a master's degree in accounting, a member of the Yemeni Association of Certified Public Accountants, and a consultant at the Commercial Court.
-                         </p>
                      </div>
+
                </div>
-               <div class="carousel-item ">
-
-                     <div class="carousel-caption d-none d-block" >
-                       <img src="{{asset('Front/images/photo 3.jpg')}}"  alt="pic" >
-                         <h2 >Khailed Ahmed</h2>
-                         <span>Audit manager</span>
-                         <p >A partner in the company and holds the position of audit manager, with more than 20 years of experience in accounting, auditing, and financial and management consulting, and he is a fellow of the American Institute of Certified Financial Managers (IPM)
-                         </p>
-                     </div>
-               </div>
-               <div class="carousel-item ">
-
-                <div class="carousel-caption d-none d-block" >
-                  <img src="{{asset('Front/images/al.jpg')}}"  alt="pic" >
-                    <h2 >Dr.Aref Al-Haj</h2>
-                    <span>Senior advisor</span>
-                    <p >Dr. Aref is the senior advisor of MK, specialized in international NGOs consultants. He is associate professor in the accounting department at Sana'a University, and a consultant in finance, investment and strategic planning and development for many local and international companies and organizations
-                    </p>
-                </div>
-                </div>
-
-                <div class="carousel-item ">
-
-                    <div class="carousel-caption d-none d-block" >
-                      <img src="{{asset('Front/images/Ibrahim.jpg')}}"  alt="pic" >
-                        <h2 >Ibrahim Alshatbi</h2>
-                        <span>Business Consulting Manger</span>
-                        <p >Strategically-focused certified senior Project Manager and Principle Consultant offering more than 15 years of experience in enterprise technology , business consulting ,project management ,planning, Business Transformation, Performance Improvement, e-Government Professional, busniess  Road-maps and  ERP Implementation.
-                        </p>
-                    </div>
-                    </div>
-
-               <ol class="carousel-indicators ">
+             <ol class="carousel-indicators ">
                  <li data-target="#testimonials" data-slide-to="0" ></li>
                  <li data-target="#testimonials" data-slide-to="1"class="active"></li>
                  <li data-target="#testimonials" data-slide-to="2"></li>
                </ol>
 
                <a class="carousel-control-prev" href="#testimonials" role="button" data-slide="prev">
-         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-         <span class="sr-only">Previous</span>
-     </a>
-     <a class="carousel-control-next"  href="#testimonials" role="button" data-slide="next">
-         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-         <span class="sr-only">Next</span>
-     </a>
-
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+               </a>
+            <a class="carousel-control-next"  href="#testimonials" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
            </div>
        </div>
+       @endforeach
+
     </div>
  </div>
  <!-- end Testimonials -->
 
- {{-- <div class="container">
-    <div class="row">
-      <div class="col-12 col-sm-8 col-md-6 col-lg-4">
-        <div class="card">
-          <img class="card-img" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg" alt="Bologna">
-          <div class="card-img-overlay">
-            <a href="#" class="btn btn-light btn-sm">Cooking</a>
-          </div>
-          <div class="card-body">
-            <h4 class="card-title">Pasta with Prosciutto</h4>
-            <small class="text-muted cat">
-              <i class="far fa-clock text-info"></i> 30 minutes
-              <i class="fas fa-users text-info"></i> 4 portions
-            </small>
-            <p class="card-text">I love quick, simple pasta dishes, and this is one of my favorite.</p>
-            <a href="#" class="btn btn-info">Read Recipe</a>
-          </div>
-          <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
-            <div class="views">Oct 20, 12:45PM
-            </div>
-            <div class="stats">
-                 <i class="far fa-eye"></i> 1347
-              <i class="far fa-comment"></i> 12
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> --}}
 
 
 
@@ -393,30 +333,17 @@
            <div class="col-xl-12 text-center mb-4">
                <div class="brand-title">
                    <h2>Our experiences</h2>
-
                  </div>
            </div>
        </div>
  <div class="wrapper">
    <div id="carousel" class="carousel owl-carousel">
+    @foreach ($exper as $item)
+
      <div class="card-brand card-1">
-         <img src="{{asset('Front/images/sabfon.jpg')}}"></div>
-         <div class="card-brand card-2">
-         <img src="{{asset('Front/images/ibrahem.jpg')}}"></div>
-         <div class="card-brand card-3">
-         <img src="{{asset('Front/images/OHjWGLs.jpg')}}"></div>
-         <div class="card-brand card-4">
-         <img src="{{asset('Front/images/madoen.png')}}"></div>
-         <div class="card-brand card-5">
-   <img src="{{asset('Front/images/ahuemjpg.jpg')}}"></div>
-       <div class="card-brand card-5">
-   <img src="{{asset('Front/images/haithem.jpg')}}"></div>
-   <div class="card-brand card-5">
-     <img src="{{asset('Front/images/Aldwany.jpg')}}"></div>
-     <div class="card-brand card-5">
-       <img src="{{asset('Front/images/YENWSA.jpg')}}"></div>
-     <div class="card-brand card-5">
-       <img src="{{asset('Front/images/Lawizigroup.png')}}"></div>
+        <a href="{{$item->url}}"><img src="{{asset('/images/experienc/'.$item->logo)}}"></a>
+    </div>
+    @endforeach
 
      </div>
   </div>
@@ -432,7 +359,7 @@
                  <p>If you have any questions, do not hesitate to contact us</p>
               </div>
               <div class="col-md-4 text-center text-md-right">
-                  <a href="contactus.html" class="contact-btn">Contact Us</a>
+                  <a href="{{ route('contact.contact-us')}}" class="contact-btn">Contact Us</a>
               </div>
        </div>
    </div>

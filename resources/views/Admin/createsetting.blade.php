@@ -67,12 +67,14 @@
                                                         </div>
 
 
-                                                        <div class="col-12">
+                                                        <div class="form-group">
                                                             <input type="hidden">
+                                                            <label>website icon</label>
                                                             <input type="file" id="file-ip-1"  class="form-control-file" name="icon">
                                                         </div>
-                                                    <div class="col-12">
+                                                    <div class="form-group">
                                                         <input type="hidden">
+                                                        <label>website images</label>
                                                         <input type="file" id="file-ip-1"  class="form-control-file" name="logo" >
                                                     </div>
 
