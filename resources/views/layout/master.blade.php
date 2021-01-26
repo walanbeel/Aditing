@@ -170,7 +170,7 @@
                         <ul class="list-unstyled">
                           <li><i class="fa fa-map-marker"></i>
                             {{$set->location}}</li>
-                          <li><i  class="fa fa-phone"></i> +0{{$set->mobile_num}} </li>
+                          <li><i  class="fa fa-phone"></i> +0{{$set->mobile_num}}</li>
                            <li><i  class="fa fa-envelope"></i>
                             <a href="mailto:info@mkyacpa.com">{{$set->email_web}}</a></li>
                         </ul>

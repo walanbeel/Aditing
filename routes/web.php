@@ -80,6 +80,8 @@ Route::group(['namespace'=>'Front','prefix'=>'books'],function(){
 Route::group(['namespace'=>'Front','prefix'=>'home'],function(){
     Route::get('/main','SettingController@show_setting')->name('home.master');
     Route::get('/about','SettingController@show_about')->name('home.about');
+    // Route::get('/about','SettingController@show_teams');
+
     // Route::get('/file/dowenload/{images}','BookController@download');
 });
 

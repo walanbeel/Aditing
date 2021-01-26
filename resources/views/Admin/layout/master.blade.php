@@ -194,6 +194,20 @@
                         {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('setting.create')}}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Setting</span></a></li> --}}
 
 
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-settings-box"></i><span class="hide-menu">Teams</span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href="{{ route('team.create')}}" class="sidebar-link"><i class="mdi mdi-all-inclusive"></i><span class="hide-menu"> Add Team </span></a></li>
+                                <li class="sidebar-item"><a href="{{ route('team.all')}}" class="sidebar-link"><i class="mdi mdi-all-inclusive"></i><span class="hide-menu"> display Teams </span></a></li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-settings-box"></i><span class="hide-menu">Experienc</span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href="{{ route('experienc.create')}}" class="sidebar-link"><i class="mdi mdi-all-inclusive"></i><span class="hide-menu"> Add experienc </span></a></li>
+                                <li class="sidebar-item"><a href="{{ route('experienc.all')}}" class="sidebar-link"><i class="mdi mdi-all-inclusive"></i><span class="hide-menu"> display experienc </span></a></li>
+                            </ul>
+                        </li>
+
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-settings-box"></i><span class="hide-menu">Setting</span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="{{ route('setting.create')}}" class="sidebar-link"><i class="mdi mdi-all-inclusive"></i><span class="hide-menu"> Add Setting </span></a></li>

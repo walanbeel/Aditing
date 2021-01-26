@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Front;
 use App\Models\Setting;
+use App\Models\Team;
+use App\Models\Experienc;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -18,13 +20,15 @@ class SettingController extends Controller
      ->get();
      $sets =DB::table('settings')->join('users','settings.id','=','users.id')
      ->get();
-       return  view('main',['sets'=> $sets ,'aboutus'=> $aboutus,'blogs'=> $blogs]);
+     $teams =Team::join('users','teams.id','=','users.id')
+     ->select('*')
+     ->get();
+     $exper =Experienc::join('users','experiences.id','=','users.id')
+     ->select('*')
+     ->get();
+       return  view('main',['sets'=> $sets ,'aboutus'=> $aboutus,'blogs'=> $blogs,'teams'=>$teams ,'exper'=>$exper]);
 
-      // $books=Book::all();
-    // $settings =Setting::join('users','settings.id','=','users.id')
-    // ->select('*')
-    // ->get();
-    //  return  view('layout/master',['settings'=> $settings]);
+
 
     }
 
@@ -41,4 +45,6 @@ class SettingController extends Controller
 
 
      }
+
+
 }

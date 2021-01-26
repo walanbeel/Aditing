@@ -107,7 +107,7 @@ Route::group(['namespace'=>'Admin','prefix'=>'books','middleware'=>'auth'],funct
 
 
 #################### Blogs route ####################
-Route::group(['prefix' => LaravelLocalization::setLocale(),
+Route::group(['prefix' => LaravelLocalization::setLocale() ,
 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){
 
 Route::group(['namespace'=>'Admin','prefix'=>'blogs','middleware'=>'auth'],function(){
@@ -120,8 +120,6 @@ Route::group(['namespace'=>'Admin','prefix'=>'blogs','middleware'=>'auth'],funct
     Route::get('delete/{blog_id}','BlogController@deleteblog')->name('blogs.delete');
 
     Route::get('allblog','BlogController@getAllblog')->name('blogs.all');
-
-
 
 });
 });
@@ -143,23 +141,62 @@ Route::group(['namespace'=>'Admin','prefix'=>'setting','middleware'=>'auth'],fun
 
     Route::get('allsetting','SettingController@getAllsetting')->name('setting.all');
 
-
-
 });
 });
 
 #################### End Setting ####################
+
+#################### Team ####################
+Route::group(['prefix' => LaravelLocalization::setLocale(),
+'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){
+
+Route::group(['namespace'=>'Admin','prefix'=>'team','middleware'=>'auth'],function(){
+
+    Route::get('create','TeamController@create')->name('team.create');
+    Route::post('add','TeamController@addteam')->name('team.add');
+
+    Route::get('edit/{t_id}','TeamController@editteams')->name('team.edit');
+    Route::post('update','TeamController@updateteams')->name('team.update');
+    Route::get('delete/{t_id}','TeamController@deleteteams')->name('team.delete');
+
+    Route::get('allteams','TeamController@getAllTeams')->name('team.all');
+
+});
+});
+
+#################### End Team ####################
+
+#################### Team ####################
+Route::group(['prefix' => LaravelLocalization::setLocale(),
+'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){
+
+Route::group(['namespace'=>'Admin','prefix'=>'experienc','middleware'=>'auth'],function(){
+
+    Route::get('create','ExperiencController@create')->name('experienc.create');
+    Route::post('add','ExperiencController@addExperienc')->name('experienc.add');
+
+    Route::get('edit/{exp_id}','ExperiencController@editExprienc')->name('experienc.edit');
+    Route::post('update','ExperiencController@updateExprienc')->name('experienc.update');
+    Route::get('delete/{exp_id}','ExperiencController@deleteExprienc')->name('experienc.delete');
+
+    Route::get('allExprienc','ExperiencController@getAllExprienc')->name('experienc.all');
+
+});
+});
+
+#################### End Team ####################
+
+
+
 
 #################### Acount ####################
 
 Route::group(['prefix' => LaravelLocalization::setLocale(),
 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){
 
-Route::group(['namespace'=>'Admin','prefix'=>'dashboard','middleware'=>'auth'], function () {
+    Route::group(['namespace'=>'Admin','prefix'=>'dashboard','middleware'=>'auth'], function () {
 
     Route::get('dashboard','DahshboradController@index')->name('dashboard.show');
-
-
 
 });
 });

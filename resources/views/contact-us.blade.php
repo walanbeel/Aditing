@@ -28,12 +28,13 @@
       </div>
 
       <div class="row" data-aos="fade-up" data-aos-delay="100">
+        @foreach ($sets as $set)
 
         <div class="col-lg-6">
           <div  class="info-box mb-4">
             <i class="fa fa-map-marker mb-4"></i>
             <h3>Our Address</h3>
-            <p>37 Al-Nuzaili Building, Hadda St. Almusbahi area</p>
+            <p> {{$set->location}}</p>
           </div>
         </div>
 
@@ -41,7 +42,7 @@
           <div class="info-box  mb-4">
             <i  class="fa fa-envelope"></i>
             <h3>Email Us</h3>
-            <p>info@mkyacpa.com</p>
+            <p><a href="{{$set->email_web}}">{{$set->email_web}}</a></p>
           </div>
         </div>
 
@@ -49,10 +50,11 @@
           <div class="info-box  mb-4">
             <i  class="fa fa-phone"></i>
             <h3>Call Us</h3>
-            <p>+1 517 519 </p>
+            <p> +0{{$set->mobile_num}}</p>
 
           </div>
         </div>
+        @endforeach
 
       </div>
 
