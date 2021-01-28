@@ -86,7 +86,7 @@
                             @if($category->parent==$cat2->cat_id)
 
                                 <td>{{$cat2->cat_name_en}}</td>
-                             @break; 
+                             @break;
 
                             @endif
                         @endforeach
@@ -118,7 +118,7 @@
                     <a type="button" class="btn btn-outline-success" href="{{ url('/department/department-edit/'.$category->cat_id) }}"><i class="fas fa-pencil-alt "></i></a>
                     <a type="button" class="btn btn-outline-danger deletebtn"   ><i class="fas fa-trash "></i></a>
                     </div> --}}
-                    <a href="" class="btn btn-primary"><i class="fas fa-eye"></i></a>
+                    <a href="button" data-dismiss="modal" aria-hidden="true"class="btn btn-primary" href="{{route('category.edit',$category->cat_id)}}><i class="fas fa-eye"></i></a>
                     <a type="button" class="btn btn-outline-success" href="{{route('category.edit',$category->cat_id)}}"><i class="fas fa-pencil-alt "></i></a>
                     <a type="button" class="btn btn-outline-danger deletebtn" href="{{route('category.delete',[$category->cat_id])}}"><i class="fas fa-trash "></i></a>
                     </td>

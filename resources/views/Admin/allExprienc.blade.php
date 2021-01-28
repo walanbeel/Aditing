@@ -73,7 +73,7 @@
                                         <td>{{$exper->id}}</td>
                                         <td>{{$exper->name_en}}</td>
                                         <td>{{$exper->name_ar}}</td>
-                                        <td>{{$exper->logo}}</td>
+                                        <td><img src="{{asset('/images/experienc/'.$exper->logo)}}" alt="imgExper"  style="width:60%;hight:50%"></td>
                                         <td>{{$exper->url}}</td>
                                         <td>{{$exper->is_active}}</td>
 

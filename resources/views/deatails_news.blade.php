@@ -16,7 +16,7 @@
             @foreach($blogs as $blog)
 
         <div class="main-contant single">
-           <h1 class="post-title">{{$blog->title_en}}</h1>
+           <h4 class="post-title">{{$blog->title_en}}</h4>
            <div class="post-content">
             <img src="{{asset('/images/news/'.$blog->main_img)}}" style="width:750px;highet:200px" alt="">
                <p>{!!$blog->content_en !!}</p>
@@ -33,7 +33,7 @@
                 <h2 class="section-title">Popular</h2>
                 <div class="post clearfix ">
                     <img src="{{asset('/images/news/'.$blog->main_img)}}" style="width:90px;highet:90px" alt="">
-                    <a href="#" class="title"><h4>{{Illuminate\Support\Str::limit($blog->title_en,30, $end='...') }}</h4></a>
+                    <a href="#" class="title"><h6>{{Illuminate\Support\Str::limit($blog->title_en,30, $end='...') }}</h6></a>
                 </div>
 
                 @endforeach

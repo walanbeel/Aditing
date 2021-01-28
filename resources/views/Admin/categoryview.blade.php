@@ -72,15 +72,16 @@
                         </div>
                       </div>
                       <div class="col-12">
+                          
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" value="1" name="active" id="customCheck1">
                             <label class="custom-control-label" for="customCheck1">is Active</label>
                           </div>
                        </div>
-                          
+
                         <div class="form-group">
-                        
-                            
+
+
                             {{-- <div class="col-md-9">
                                 <div class="custom-control custom-checkbox mr-sm-2">
                                     <input type="checkbox" class="custom-control-input" id="customControlAutosizing1">
@@ -101,8 +102,8 @@
                                 </div>
                             </div>
 
-                          
-                           
+
+
 
 
                             <div class="col-12">

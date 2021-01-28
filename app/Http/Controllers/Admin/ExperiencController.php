@@ -98,43 +98,37 @@ public function updateExprienc(Request $request)
 {
     $experienc=new Experienc;
     $id=Auth::user()->id;
+    $image='';
     $logo='';
-    $active='';
-     if(isset($request->is_active))
-     $active=1;
-     else
-     $active=0;
-
+    $attchment='';
+    $imgName='';
     if($request->hasfile('logo'))
-        {
-            $imgFile =$request->file('logo') ;
-            $imgName =time().basename($_FILES["logo"]["name"]);
-            $logo=$imgFile->move('images/experienc/',$imgName);
-            $img=$imgName;
+    {
+    $attchmentFile =$request->file('logo') ;
+    $num=count($attchmentFile);
+    for($i=0;$i<$num;$i++){
+    $ext=$attchmentFile[$i]->getClientOriginalExtension();
+    $imgName =rand(123456,999999).".".$ext;
+    $logo=$attchmentFile[$i]->move('images/experienc/',$imgName);
+    $attchment.=$imgName;
 
-
-            $experienc::where('exp_id',$request->exp_id)
-            ->update(['id'=>$id,
-                'name_en'=>$request->name_en,
-                'name_ar' =>$request->name_ar,
-                'logo'=>$img,
-                'url'=>$request->url,
-                'is_active'=>$active,
-                 ]);
+    }}
+    else{
+       $imgName=$request->logo2;
     }
-        else{
             $experienc::where('exp_id',$request->exp_id)
             ->update(['id'=>$id,
                 'name_en'=>$request->name_en,
                 'name_ar' =>$request->name_ar,
+                'logo'=>$imgName,
                 'url'=>$request->url,
+                'is_active'=>$request->is_active,
                  ]);
-
 
             $data['exprienc'] =Experienc::get();
             return redirect('/experienc/allExprienc')->with($data);
 
-        }
+
 }
 
 ################## Update Teams #################

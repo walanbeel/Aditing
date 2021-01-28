@@ -42,7 +42,7 @@
 
                                   <br>
 
-                                  <form method="POST" action="{{route('experienc.update')}}">
+                                  <form method="POST" enctype="multipart/form-data" action="{{route('experienc.update')}}">
                                     @foreach($experience as $item)
                                     @csrf
                                     <div class="col-12">
@@ -68,12 +68,11 @@
                                       </div>
 
                                     <div class="col-12">
-                                        <input type="hidden">
-                                        <label for="exampleFormControlFile1">{{__('messages.Experienc logo')}}</label>
-                                        <input type="file" id="file-ip-1"  class="form-control-file" name="logo" value="{{$item->logo}}" placeholder="{{__('messages.logo')}}">
-                                        @error('logo')
-                                        <small>{{$message}}</small>
-                                        @enderror
+                                        <label for="exampleFormControlFile1"> @error('logo')<small>{{$message}}</small> @enderror</label>
+                                        <input type="file" id="file-ip-1" onchange="showPreview(event);"  accept="image/*" class="form-control-file" name='logo[]' value="{{$item->logo}}">
+                                        <input type="hidden"   accept="image/*" name='logo2' value="{{$item->logo}}">
+                                       <br>
+                                        <img  class="img-fluid" id="file-ip-1-preview" width="70">
                                     </div>
                                     <div class="form-group">
                                         <label for="inputEmail">logo address</label>
@@ -81,7 +80,7 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" value="1" name="is_active" value="{{$item->is_active}}" id="customCheck1">
+                                            <input type="checkbox" class="custom-control-input" name="is_active" value="{{$item->is_active}}" id="customCheck1">
                                             <label class="custom-control-label" for="customCheck1">is Active</label>
                                           </div>
                                        </div>

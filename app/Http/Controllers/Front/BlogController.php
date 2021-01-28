@@ -14,9 +14,8 @@ class BlogController extends Controller
     {
         // dd('aa');
 
-    $posts =DB::table('blogs')->join('users','blogs.id','=','users.id')
-    ->join('categories','blogs.cat_id','=','categories.cat_id')
-    ->get();
+    $posts =DB::table('blogs')->paginate(5);
+
      $blogs =DB::table('blogs')->select()->limit(6)->get();
      $sets =DB::table('settings')->join('users','settings.id','=','users.id')
     ->get();

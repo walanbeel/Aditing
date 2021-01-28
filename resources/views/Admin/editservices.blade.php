@@ -48,7 +48,7 @@
 
                                       <br>
 
-                                    <form method="POST" action="{{route('services.update')}}">
+                                    <form method="POST" enctype="multipart/form-data" action="{{route('services.update')}}">
                                         @foreach($services  as $item)
                                       @csrf
                                         <div class="col-12">

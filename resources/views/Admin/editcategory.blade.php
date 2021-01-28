@@ -44,7 +44,7 @@
 
                       <br>
 
-                <form method="POST" action="{{route('category.update')}}">
+                <form method="POST" enctype="multipart/form-data" action="{{route('category.update')}}">
                  @foreach($Categorys as $item)
                     @csrf
                     <div class="col-12">
@@ -82,7 +82,7 @@
                             </div>
                             </div>
 
-                          
+
 
                    <div class="col-12">
         			<div class="form-group">

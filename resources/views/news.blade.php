@@ -17,7 +17,7 @@
                 <img src="{{asset('/images/news/'.$post->main_img)}}" alt="imgpost" class="post-image">
 
                 <div class="post-preview">
-                    <h2><a href='deatails/{{$post->blog_id}}'>{{Illuminate\Support\Str::limit($post->title_en,60, $end='...') }}</a></h2>
+                    <h4><a href='deatails/{{$post->blog_id}}'>{{Illuminate\Support\Str::limit($post->title_en,60, $end='...') }}</a></h4>
 
                     <i class="fa fa-user-circle-o">{{$post->id}}</i>
                     &nbsp;
@@ -49,9 +49,11 @@
                 <h2 class="section-title">Topics</h2>
                  @foreach ($blogs  as $blog)
                 <ul>
-                    <li><h5>
-                    <a href="#">{{$blog->title_en}}
-                    </a></h5></li>
+                    <li>
+                    <h6>
+                    <a href="#">{{$blog->title_en}}</a>
+                    </h6>
+                   </li>
                 </ul>
                 @endforeach
 
@@ -60,8 +62,15 @@
         </div>
     </div>
     <!--End Content-->
-
-
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+            <div class="pagination justify-content-center">
+               {{$posts->links()}}
+            </div>
+            </div>
+        </div>
+    </div>
 
 
 @endsection

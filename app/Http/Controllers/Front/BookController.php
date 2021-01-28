@@ -15,9 +15,8 @@ class BookController extends Controller
     public function show_books()
     {
         // $books=Book::all();
-    $books =Book::join('categories','books.cat_id','=','categories.cat_id')
-    ->select('*')
-    ->get();
+    $books =DB::table('books')->paginate(8);
+
     $sets =DB::table('settings')->join('users','settings.id','=','users.id')
     ->get();
      return  view('books',['books'=> $books],['sets'=> $sets]);

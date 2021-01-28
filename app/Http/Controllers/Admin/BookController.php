@@ -153,55 +153,56 @@ class BookController extends Controller
 
  public function updatebook(Request $request)
     {
-
-
         $books=new Book;
         $id=Auth::user()->id;
-
-        if($request->hasfile('cover'))
-        {
-           $imgFile =$request->file('cover') ;
-           $coverName =time().basename($_FILES["cover"]["name"]);
-           $cover=$imgFile->move('images/books/',$coverName);
-           $books->cover=$coverName;
-        }
+        $file='';
+        $imgName='';
+        $attchment='';
+        $cover='';
 
         if($request->hasfile('file'))
         {
-           $imgFile =$request->file('file') ;
-           $fileName =time().basename($_FILES["file"]["name"]);
-           $file=$imgFile->move('images/books/',$fileName);
-           $books->file=$fileName;
+        $attchmentFile =$request->file('file') ;
+        $num=count($attchmentFile);
+        for($i=0;$i<$num;$i++){
+        $ext=$attchmentFile[$i]->getClientOriginalExtension();
+        $attchmentName =rand(123456,999999).".".$ext;
+        $file=$attchmentFile[$i]->move('images/books/',$attchmentName);
+        $attchment.=$attchmentName;
 
+        }}
+        else{
+            $attchment=$request->file2;
+        }
+
+        if($request->hasfile('cover'))
+        {
+        $attchmentFile =$request->file('cover') ;
+        // $num=count($attchmentFile);
+        for($i=0;$i<$num;$i++){
+        $ext=$attchmentFile[$i]->getClientOriginalExtension();
+        $imgName =rand(123456,999999).".".$ext;
+        $cover=$attchmentFile[$i]->move('images/books/',$imgName);
+        $attchment.=$imgName;
+
+        }}
+
+        else{
+           $imgName=$request->cover2;
+        }
 
             $books::where('B_id',$request->B_id )
-           ->update(['id'=>$request->id,
+           ->update(['id'=>$id,
            'cat_id'=>$request->cat_id,
            'authoer_name_en'=>$request->authoer_name_en,
            'authoer_name_ar'=>$request->authoer_name_ar,
            'B_name_en'=>$request->B_name_en,
            'B_name_ar'=>$request->B_name_ar,
-           'file'=>$fileName,
-           'cover'=>$coverName,
+           'file'=>$attchmentName,
+           'cover'=>$imgName,
 
-           // 'B_img'=>$request->B_img,
 
             ]);
-        }
-        else{
-            $books::where('B_id',$request->B_id )
-            ->update(['id'=>$request->id,
-            'cat_id'=>$request->cat_id,
-            'authoer_name_en'=>$request->authoer_name_en,
-            'authoer_name_ar'=>$request->authoer_name_ar,
-            'B_name_en'=>$request->B_name_en,
-            'B_name_ar'=>$request->B_name_ar,
-
-            // 'B_img'=>$request->B_img,
-
-             ]);
-            }
-
 
         $data['books'] = Book::get();
        return redirect('/books/allbooks')->with($data);
