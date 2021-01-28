@@ -11,12 +11,12 @@ use Illuminate\Support\Facades\Validator;
 
 class ServicesController extends Controller
 {
-   
+
 
 
     public function create(){
-        $cat ['category']=Category::all();
-         
+        $cat ['category']=Category::all()->where('is_active',1);
+
         return view('Admin.createservic', $cat);
 
 
@@ -108,7 +108,7 @@ class ServicesController extends Controller
         $id=Auth::user()->id;
         $services=new Service;
 
-    
+
 
         $services::where('s_id',$request->s_id)
         ->update(['id'=>$id,
@@ -152,6 +152,42 @@ class ServicesController extends Controller
     }
 
 ################## Delete services ##################
+
+public function display_row($s_id)
+{
+    $affected1 =[];
+    $data['dept'] = Service::where('s_id',$s_id)->get();
+    return view('update',$data);
+                }
+                public function is_active($s_id){
+                    $affected1= Service::where('s_id',$s_id)
+                    ->update(['is_active'=>'1']);
+                    // $affected = Category::where('is_delete',0)->paginate(25);
+                    $services =DB::table('services')->join('users','services.id','=','users.id')->get(); // return collection of all result*/
+                    return view('Admin.allservices',['services'=> $services]);
+
+                    }
+                    public function is_not_active($s_id){
+                        $affected1= Service::where('s_id',$s_id)
+                        ->update(['is_active'=>'0']);
+                        $services =DB::table('services')->join('users','services.id','=','users.id')->get(); // return collection of all result*/
+                        return view('Admin.allservices',['services'=> $services]);
+
+                        }
+
+public function display_with_status($s_id)
+    {
+        if($s_id==1){
+            $affected1 =[];
+            $affected = Category::where(['is_active',1])->paginate(25);
+            return view('allservices',['cat'=>$affected,'data1'=>$affected1]);
+        }elseif($s_id==0){
+            $affected1 =[];
+            $affected = Category::where(['is_active',0])->paginate(25);
+            return view('allservices',['cat'=>$affected,'data1'=>$affected1]);
+        }
+
+    }
 
 
 }

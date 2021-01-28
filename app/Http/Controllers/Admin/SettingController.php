@@ -101,17 +101,6 @@ class SettingController extends Controller
             ];
         }
 
-
-
-        // protected function saveImage($photo,$folder){
-        //  $file_extension=$photo->B_img->getCilentoriginalExtension();
-        // $file_name =time(). ' . '.$file_extension;
-        // $path=$folder;
-        // $photo ->B_img->move($path,$file_name);
-        // return  $file_name;
-        // }
-
-
         public function getAllsetting()
     {
 
@@ -121,20 +110,14 @@ class SettingController extends Controller
 
     }
 
-
-
-
  ################## Edit services ##################
 
     public function editsettings($set_id)
     {
 
-
         $setting = Setting::where('set_id',$set_id)->get();
         return view('Admin.editsetting',['setting'=> $setting]);
-
     }
-
 
 ################## Eidt services ##################
 
@@ -146,24 +129,45 @@ class SettingController extends Controller
     {
         $settings=new Setting;
         $id=Auth::user()->id;
+        $icon='';
+        $imgName='';
+        $attchment='';
+        $logo='';
+
+        if($request->hasfile('icon'))
+        {
+        $attchmentFile =$request->file('icon') ;
+        $num=count($attchmentFile);
+        for($i=0;$i<$num;$i++){
+        $ext=$attchmentFile[$i]->getClientOriginalExtension();
+        $attchmentName =rand(123456,999999).".".$ext;
+        $icon=$attchmentFile[$i]->move('images/set/',$attchmentName);
+        $attchment.=$attchmentName;
+
+        }}
+        else{
+            $attchment=$request->icon2;
+        }
 
         if($request->hasfile('logo'))
         {
-           $imgFile =$request->file('logo') ;
-           $imgName =time().basename($_FILES["logo"]["name"]);
-           $book=$imgFile->move('images/set/',$imgName);
-           $imglogo=$imgName;
-           if($request->hasfile('icon'))
-           {
-              $imgFile =$request->file('icon') ;
-              $imgName =time().basename($_FILES["icon"]["name"]);
-              $book=$imgFile->move('images/set/',$imgName);
-              $imgicon=$imgName;
+        $attchmentFile =$request->file('logo') ;
+        $num=count($attchmentFile);
+        for($i=0;$i<$num;$i++){
+        $ext=$attchmentFile[$i]->getClientOriginalExtension();
+        $imgName =rand(123456,999999).".".$ext;
+        $logo=$attchmentFile[$i]->move('images/set/',$imgName);
+        $attchment.=$imgName;
 
+        }}
+
+        else{
+           $imgName=$request->logo2;
+        }
         $settings::where('set_id',$request->set_id)
         ->update(['id'=>$id,
-        'logo'=>$imglogo,
-        'icon'=>$imgicon,
+        'icon'=>$attchmentName,
+        'logo'=>$imgName,
         'Website_name_en'=>$request->Website_name_en,
         'Website_name_ar'=>$request->Website_name_ar,
         'mobile_num'=>$request->mobile_num,
@@ -175,41 +179,10 @@ class SettingController extends Controller
         'LinkedIn'=>$request->LinkedIn,
         'Twitter'=>$request->Twitter,
          ]);
-        }
-        else{
-            $settings::where('set_id',$request->set_id )
-        ->update(['id'=>$id,
-        'Website_name_en'=>$request->Website_name_en,
-        'Website_name_ar'=>$request->Website_name_ar,
-        'mobile_num'=>$request->mobile_num,
-        'location'=>$request->location,
-        'email_web'=>$request->email_web,
-        'aboutus_en'=>$request->aboutus_en,
-        'aboutus_ar'=>$request->aboutus_ar,
-        'Facebook'=>$request->Facebook,
-        'LinkedIn'=>$request->LinkedIn,
-        'Twitter'=>$request->Twitter,
-          ]);
-        }}
-        else{
-            $settings::where('set_id',$request->set_id )
-            ->update(['id'=>$id,
-            'Website_name_en'=>$request->Website_name_en,
-            'Website_name_ar'=>$request->Website_name_ar,
-            'mobile_num'=>$request->mobile_num,
-            'location'=>$request->location,
-            'email_web'=>$request->email_web,
-            'aboutus_en'=>$request->aboutus_en,
-            'aboutus_ar'=>$request->aboutus_ar,
-            'Facebook'=>$request->Facebook,
-            'LinkedIn'=>$request->LinkedIn,
-            'Twitter'=>$request->Twitter,
 
-            ]);
-        }
 
-        $data['settings'] = Setting::get();
-        return redirect('/setting/allsetting')->with($data);
+         $data['settings'] = Setting::get();
+         return redirect('/setting/allsetting')->with($data);
 
     }
 

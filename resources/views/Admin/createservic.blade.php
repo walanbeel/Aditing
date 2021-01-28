@@ -91,7 +91,7 @@
 
                                     <div class="col-12">
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" value="1" name="is_active" id="customCheck1">
+                                            <input type="checkbox" class="custom-control-input" value="1" name="active" id="customCheck1">
                                             <label class="custom-control-label" for="customCheck1">is Active</label>
                                           </div>
                                        </div>

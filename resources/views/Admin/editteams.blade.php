@@ -48,18 +48,17 @@
 
                                       <br>
 
-                                    <form method="POST" action="{{route('team.update')}}">
+                                    <form method="POST" enctype="multipart/form-data" action="{{route('team.update')}}">
                                         @foreach($teams  as $item)
                                       @csrf
-                                        <div class="col-12">
+                                          <div class="col-12">
                                             <input type="hidden" name="t_id" value="{{$item->t_id}}">
-                                            <div class="form-group">
-                                                <input type="hidden" name="t_profile1" value="{{$item->t_profile}}">
-                                                <label for="exampleFormControlFile1"> @error('t_profile')<small>{{$message}}</small> @enderror</label>
-                                                <input type="file" id="file-ip-1"   accept="image/*" class="form-control-file" name='t_profile' value="{{$item->t_profile}}">
-
-                                            </div>
-                                          </div>
+                                            <label for="exampleFormControlFile1"> @error('t_profile')<small>{{$message}}</small> @enderror</label>
+                                            <input type="file" id="file-ip-1" onchange="showPreview(event);"  accept="image/*" class="form-control-file" name='t_profile[]' value="{{$item->t_profile}}">
+                                            <input type="hidden"   accept="image/*" name='t_profile2' value="{{$item->t_profile}}">
+                                           <br>
+                                            <img  class="img-fluid" id="file-ip-1-preview" width="70">
+                                        </div>
                                           <div class="col-12">
                                             <input type="hidden">
                                             <div class="form-group">

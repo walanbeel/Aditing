@@ -35,9 +35,9 @@ Route::get('/', function () {
 //     return view('about');
 // });
 
-Route::get('/services',function(){
-    return view('services');
-});
+// Route::get('/services',function(){
+//     return view('services');
+// });
 
 // Route::get('/books',function(){
 //     return view('books');
@@ -49,9 +49,9 @@ Route::get('/services',function(){
 
 Auth::routes();
 
-Route::get('/home', function(){
-    return view('home');
-})->name('home');
+// Route::get('/home', function(){
+//     return view('home');
+// })->name('home');
 /*************Route contact page************ */
 Route::get('/contact-us',[ContactController::class,'contact'])->name('contact.contact-us');
 

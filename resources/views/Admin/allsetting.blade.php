@@ -58,8 +58,8 @@
                                     <tr>
                                       <th scope="col">{{__('messages.set_id')}}</th>
                                       <th scope="col">{{__('messages.id')}}</th>
-                                      <th scope="col">{{__('messages.logo')}}</th>
                                       <th scope="col">{{__('messages.icon')}}</th>
+                                      <th scope="col">{{__('messages.logo')}}</th>
                                       <th scope="col">{{__('messages.Website_name_en')}}</th>
                                       <th scope="col">{{__('messages.Website_name_en')}}</th>
                                       <th scope="col">{{__('messages.mobile_num')}}</th>
@@ -79,8 +79,8 @@
                                     <tr>
                                       <td scope="row">{{$setting->set_id}}</td>
                                       <td>{{$setting->id}}</td>
-                                      <td>{{$setting->logo}}</td>
-                                      <td>{{$setting->icon}}</td>
+                                      <td><img src="{{asset('/images/set/'.$setting->icon)}}" alt="imgset"  style="width:60%;hight:50%"></td>
+                                      <td><img src="{{asset('/images/set/'.$setting->logo)}}" alt="imgset"  style="width:60%;hight:50%"></td>
                                       <td>{{$setting->Website_name_en}}</td>
                                       <td>{{$setting->Website_name_ar}}</td>
                                       <td>{{$setting->mobile_num}}</td>

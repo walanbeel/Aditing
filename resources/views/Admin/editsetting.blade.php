@@ -48,11 +48,10 @@
                                             <div class="card-body">
                                                 <form method="POST" action="{{route('setting.update')}}" enctype="multipart/form-data">
                                                     @foreach($setting as $item)
-
                                                     @csrf
                                                     <div class="form-group">
                                                         <input type="hidden" name="set_id" value="{{$item->set_id}}">
-
+                                                        <input type="hidden" name="id" value="{{$item->id}}">
                                                         <label for="inputText3" class="col-form-label">Website Name en</label>
                                                         <input id="inputText3" type="text" class="form-control" name="Website_name_en" value="{{$item->Website_name_en}}">
                                                     </div>
@@ -69,15 +68,29 @@
                                                             <label>Phone <small class="text-muted">(967) 999-9999</small></label>
                                                             <input type="text" class="form-control phone-inputmask" id="phone-mask" placeholder="" name="mobile_num" value="{{$item->mobile_num}}">
                                                         </div>
-
-
-                                                        <div class="col-12">
+                                                        {{-- <div class="col-12">
                                                             <input type="hidden">
                                                             <input type="file" id="file-ip-1"  class="form-control-file" name="icon" value="{{$item->icon}}">
                                                         </div>
                                                     <div class="col-12">
                                                         <input type="hidden">
-                                                        <input type="file" id="file-ip-1"  class="form-control-file" name="logo" value="{{$item->logo}}" >
+                                                        <input type="file" id="file-ip-1"  class="form-control-file" name="logo" value="{{$item->logo}}">
+                                                    </div> --}}
+                                                    <div class="form-group">
+                                                        <input type="hidden">
+                                                        <label for="exampleFormControlFile1"> @error('icon')<small>{{$message}}</small> @enderror</label>
+                                                        <input type="file" id="file-ip-1" onchange="showPreview(event);"  accept="image/*" class="form-control-file" name='icon[]' value="{{$item->icon}}">
+                                                        <input type="hidden"   accept="image/*" name='icon2'value="{{$item->icon}}">
+                                                       <br>
+                                                        <img  class="img-fluid" id="file-ip-1-preview" width="70">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="hidden">
+                                                        <label for="exampleFormControlFile1"> @error('logo')<small>{{$message}}</small> @enderror</label>
+                                                        <input type="file" id="file-ip-1" onchange="showPreview(event);"  accept="image/*" class="form-control-file" name='logo[]' value="{{$item->logo}}">
+                                                        <input type="hidden" accept="image/*" class="form-control-file" name='logo2' value="{{$item->logo}}">
+                                                       <br>
+                                                        <img  class="img-fluid" id="file-ip-1-preview" width="70">
                                                     </div>
 
                                                     <div class="form-group">

@@ -73,7 +73,7 @@
                                       <tr>
                                         <th scope="row">{{$team->t_id}}</th>
                                         <td>{{$team->id}}</td>
-                                        <td>{{$team->t_profile}}</td>
+                                        <td><img src="{{asset('/images/teams/'.$team->t_profile)}}" alt="imgteams"  style="width:60%;hight:50%"class="post-image"></td>
                                         <td>{{$team->name_en}}</td>
                                         <td>{{$team->name_ar}}</td>
                                         <td>{{$team->sub_title_en}}</td>

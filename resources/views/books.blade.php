@@ -35,9 +35,7 @@
                 <div class="product-grid4">
                     <div class="product-image4">
                         <a href="#">
-                            {{-- <iframe src="{{ asset('/images/books/'.$book->file) }}" width="50%" height="600">
-                                This browser does not support PDFs. Please download the PDF to view it: <a href="{{ url('file/download/'.$book->file }}">Download PDF</a>
-                        </iframe> --}}
+
                             <img class="pic-1" src="{{asset('/images/books/'.$book->cover)}}">
                         </a>
                         <ul class="social">
@@ -280,6 +278,16 @@
 
 
     <div class="push"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+            <div class="pagination justify-content-center">
+               {{$books->links()}}
+            </div>
+            </div>
+        </div>
+    </div>
+
 
 <script >
 !function(d){

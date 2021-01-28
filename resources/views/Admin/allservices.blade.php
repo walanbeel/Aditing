@@ -57,12 +57,13 @@
                                   <thead>
                                     <tr>
                                       <th scope="col">{{__('messages.s_id')}}</th>
+                                      @if ( Config::get('app.locale') == 'en')
                                       <th scope="col">{{__('messages.s_name_en')}}</th>
+                                      @elseif ( Config::get('app.locale') == 'ar' )
                                       <th scope="col">{{__('messages.s_name_ar')}}</th>
-                                      <th scope="col">{{__('messages.id')}}</th>
+                                      @endif
+                                      <th scope="col">{{__('messages.name')}}</th>
                                       <th scope="col">{{__('messages.cat_id')}}</th>
-                                     {{-- <th scope="col">{{__('messages.s_describe_en')}}</th>
-                                      <th scope="col">{{__('messages.s_describe_ar')}}</th> --}}
                                       <th scope="col">{{__('messages.is_active')}}</th>
                                       <th scope="col">{{__('messages.operation')}}</th>
                                     </tr>
@@ -72,13 +73,32 @@
 
                                     <tr>
                                       <td scope="row">{{$service->s_id}}</td>
+                                      @if ( Config::get('app.locale') == 'en')
                                       <td>{{$service->s_name_en}}</td>
+                                      @elseif ( Config::get('app.locale') == 'ar' )
                                       <td>{{$service->s_name_ar}}</td>
+                                      @endif
                                       <td>{{$service->name}}</td>
-                                      <td> {{$service->cat_name_en}}</td>
-                                      {{-- <td>{!!$service->s_describe_en!!}</td>
-                                      <td>{!!$service->s_describe_ar!!}</td> --}}
-                                      <td>{{$service->is_active}}</td>
+                                      <td> {{$service->cat_name_en}}
+                                      </td>
+                                       <td>
+                                        @if($service->is_active==0)
+
+                                        <div class="form-group">
+                                            <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                            <input onclick="myFunction{{$service->is_active}}()" type="checkbox" class="custom-control-input" id="customSwitch{{$service->s_id}}">
+                                            <label class="custom-control-label" for="customSwitch{{$service->is_active}}"></label>
+                                            </div>
+                                        </div>
+                                        @elseif($service->is_active == 1)
+                                        <div class="form-group">
+                                            <div  class="custom-control custom-switch custom-switch-on-success custom-switch-off-danger ">
+                                            <input onclick="myFunction{{$service->is_active}}()" checked type="checkbox" class="custom-control-input" id="customSwitch{{$service->s_id}}">
+                                            <label class="custom-control-label" for="customSwitch{{$service->is_active}}"></label>
+                                            </div>
+                                        </div>
+                                @endif
+                                      </td>
                                       <td>
                                         <a href="" class="btn btn-primary"><i class="fa fa-eye"></i></a>
                                         <a href="{{route('services.edit',$service->s_id)}}" class="btn btn-success"><i class="fas fa-edit"></i></a>
@@ -89,6 +109,45 @@
 
 
                                     </tr>
+                                    <script>
+                                        function dep_select(){
+                                        var m= $("#selectdep").val();
+                                        if(m==1){
+                                        $('.dep4').css('display','none');
+                                            }
+                                        }
+                                        function myFunction{{$service->s_id}}() {
+                                        var checkBox{{$service->s_id}} = document.getElementById("customSwitch{{$service->s_id}}");
+
+                                        if (checkBox{{$service->s_id}}.checked == true){
+                                            $.ajax({
+                                                    type:'get',
+                                                    url:'/ser_active/'+{{$service->s_id}},
+                                                    data:{id:{{$service->s_id}}},
+                                                    success:function(response){console.log(response);
+                                                    // alert("data saved");
+                                                    },
+                                                    error:function(error){console.log(error);
+                                                    // alert("data dont saved");
+                                                    }
+                                                });
+                                        } else{
+                                            $.ajax({
+                                                    type:'get',
+                                                    url:'/ser_no_active/'+{{$service->s_id}},
+                                                    data:{id:{{$service->s_id}}},
+                                                    success:function(response){console.log(response);
+                                                    // alert("data saved");
+                                                    },
+                                                    error:function(error){console.log(error);
+                                                    // alert("data dont saved");
+                                                    }
+                                                });
+                                        }
+                                        }
+
+                                    </script>
+
 
                                     @endforeach
 

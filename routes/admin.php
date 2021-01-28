@@ -75,10 +75,18 @@ Route::group(['namespace'=>'Admin','prefix'=>'services','middleware'=>'auth'],fu
 
     Route::get('allservices', 'ServicesController@getAllService')->name('services.all');
 
+    Route::get('/display_row/{s_id}','ServicesController@display_row');
+
+
+    Route::get('/services/{s_id}','ServicesController@display_with_status');
+
 
 
 });
 });
+Route::get('/ser_active/{s_id}','Admin\ServicesController@is_active');
+
+Route::get('/ser_no_active/{s_id}','Admin\ServicesController@is_not_active');
 #################### End Services route ####################
 
 

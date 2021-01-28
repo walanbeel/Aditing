@@ -44,6 +44,7 @@
 
                                 <form method="POST" action="{{route('books.add')}}" enctype="multipart/form-data">
                                     @csrf
+                                    @if ( Config::get('app.locale') == 'en')
                                     <div class="col-12">
                                         <input type="hidden">
                                         <div class="form-group">
@@ -54,6 +55,7 @@
                                           @enderror
                                         </div>
                                       </div>
+                                      @elseif ( Config::get('app.locale') == 'ar' )
                                       <div class="col-12">
                                         <input type="hidden">
                                         <div class="form-group">
@@ -64,6 +66,9 @@
                                           @enderror
                                         </div>
                                       </div>
+                                      @endif
+
+                                      @if ( Config::get('app.locale') == 'en')
                                       <div class="col-12">
                                         <input type="hidden">
                                         <div class="form-group">
@@ -74,6 +79,7 @@
                                           @enderror
                                         </div>
                                       </div>
+                                      @elseif ( Config::get('app.locale') == 'ar' )
                                       <div class="col-12">
                                         <input type="hidden">
                                         <div class="form-group">
@@ -84,6 +90,7 @@
                                           @enderror
                                         </div>
                                       </div>
+                                      @endif
                                       <div class="col-12">
                                         <input type="hidden">
                                         <label for="exampleFormControlFile1">{{__('messages.Book cover')}}</label>
@@ -100,6 +107,7 @@
                                         <small>{{$message}}</small>
                                         @enderror
                                     </div>
+                                    @if ( Config::get('app.locale') == 'en')
                                     <div class="col-12">
                                         <input type="hidden">
                                     <div class="form-group">
@@ -112,6 +120,7 @@
                                     </div>
                                     </div>
                                    </div>
+                                   @elseif ( Config::get('app.locale') == 'ar' )
                                    <div class="col-12">
                                     <input type="hidden">
                                 <div class="form-group">
@@ -124,6 +133,7 @@
                                 </div>
                                 </div>
                                </div>
+                               @endif
                                <div class="col-12">
                                 <div class="form-group">
                                     <label>{{__('messages.Category')}} </label>

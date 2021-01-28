@@ -141,17 +141,45 @@ class BlogController extends Controller
  ################## Update services ##################
 
  public function updateblog(Request $request)
-    {
-        $blogs=new Blog;
+ {
+     $blogs=new Blog;
+        $image='';
+        $imgName='';
+        $attchment='';
+        $main_img='';
+        //print_r($_FILES['main_img']);
         $id=Auth::user()->id;
+
+        // if($request->hasfile('blog_img'))
+        // {
+        // $attchmentFile =$request->file('blog_img') ;
+        // $num=count($attchmentFile);
+        // for($i=0;$i<$num;$i++){
+        // $ext=$attchmentFile[$i]->getClientOriginalExtension();
+        // $attchmentName =rand(123456,999999).".".$ext;
+        // $attachment=$attchmentFile[$i]->move('images/news/',$attchmentName);
+        // $attchment.=$attchmentName.',';
+
+        // }}
+        // else{
+        //     $attchment=$request->blog_img2;
+        // }
 
         if($request->hasfile('main_img'))
         {
-           $imgFile =$request->file('main_img') ;
-           $imgName =time().basename($_FILES["main_img"]["name"]);
-           $blog=$imgFile->move('images/books/',$imgName);
-           $img=$imgName;
+        $attchmentFile =$request->file('main_img') ;
+        $num=count($attchmentFile);
+        for($i=0;$i<$num;$i++){
+        $ext=$attchmentFile[$i]->getClientOriginalExtension();
+        $imgName =rand(123456,999999).".".$ext;
+        $main_img=$attchmentFile[$i]->move('images/news/',$imgName);
+        $attchment.=$imgName;
 
+        }}
+
+        else{
+           $imgName=$request->main_img2;
+        }
         $blogs::where('blog_id',$request->blog_id)
         ->update(['id'=>$id,
         'cat_id'=>$request->cat_id,
@@ -159,19 +187,8 @@ class BlogController extends Controller
         'title_ar'=>$request->title_ar,
         'content_en'=>$request->content_en,
         'content_ar'=>$request->content_ar,
-        'main_img'=>$img,
+        'main_img'=> $imgName,
          ]);
-
-        }else{
-            $blogs::where('blog_id',$request->blog_id)
-            ->update(['id'=>$id,
-            'cat_id'=>$request->cat_id,
-            'title_en'=>$request->title_en,
-            'title_ar'=>$request->title_ar,
-            'content_en'=>$request->content_en,
-            'content_ar'=>$request->content_ar,
-             ]);
-        }
 
          $blogss['blogs'] = Blog::get();
         return redirect('/blogs/allblog')->with($blogss);

@@ -107,34 +107,29 @@ class TeamController extends Controller
 public function updateteams(Request $request)
 {
     $teams=new Team;
-    // $id=Auth::user()->id;
-    $profile='';
-    if(isset($_FILES["t_profile"]["name"]))
-    {
+    $image='';
+    $t_profile='';
+    $attchment='';
+    $imgName='';
+    $id=Auth::user()->id;
     if($request->hasfile('t_profile'))
-        {
-            $imgFile =$request->file('t_profile') ;
-            $imgName =time().basename($_FILES["t_profile"]["name"]);
-            $t_profile=$imgFile->move('images/teams/',$imgName);
-            $t_profile=$imgName;
-        }
-        else{
-        $t_profile=$request->t_profile1;
-        }
+    {
+    $attchmentFile =$request->file('t_profile') ;
+    $num=count($attchmentFile);
+    for($i=0;$i<$num;$i++){
+    $ext=$attchmentFile[$i]->getClientOriginalExtension();
+    $imgName =rand(123456,999999).".".$ext;
+    $t_profile=$attchmentFile[$i]->move('images/teams/',$imgName);
+    $attchment.=$imgName;
+
+    }}
+    else{
+       $imgName=$request->t_profile2;
+    }
+
             $teams::where('t_id',$request->t_id)
             ->update([
-                't_profile'=>$request->t_profile1,
-                'name_en'=>$request->name_en,
-                'name_ar' =>$request->name_ar,
-                'sub_title_en'=>$request->sub_title_en,
-                'sub_title_ar'=>$request->sub_title_ar,
-                'short_intro_en'=>$request->short_intro_en,
-                'short_intro_ar'=>$request->short_intro_ar,
-                 ]);
-            }
-        else{
-            $teams::where('t_id',$request->t_id)
-            ->update([
+                't_profile'=>$imgName,
                 'name_en'=>$request->name_en,
                 'name_ar' =>$request->name_ar,
                 'sub_title_en'=>$request->sub_title_en,
@@ -143,7 +138,6 @@ public function updateteams(Request $request)
                 'short_intro_ar'=>$request->short_intro_ar,
                  ]);
 
-            }
             $data['teams'] =Team::get();
             return redirect('/team/allteams')->with($data);
 

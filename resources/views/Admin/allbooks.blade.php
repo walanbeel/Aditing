@@ -81,8 +81,8 @@
                                       <td style="width:10px">{{$book->authoer_name_ar}}</td>
                                       <td>{{$book->B_name_en}}</td>
                                       <td>{{$book->B_name_ar}}</td>
-                                      <td style="width:10px">{{$book->file}}</td>
-                                      <td style="width:10px">{{$book->cover}}</td>
+                                      <td>{{$book->file}}</td>
+                                      <td><img src="{{asset('/images/books/'.$book->cover)}}" alt="imgExper"  style="width:60%;hight:50%"></td>
                                       {{-- <td  class="mycell">{!! $book->B_preface_en !!}</td>
                                       <td  class="mycell">{!! $book->B_preface_ar !!}</td> --}}
                                       <td>
