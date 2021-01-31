@@ -89,12 +89,20 @@
                                        </div>
                                     </div>
 
-                                    <div class="col-12">
+                                    <div class="col-12 ">
+                                        <div class="form-group col-sm-8">
+                                              <div class="form-check">
+                                                <input type="checkbox" checked class="form-check-input" value="1" name="is_active" id="active">
+                                                <label class="form-check-label" for="exampleCheck2">Active</label>
+                                              </div>
+                                          </div>
+                                        </div>
+                                    {{-- <div class="col-12">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" value="1" name="active" id="customCheck1">
                                             <label class="custom-control-label" for="customCheck1">is Active</label>
                                           </div>
-                                       </div>
+                                       </div> --}}
 
                                             <div class="col-12">
                                                 <div class="form-group">

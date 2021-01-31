@@ -30,6 +30,11 @@ class ExperiencController extends Controller
     //      }
        // insert,
        $experienc=new Experienc;
+       $active='';
+       if(isset($request->is_active))
+       $active=1;
+       else
+       $active=0;
         $logo='';
 
         if($request->hasfile('logo'))
@@ -47,8 +52,8 @@ class ExperiencController extends Controller
             'name_ar' =>$request->name_ar,
             'logo'=>$imgName,
             'url'=>$request->url,
-            'is_active'=>$request->is_active,
-
+            'is_active'=>$active,
+           
              ]);
                return redirect()->back()->with(['success' => 'تم اضافه  بنجاح ']);
             }
@@ -98,6 +103,11 @@ public function updateExprienc(Request $request)
 {
     $experienc=new Experienc;
     $id=Auth::user()->id;
+    $active='';
+    if(isset($request->is_active))
+    $active=1;
+    else
+    $active=0;
     $image='';
     $logo='';
     $attchment='';
@@ -122,7 +132,7 @@ public function updateExprienc(Request $request)
                 'name_ar' =>$request->name_ar,
                 'logo'=>$imgName,
                 'url'=>$request->url,
-                'is_active'=>$request->is_active,
+                'is_active'=>$active,
                  ]);
 
             $data['exprienc'] =Experienc::get();
@@ -144,6 +154,43 @@ public function deleteExprienc($exp_id){
 }
 
 ################## Delete Teams ##################
+
+
+public function display_row($exp_id)
+{
+    $affected1 =[];
+    $data['dept'] =Experienc::where('exp_id',$exp_id)->get();
+    return view('update',$data);
+                }
+                public function is_active($exp_id){
+                    $affected1= Experienc::where('exp_id',$exp_id)
+                    ->update(['is_active'=>'1']);
+                    // $affected = Category::where('is_delete',0)->paginate(25);
+                    $experience =DB::table('experiences')->join('users','experiences.id','=','users.id')->get(); // return collection of all result*/
+                    return view('Admin.showcategory',['experience'=>  $experience]);
+
+                    }
+                    public function is_not_active($exp_id){
+                        $affected1= Experienc::where('exp_id',$exp_id)
+                        ->update(['is_active'=>'0']);
+                        $experience=DB::table('experiences')->join('users','experiences.id','=','users.id')->get(); // return collection of all result*/
+                        return view('Admin.showcategory',['experience'=>  $experience]);
+
+                        }
+
+public function display_with_status($exp_id)
+    {
+        if($exp_id==1){
+            $affected1 =[];
+            $affected = Experienc::where(['is_active',1])->paginate(25);
+            return view('department',['cat'=>$affected,'data1'=>$affected1]);
+        }elseif($exp_id==0){
+            $affected1 =[];
+            $affected = Experienc::where(['is_active',0])->paginate(25);
+            return view('department',['cat'=>$affected,'data1'=>$affected1]);
+        }
+
+    }
 
 
 

@@ -556,6 +556,16 @@ width: 80%;
   font-size:18px ;
 
 }
+.testimonials .carousel-item
+{
+    display: block;
+}
+
+.testimonials .carousel-item.active
+{
+    display: none;
+}
+
 @media (max-width:360px) {
     .carousel-item{
        margin-right: 25px;
@@ -1467,7 +1477,7 @@ max-width: 50%;
   border: 1px solid #e6e6e6;
   padding: 50px 30px;
     position: relative;
-    box-shadow: 2px 2px 2px;
+    box-shadow:2px 2px 2px #e6e6e6, -2px -2px 2px #e6e6e6;
     transition:background-color 2s ease-in-out;
 }
 
@@ -1941,3 +1951,27 @@ padding-top:10px;
     text-align: center;
 
 }
+/****************************************/
+.product_view .modal-dialog{max-width: 800px; width: 100%;}
+.pre-cost{text-decoration: line-through; color: #a5a5a5;}
+.space-ten{padding: 10px 0;}
+/***************************/
+
+.testimonial{
+ background: rgb(185, 167, 167);
+ text-align: center;
+ padding: 30px 30px 50px;
+ margin: 0 15px 100px;
+ position: relative;
+ margin-top: 168px;
+}
+.testimonial:before,
+.testimonial:after{
+    content: "";
+    border-top: 40px solid white;
+    border-right: 125px solid transparent;
+    position: absolute;
+    bottom:-40px;
+    left:0;
+}
+

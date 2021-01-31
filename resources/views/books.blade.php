@@ -35,243 +35,79 @@
                 <div class="product-grid4">
                     <div class="product-image4">
                         <a href="#">
-
                             <img class="pic-1" src="{{asset('/images/books/'.$book->cover)}}">
                         </a>
                         <ul class="social">
                             <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="{{url('file/download/'.$book->file)}}" data-tip="Quick download"><i class="fa fa-download"></i></a></li>
+                            <li><a href="{{route('download', $book->file)}}" data-tip="Quick download"><i class="fa fa-download"></i></a></li>
                         </ul>
                     </div>
                     <div class="product-content">
                         <h3 class="title"><a href="#">{{$book->B_name_en}}</a></h3>
-
-                        <a class="add-to-cart" href="#">View More</a>
+                        <a href='{{route('show',$book->B_id)}}' class="btn read-more" data-toggle="modal" data-target="#product_view"><i class="fa fa-search"></i>View More</a>
                     </div>
                 </div>
             </div>
             @endforeach
 
+            <div class="modal fade product_view" id="product_view">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                            <h3 class="modal-title">{{$book->B_name_en}}</h3>
+                        </div>
+                        <!--Section: Block Content-->
+                        <section class="mb-5">
+                        <div class="row">
+                            @if(isset($lib))
+                            @foreach($lib as $book)
+                        <div class="col-md-6 mb-4 mb-md-0">
+                            <div id="mdb-lightbox-ui"></div>
+                            <div class="mdb-lightbox">
+                            <div class="row product-gallery mx-1">
+                                <div class="col-12 mb-0">
+                                <figure class="view overlay rounded z-depth-1 main-img">
+                                    <a href="#">
+                                        <img class="pic-1" src="{{asset('/images/books/'.$book->cover)}}">
+                                    </a>
+                                </figure>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>{{$book->B_name_en}}</h5>
+                            <p class="pt-1">{{$book->B_preface_en}}</p>
+                            <div class="table-responsive">
+                            <table class="table table-sm table-borderless mb-0">
+                                <tbody>
+                                <tr>
+                                    <th class="pl-0 w-25" scope="row"><strong>Author</strong></th>
+                                    <td>{{$book->authoer_name_en}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="pl-0 w-25" scope="row"><strong>Category</strong></th>
+                                    <td>{{$book->cat_id}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                            <hr>
+                            <button type="button"  class="btn btn-outline-warning"><i class="fas fa-download"></i>Download</button>
+                            <button type="button" class="btn btn-light btn-md mr-1 mb-2">cancel</button>
+                        </div>
+                        </div>
+                    </section>
+                    <!--Section: Block Content-->
+                 </div>
+                 @endforeach
+                 @endif
+                 </div>
+                 </div>
 
 
-            {{-- <div class="col-md-3 col-sm-6" data-tag="consulting">
-                <div class="product-grid4">
-                    <div class="product-image4">
-                        <a href="#">
-                            <img class="pic-1" src="{{asset('Front/images/service1.jpg')}}">
-                        </a>
-                        <ul class="social">
-                            <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="#" data-tip="Quick download"><i class="fa fa-download"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="title"><a href="#">IFRS 2 Share-based Payment </a></h3>
 
-                        <a class="add-to-cart" href="">View More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6" data-tag="Auditing">
-                <div class="product-grid4">
-                    <div class="product-image4">
-                        <a href="#">
-                            <img class="pic-1" src="{{asset('Front/images/service1.jpg')}}">
-                        </a>
-                        <ul class="social">
-                            <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="#" data-tip="Quick download"><i class="fa fa-download"></i></a></li>
-                        </ul>
-
-                    </div>
-                    <div class="product-content">
-                        <h3 class="title"><a href="#">IFRS 3 Business Combinations</a></h3>
-
-                        <a class="add-to-cart" href="">View More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6" data-tag="Tax">
-                <div class="product-grid4">
-                    <div class="product-image4">
-                        <a href="#">
-                            <img class="pic-1" src="{{asset('Front/images/sh1.jpg')}}">
-                        </a>
-                        <ul class="social">
-                            <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="#" data-tip="Quick download"><i class="fa fa-download"></i></a></li>
-                        </ul>
-
-                    </div>
-                    <div class="product-content">
-                        <h3 class="title"><a href="#">IFRS 3 Business Combinations</a></h3>
-
-                        <a class="add-to-cart" href="">View More</a>
-                    </div>
-                </div>
-        </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-3 col-sm-6"  data-tag="Tax">
-                <div class="product-grid4">
-                    <div class="product-image4">
-                        <a href="#">
-                            <img class="pic-1" src="{{asset('Front/images/sh1.jpg')}}">
-                        </a>
-                        <ul class="social">
-                            <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="#" data-tip="Quick download"><i class="fa fa-download"></i></a></li>
-                        </ul>
-
-                    </div>
-                    <div class="product-content">
-                        <h3 class="title"><a href="#">IFRS 3 Business Combinations</a></h3>
-
-                        <a class="add-to-cart" href="">View More</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6" data-tag="consulting">
-                <div class="product-grid4">
-                    <div class="product-image4">
-                        <a href="#">
-                            <img class="pic-1" src="{{asset('Front/images/service1.jpg')}}">
-                        </a>
-                        <ul class="social">
-                            <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="#" data-tip="Quick download"><i class="fa fa-download"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="title"><a href="#">IFRS 4 Insurance Contracts</a></h3>
-
-                        <a class="add-to-cart" href="">View More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6" data-tag="Auditing">
-                <div class="product-grid4">
-                    <div class="product-image4">
-                        <a href="#">
-                            <img class="pic-1" src="{{asset('Front/images/service1.jpg')}}">
-                        </a>
-                        <ul class="social">
-                            <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="#" data-tip="Quick download"><i class="fa fa-download"></i></a></li>
-                        </ul>
-
-                    </div>
-                    <div class="product-content">
-                        <h3 class="title"><a href="#">IFRS 4 Insurance Contracts</a></h3>
-
-                        <a class="add-to-cart" href="">View More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6" data-tag="Tax">
-                <div class="product-grid4">
-                    <div class="product-image4">
-                        <a href="#">
-                            <img class="pic-1" src="{{asset('Front/images/sh1.jpg')}}">
-                        </a>
-                        <ul class="social">
-                            <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="#" data-tip="Quick download"><i class="fa fa-download"></i></a></li>
-                        </ul>
-
-                    </div>
-                    <div class="product-content">
-                        <h3 class="title"><a href="#">IFRS 4 Insurance Contracts</a></h3>
-
-                        <a class="add-to-cart" href="">View More</a>
-                    </div>
-                </div>
-        </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-3 col-sm-6"  data-tag="Tax">
-                <div class="product-grid4">
-                    <div class="product-image4">
-                        <a href="#">
-                            <img class="pic-1" src="{{asset('Front/images/sh1.jpg')}}">
-                        </a>
-                        <ul class="social">
-                            <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="#" data-tip="Quick download"><i class="fa fa-download"></i></a></li>
-                        </ul>
-
-                    </div>
-                    <div class="product-content">
-                        <h3 class="title"><a href="#">IFRS 8 Operating Segments  </a></h3>
-
-
-                        <a class="add-to-cart" href="">View More</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6" data-tag="consulting">
-                <div class="product-grid4">
-                    <div class="product-image4">
-                        <a href="#">
-                            <img class="pic-1" src="{{asset('Front/images/service1.jpg')}}">
-                        </a>
-                        <ul class="social">
-                            <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="#" data-tip="Quick download"><i class="fa fa-download"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="title"><a href="#">IAS 2 Inventories</a></h3>
-
-
-                        <a class="add-to-cart" href="">View More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6" data-tag="Auditing">
-                <div class="product-grid4">
-                    <div class="product-image4">
-                        <a href="#">
-                            <img class="pic-1" src="{{asset('Front/images/service1.jpg')}}">
-                        </a>
-                        <ul class="social">
-                            <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="#" data-tip="Quick download"><i class="fa fa-download"></i></a></li>
-                        </ul>
-
-                    </div>
-                    <div class="product-content">
-                        <h3 class="title"><a href="#">IAS 2 Inventories</a></h3>
-
-                         <a class="add-to-cart" href="">View More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6" data-tag="Tax">
-                <div class="product-grid4">
-                    <div class="product-image4">
-                        <a href="#">
-                            <img class="pic-1" src="{{asset('Front/images/sh1.jpg')}}">
-                        </a>
-                        <ul class="social">
-                            <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="#" data-tip="Quick download"><i class="fa fa-download"></i></a></li>
-                        </ul>
-
-                    </div>
-                    <div class="product-content">
-                        <h3 class="title"><a href="#">IAS 2 Inventories </a></h3>
-
-
-                        <a class="add-to-cart" href="">View More</a>
-                    </div>
-                </div>
-        </div>--}}
-        </div>
 
     </div>
 </div>

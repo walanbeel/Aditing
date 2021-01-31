@@ -72,7 +72,7 @@
                           @enderror
                         </div>
                       </div>
-                      <div class="col-12">
+                      {{-- <div class="col-12">
                         <div class="form-group">
                             <label>is Active </label>
                             <select class="form-control category_list"   name="is_active" value="{{$item->is_active}}" id="is_active">
@@ -80,11 +80,35 @@
                             <option value=0>No</option>
                             </select>
                             </div>
+                            </div> --}}
+                            <div class="col-12 ">
+                                <div class="form-group col-sm-8">
+                                  <div class="form-check">
+                                    @if($item->is_active==1)
+                                    <input type="checkbox" checked class="form-check-input" name="is_active"  id="active">
+                                    <label class="form-check-label" for="exampleCheck2">Active</label>
+                                    @else
+                                    <input type="checkbox" class="form-check-input" name="is_active" id="active">
+                                    <label class="form-check-label" for="exampleCheck2">Active</label>
+                                    @endif
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="col-12">
+                                <label>Parent </label>
+                                <div class="input-group mb-3">
+
+                                    <select class="custom-select" name="parent" value="{{$item->parent}}" id="inputGroupSelect02">
+                                        @foreach($cate as $cat)
+                                    {{-- <option selected>Choose...</option> --}}
+                                    <option value='{{$cat['cat_id']}}'>{{$cat['cat_name_en']}}</opiton>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
 
-
-
-                   <div class="col-12">
+                   {{-- <div class="col-12">
         			<div class="form-group">
 		        		<label>Parent </label>
 		        		<select class="form-control category_list" id="parent_catergory" name="parent" value="{{$item->parent}}">
@@ -93,7 +117,7 @@
 
 		        		</select>
                        </div>
-        		</div>
+        		</div> --}}
 
 
                 <div class="col-12">

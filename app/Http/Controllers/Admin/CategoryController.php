@@ -25,12 +25,12 @@ class CategoryController extends Controller
 
         //viladate data before insert to databse
 
-    //    $rules=$this ->getRules();
-    //     $messages=$this ->getMessages();
-    //     $validator = Validator::make($request->all(),$rules, $messages);
-    //      if( $validator ->fails()){
-    //         return redirect()->back()->withErrors($validator)->withInputs($request->all());
-    //      }
+       $rules=$this ->getRules();
+        $messages=$this ->getMessages();
+        $validator = Validator::make($request->all(),$rules, $messages);
+         if( $validator ->fails()){
+            return redirect()->back()->withErrors($validator)->withInputs($request->all());
+         }
 
 
         //insert,
@@ -47,12 +47,14 @@ class CategoryController extends Controller
             'id'=>$id,
             'cat_name_en' =>$request->cat_name_en,
             'cat_name_ar'=>$request->cat_name_ar,
-            'is_active'=>$request->active,
+            'is_active'=>$active,
             'parent'=>$request->parent,
         ]);
 
 
         return redirect()->back()->with(['success' => 'تم اضافه الصنف بنجاح ']);
+        // return redirect('category/showcategory');
+
     }
 
 
@@ -155,7 +157,7 @@ public function display_row($cat_id)
                     // $affected = Category::where('is_delete',0)->paginate(25);
                     $Categorys =DB::table('categories')->join('users','categories.id','=','users.id')->get(); // return collection of all result*/
                     return view('Admin.showcategory',['Categorys'=> $Categorys]);
-   
+
                     }
                     public function is_not_active($cat_id){
                         $affected1= Category::where('cat_id',$cat_id)
