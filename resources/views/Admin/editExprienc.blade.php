@@ -78,12 +78,19 @@
                                         <label for="inputEmail">logo address</label>
                                         <input id="inputEmail" type="url" placeholder="name@example.com" class="form-control" name="url" value="{{$item->url}}">
                                     </div>
-                                    <div class="col-12">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" name="is_active" value="{{$item->is_active}}" id="customCheck1">
-                                            <label class="custom-control-label" for="customCheck1">is Active</label>
+                                    <div class="col-12 ">
+                                        <div class="form-group col-sm-8">
+                                          <div class="form-check">
+                                            @if($item->is_active==1)
+                                            <input type="checkbox" checked class="form-check-input" name="is_active"  id="active">
+                                            <label class="form-check-label" for="exampleCheck2">Active</label>
+                                            @else
+                                            <input type="checkbox" class="form-check-input" name="is_active" id="active">
+                                            <label class="form-check-label" for="exampleCheck2">Active</label>
+                                            @endif
                                           </div>
-                                       </div>
+                                        </div>
+                                      </div>
 
 
                                     <div class="col-12">

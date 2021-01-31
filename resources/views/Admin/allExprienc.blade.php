@@ -56,7 +56,7 @@
                                     <thead>
                                       <tr>
                                         <th scope="col">{{__('messages.exp_id')}}</th>
-                                        <th scope="col">{{__('messages.id')}}</th>
+                                        <th scope="col">{{__('messages.user')}}</th>
                                         <th scope="col">{{__('messages.name_en')}}</th>
                                         <th scope="col">{{__('messages.name_ar')}}</th>
                                         <th scope="col">{{__('messages.logo')}}</th>
@@ -70,12 +70,32 @@
 
                                       <tr>
                                         <th scope="row">{{$exper->exp_id}}</th>
-                                        <td>{{$exper->id}}</td>
+                                        <td>{{$exper->name}}</td>
+                                        @if ( Config::get('app.locale') == 'en')
                                         <td>{{$exper->name_en}}</td>
+                                        @elseif ( Config::get('app.locale') == 'ar' )
                                         <td>{{$exper->name_ar}}</td>
+                                        @endif
                                         <td><img src="{{asset('/images/experienc/'.$exper->logo)}}" alt="imgExper"  style="width:60%;hight:50%"></td>
                                         <td>{{$exper->url}}</td>
-                                        <td>{{$exper->is_active}}</td>
+                                        <td>
+                                            @if($exper->is_active==0)
+
+                                            <div class="form-group">
+                                                <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                                <input onclick="myFunction{{$exper->exp_id}}()" type="checkbox" class="custom-control-input" id="customSwitch{{$exper->exp_id}}">
+                                                <label class="custom-control-label" for="customSwitch{{$exper->exp_id}}"></label>
+                                                </div>
+                                            </div>
+                                            @elseif($exper->is_active == 1)
+                                            <div class="form-group">
+                                                <div  class="custom-control custom-switch custom-switch-on-success custom-switch-off-danger ">
+                                                <input onclick="myFunction{{$exper->exp_id}}()" checked type="checkbox" class="custom-control-input" id="customSwitch{{$exper->exp_id}}">
+                                                <label class="custom-control-label" for="customSwitch{{$exper->exp_id}}"></label>
+                                                </div>
+                                            </div>
+                                    @endif
+                                        </td>
 
                                         <td>
                                           <a href="" class="btn btn-primary"><i class="fa fa-eye"></i></a>
@@ -86,6 +106,45 @@
 
 
                                       </tr>
+
+                <script>
+                    function dep_select(){
+                    var m= $("#selectdep").val();
+                    if(m==1){
+                    $('.dep4').css('display','none');
+                        }
+                    }
+                    function myFunction{{$exper->exp_id}}() {
+                    var checkBox{{$exper->exp_id}} = document.getElementById("customSwitch{{$exper->exp_id}}");
+
+                    if (checkBox{{$exper->exp_id}}.checked == true){
+                        $.ajax({
+                                type:'get',
+                                url:'/exp_active/'+{{$exper->exp_id}},
+                                data:{id:{{$exper->exp_id}}},
+                                success:function(response){console.log(response);
+                                // alert("data saved");
+                                },
+                                error:function(error){console.log(error);
+                                // alert("data dont saved");
+                                }
+                            });
+                    } else{
+                        $.ajax({
+                                type:'get',
+                                url:'/exp_no_active/'+{{$exper->exp_id}},
+                                data:{id:{{$exper->exp_id}}},
+                                success:function(response){console.log(response);
+                                // alert("data saved");
+                                },
+                                error:function(error){console.log(error);
+                                // alert("data dont saved");
+                                }
+                            });
+                    }
+                    }
+
+                </script>
 
                                       @endforeach
 

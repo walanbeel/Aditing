@@ -98,7 +98,7 @@
                                            </div>
                                         </div>
 
-                                            <div class="col-12">
+                                            {{-- <div class="col-12">
                                             <div class="form-group">
                                                 <label>{{__('messages.is Active')}} </label>
                                                 <select class="form-control category_list"   name="is_active"  id="is_active">
@@ -106,17 +106,37 @@
                                                 <option value=0>No</option>
                                                 </select>
                                                 </div>
-                                                </div>
+                                                </div> --}}
+                                                <div class="col-12 ">
+                                                    <div class="form-group col-sm-8">
+                                                      <div class="form-check">
+                                                        @if($item->is_active==1)
+                                                        <input type="checkbox" checked class="form-check-input" name="is_active"  id="active">
+                                                        <label class="form-check-label" for="exampleCheck2">Active</label>
+                                                        @else
+                                                        <input type="checkbox" class="form-check-input" name="is_active" id="active">
+                                                        <label class="form-check-label" for="exampleCheck2">Active</label>
+                                                        @endif
+                                                      </div>
+                                                    </div>
+                                                  </div>
+
 
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <label>{{__('messages.Category')}} </label>
                                                         <select class="form-control category_list" name="cat_id">
+                                                            @foreach($category as $cat)
 
-                                                            @foreach($category as $item)
-                                                            <option value="{{$item->cat_id}}"> {{$item->cat_name_en}}</opiton>
+                                                            @if($item->cat_id===$cat->cat_id)
+                                                            <option value="{{$cat->id}}" selected > {{$cat->cat_name_en}}</opiton>
+                                                            @else
+                                                            <option value="{{$cat->id}}"> {{$cat->cat_name_en}}</opiton>
+                                                             @endif
 
                                                             @endforeach
+
+
                                                             </select>
 
                                                         </div>

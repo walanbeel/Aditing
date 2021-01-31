@@ -79,22 +79,23 @@
                                       <td>{{$service->s_name_ar}}</td>
                                       @endif
                                       <td>{{$service->name}}</td>
-                                      <td> {{$service->cat_name_en}}
-                                      </td>
+                                      <td> {{$service->cat_name_en}}</td>
+
+
                                        <td>
                                         @if($service->is_active==0)
 
                                         <div class="form-group">
                                             <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                                            <input onclick="myFunction{{$service->is_active}}()" type="checkbox" class="custom-control-input" id="customSwitch{{$service->s_id}}">
-                                            <label class="custom-control-label" for="customSwitch{{$service->is_active}}"></label>
+                                            <input onclick="myFunction{{$service->s_id}}()" type="checkbox" class="custom-control-input" id="customSwitch{{$service->s_id}}">
+                                            <label class="custom-control-label" for="customSwitch{{$service->s_id}}"></label>
                                             </div>
                                         </div>
                                         @elseif($service->is_active == 1)
                                         <div class="form-group">
                                             <div  class="custom-control custom-switch custom-switch-on-success custom-switch-off-danger ">
-                                            <input onclick="myFunction{{$service->is_active}}()" checked type="checkbox" class="custom-control-input" id="customSwitch{{$service->s_id}}">
-                                            <label class="custom-control-label" for="customSwitch{{$service->is_active}}"></label>
+                                            <input onclick="myFunction{{$service->s_id}}()" checked type="checkbox" class="custom-control-input" id="customSwitch{{$service->s_id}}">
+                                            <label class="custom-control-label" for="customSwitch{{$service->s_id}}"></label>
                                             </div>
                                         </div>
                                 @endif
@@ -110,7 +111,7 @@
 
                                     </tr>
                                     <script>
-                                        function dep_select(){
+                                        function ser_select(){
                                         var m= $("#selectdep").val();
                                         if(m==1){
                                         $('.dep4').css('display','none');
@@ -122,7 +123,7 @@
                                         if (checkBox{{$service->s_id}}.checked == true){
                                             $.ajax({
                                                     type:'get',
-                                                    url:'/ser_active/'+{{$service->s_id}},
+                                                    url:'/is_active_ser/'+{{$service->s_id}},
                                                     data:{id:{{$service->s_id}}},
                                                     success:function(response){console.log(response);
                                                     // alert("data saved");
@@ -134,7 +135,7 @@
                                         } else{
                                             $.ajax({
                                                     type:'get',
-                                                    url:'/ser_no_active/'+{{$service->s_id}},
+                                                    url:'/no_active_ser/'+{{$service->s_id}},
                                                     data:{id:{{$service->s_id}}},
                                                     success:function(response){console.log(response);
                                                     // alert("data saved");

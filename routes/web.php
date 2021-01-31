@@ -74,7 +74,9 @@ Route::get('deatails/{blog_id}', [BlogController::class,'show_deatails'])->name(
 Route::group(['namespace'=>'Front','prefix'=>'books'],function(){
     Route::get('/books','BookController@show_books')->name('books.show');
     Route::get('/files/{B_id}','BookController@show')->name('books.view');
-    Route::get('/file/dowenload/{images}','BookController@download');
+    Route::get('/file/dowenload/{file}','BookController@download')->name('download');
+    Route::get('deatails/{B_id}','BookController@show_book')->name('show');
+
 });
 
 Route::group(['namespace'=>'Front','prefix'=>'home'],function(){

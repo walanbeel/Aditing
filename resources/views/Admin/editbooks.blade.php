@@ -149,9 +149,13 @@
                                 <div class="form-group">
                                     <label>{{__('messages.Category')}} </label>
                                     <select class="form-control category_list" name="cat_id">
+                                        @foreach($category as $cat)
 
-                                        @foreach($category as $item)
-                                        <option value="{{$item->cat_id}}"> {{$item->cat_name_en}}</opiton>
+                                        @if($item->cat_id===$cat->cat_id)
+                                        <option value="{{$cat->id}}" selected > {{$cat->cat_name_en}}</opiton>
+                                        @else
+                                        <option value="{{$cat->id}}"> {{$cat->cat_name_en}}</opiton>
+                                         @endif
 
                                         @endforeach
                                         </select>

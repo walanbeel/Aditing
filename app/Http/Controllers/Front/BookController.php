@@ -23,18 +23,39 @@ class BookController extends Controller
 
 
     }
-
-
-    // public function show($B_id)
-    // {
-    //     $data=Documents::find($B_id);
-    //     return  view('document.view',['data'=> $data]);
-
-    // }
-
+    /******************** download ***************************/
     public function download($file)
     {
-     return response()->download(public_path('images/books/'.$file));
+     return response()->download(public_path() . "/images/books/".$file);
 
     }
+    /******************** download ***************************/
+
+    public function show_book($B_id)
+    {
+        // echo $B_id;
+        $sets =DB::table('books')->join('users','books.id','=','users.id')
+        ->get();
+        $book =Book::join('categories','books.cat_id','=','categories.cat_id')
+
+        ->select('categories.cat_name_en','books.*')
+        ->where('books.B_id',$B_id);
+
+
+    // dd($book);
+    if($book->exists())
+    {
+        $book=$book->get();
+        $libray=['lib' => $book];
+        $sets=['sets'=> $sets];
+
+        return  view('books')->with([$libray,$sets]);
+
+    }
+    else
+    {
+
+    }
+
+}
 }

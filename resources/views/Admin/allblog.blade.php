@@ -56,11 +56,15 @@
                                     <thead>
                                       <tr>
                                         <th scope="col">{{__('messages.blog_id')}}</th>
-                                        <th scope="col">{{__('messages.id')}}</th>
+                                        <th scope="col">{{__('messages.name')}}</th>
                                         <th scope="col">{{__('messages.cat_id')}}</th>
+                                        @if ( Config::get('app.locale') == 'en')
                                         <th scope="col">{{__('messages.title_en')}}</th>
+                                        @elseif ( Config::get('app.locale') == 'ar' )
                                         <th scope="col">{{__('messages.title_ar')}}</th>
+                                        @endif
                                          <th scope="col">{{__('messages.main_img')}}</th>
+                                         <th scope="col">{{__('messages.content_en')}}</th>
                                         <th scope="col">{{__('messages.operation')}}</th>
                                       </tr>
                                     </thead>
@@ -70,11 +74,14 @@
                                       <tr>
                                         <th scope="row">{{$blog->blog_id}}</th>
                                         <td>{{$blog->name}}</td>
-                                        <td>{{$blog->cat_id}}</td>
+                                        <td>{{$blog->cat_name_en}}</td>
+                                        @if ( Config::get('app.locale') == 'en')
                                         <td>{{$blog->title_en}}</td>
+                                        @elseif ( Config::get('app.locale') == 'ar' )
                                         <td>{{$blog->title_ar}}</td>
-                                        <td style="width: 20px">{{$blog->main_img}}</td>
-
+                                        @endif
+                                        <td style="width:100px"><img src="{{asset('/images/news/'.$blog->main_img)}}" alt="imgpost" style="width:80%;hight:50%"></td>
+                                        <td>{!! substr($blog->content_en, 0, 100) !!}{!!strlen($blog->content_en) > 100 ? "..." : "" !!}</td>
                                         <td>
                                           <a href="" class="btn btn-primary"><i class="fa fa-eye"></i></a>
                                           <a href="{{route('blogs.edit',$blog->blog_id)}}" class="btn btn-success"><i class="fas fa-edit"></i></a>

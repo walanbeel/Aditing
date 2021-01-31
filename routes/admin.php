@@ -45,10 +45,6 @@ Route::get('/admin', function () {
 
         Route::get('/category/{cat_id}','CategoryController@display_with_status');
 
-
-
-
-
     });
 
 });
@@ -75,8 +71,7 @@ Route::group(['namespace'=>'Admin','prefix'=>'services','middleware'=>'auth'],fu
 
     Route::get('allservices', 'ServicesController@getAllService')->name('services.all');
 
-    Route::get('/display_row/{s_id}','ServicesController@display_row');
-
+    // Route::get('/services/{s_id}','ServicesController@filter');
 
     Route::get('/services/{s_id}','ServicesController@display_with_status');
 
@@ -84,9 +79,9 @@ Route::group(['namespace'=>'Admin','prefix'=>'services','middleware'=>'auth'],fu
 
 });
 });
-Route::get('/ser_active/{s_id}','Admin\ServicesController@is_active');
+Route::get('/is_active_ser/{s_id}','Admin\ServicesController@is_active');
 
-Route::get('/ser_no_active/{s_id}','Admin\ServicesController@is_not_active');
+Route::get('/no_active_ser/{s_id}','Admin\ServicesController@is_not_active');
 #################### End Services route ####################
 
 
@@ -174,7 +169,7 @@ Route::group(['namespace'=>'Admin','prefix'=>'team','middleware'=>'auth'],functi
 
 #################### End Team ####################
 
-#################### Team ####################
+#################### Exprienc ####################
 Route::group(['prefix' => LaravelLocalization::setLocale(),
 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){
 
@@ -189,10 +184,16 @@ Route::group(['namespace'=>'Admin','prefix'=>'experienc','middleware'=>'auth'],f
 
     Route::get('allExprienc','ExperiencController@getAllExprienc')->name('experienc.all');
 
-});
-});
+    Route::get('/experienc/{s_id}','ExperiencController@display_with_status');
 
-#################### End Team ####################
+
+});
+});
+Route::get('/exp_active/{exp_id}','Admin\ExperiencController@is_active');
+
+Route::get('/exp_no_active/{exp_id}','Admin\ExperiencController@is_not_active');
+
+#################### End Exprienc ####################
 
 
 

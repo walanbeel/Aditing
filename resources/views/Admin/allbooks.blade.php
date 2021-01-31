@@ -57,7 +57,7 @@
                                   <thead>
                                     <tr>
                                       <th scope="col">{{__('messages.B_id')}}</th>
-                                      <th scope="col">{{__('messages.id')}}</th>
+                                      <th scope="col">{{__('messages.name')}}</th>
                                       <th scope="col">{{__('messages.cat_id')}}</th>
                                       <th scope="col">{{__('messages.authoer_name_en')}}</th>
                                       <th scope="col">{{__('messages.authoer_name_ar')}}</th>
@@ -76,15 +76,18 @@
                                     <tr>
                                       <td scope="row">{{$book->B_id}}</td>
                                       <td>{{$book->name}}</td>
-                                      <td>{{$book->cat_id}}</td>
+                                      <td>{{$book->cat_name_en}}</td>
                                       <td style="width:10px">{{$book->authoer_name_en}}</td>
                                       <td style="width:10px">{{$book->authoer_name_ar}}</td>
                                       <td>{{$book->B_name_en}}</td>
                                       <td>{{$book->B_name_ar}}</td>
                                       <td>{{$book->file}}</td>
                                       <td><img src="{{asset('/images/books/'.$book->cover)}}" alt="imgExper"  style="width:60%;hight:50%"></td>
-                                      {{-- <td  class="mycell">{!! $book->B_preface_en !!}</td>
-                                      <td  class="mycell">{!! $book->B_preface_ar !!}</td> --}}
+                                      @if ( Config::get('app.locale') == 'en')
+                                      <td  class="mycell">{!! $book->B_preface_en !!}</td>
+                                      @elseif ( Config::get('app.locale') == 'ar' )
+                                      <td  class="mycell">{!! $book->B_preface_ar !!}</td>
+                                      @endif
                                       <td>
                                         <a href="" class="btn btn-primary"><i class="fa fa-eye"></i></a>
                                         <a href="{{route('books.edit',$book->B_id)}}" class="btn btn-success"><i class="fas fa-edit"></i></a>

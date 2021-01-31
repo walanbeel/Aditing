@@ -34,6 +34,11 @@ class ServicesController extends Controller
          }
         //insert,
         $id=Auth::user()->id;
+        $active='';
+        if(isset($request->is_active))
+        $active=1;
+        else
+        $active=0;
         Service::create([
              'id'=>$id,
              'cat_id'=>$request->cat_id,
@@ -41,7 +46,7 @@ class ServicesController extends Controller
             's_name_ar'=>$request->s_name_ar,
             's_describe_en'=>$request->s_describe_en,
             's_describe_ar'=>$request->s_describe_ar,
-            'is_active'=>$request->is_active,
+            'is_active'=>$active,
                ]);
                 return redirect()->back()->with(['success' => 'تم اضافه الصنف بنجاح ']);
             }
@@ -69,7 +74,7 @@ class ServicesController extends Controller
                 's_name_ar' => 'required|unique:categories,cat_name_ar',
                 's_describe_en' => 'required|unique:categories,cat_name_en',
                 's_describe_ar' => 'required|unique:categories,cat_name_ar',
-                'is_active' => 'required',
+                
             ];
         }
 
@@ -108,7 +113,11 @@ class ServicesController extends Controller
         $id=Auth::user()->id;
         $services=new Service;
 
-
+        $active='';
+        if(isset($request->is_active))
+        $active=1;
+        else
+        $active=0;
 
         $services::where('s_id',$request->s_id)
         ->update(['id'=>$id,
@@ -117,7 +126,7 @@ class ServicesController extends Controller
         's_name_ar'=>$request->s_name_ar,
         's_describe_en'=>$request->s_describe_en,
         's_describe_ar'=>$request->s_describe_ar,
-        'is_active'=>$request->is_active,
+        'is_active'=>$active,
          ]);
 
         // print_r($request->s_id);
@@ -156,7 +165,7 @@ class ServicesController extends Controller
 public function display_row($s_id)
 {
     $affected1 =[];
-    $data['dept'] = Service::where('s_id',$s_id)->get();
+    $data['dept'] =Service::where('s_id',$s_id)->get();
     return view('update',$data);
                 }
                 public function is_active($s_id){
@@ -168,7 +177,7 @@ public function display_row($s_id)
 
                     }
                     public function is_not_active($s_id){
-                        $affected1= Service::where('s_id',$s_id)
+                        $affected1=Service::where('s_id',$s_id)
                         ->update(['is_active'=>'0']);
                         $services =DB::table('services')->join('users','services.id','=','users.id')->get(); // return collection of all result*/
                         return view('Admin.allservices',['services'=> $services]);
@@ -179,12 +188,12 @@ public function display_with_status($s_id)
     {
         if($s_id==1){
             $affected1 =[];
-            $affected = Category::where(['is_active',1])->paginate(25);
-            return view('allservices',['cat'=>$affected,'data1'=>$affected1]);
+            $affected = Service::where(['is_active',1]);
+            return view('department',['cat'=>$affected,'data1'=>$affected1]);
         }elseif($s_id==0){
             $affected1 =[];
-            $affected = Category::where(['is_active',0])->paginate(25);
-            return view('allservices',['cat'=>$affected,'data1'=>$affected1]);
+            $affected = Service::where(['is_active',0]);
+            return view('department',['cat'=>$affected,'data1'=>$affected1]);
         }
 
     }

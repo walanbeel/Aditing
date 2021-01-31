@@ -57,7 +57,7 @@
                                   <thead>
                                     <tr>
                                       <th scope="col">{{__('messages.set_id')}}</th>
-                                      <th scope="col">{{__('messages.id')}}</th>
+                                      <th scope="col">{{__('messages.user')}}</th>
                                       <th scope="col">{{__('messages.icon')}}</th>
                                       <th scope="col">{{__('messages.logo')}}</th>
                                       <th scope="col">{{__('messages.Website_name_en')}}</th>
@@ -78,16 +78,22 @@
 
                                     <tr>
                                       <td scope="row">{{$setting->set_id}}</td>
-                                      <td>{{$setting->id}}</td>
+                                      <td>{{$setting->name}}</td>
                                       <td><img src="{{asset('/images/set/'.$setting->icon)}}" alt="imgset"  style="width:60%;hight:50%"></td>
                                       <td><img src="{{asset('/images/set/'.$setting->logo)}}" alt="imgset"  style="width:60%;hight:50%"></td>
+                                      @if ( Config::get('app.locale') == 'en')
                                       <td>{{$setting->Website_name_en}}</td>
+                                      @elseif ( Config::get('app.locale') == 'ar' )
                                       <td>{{$setting->Website_name_ar}}</td>
+                                      @endif
                                       <td>{{$setting->mobile_num}}</td>
                                       <td>{{$setting->location}}</td>
                                       <td>{{$setting->email_web}}</td>
+                                      @if ( Config::get('app.locale') == 'en')
                                       <td>{!!$setting->aboutus_en!!}</td>
+                                      @elseif ( Config::get('app.locale') == 'ar' )
                                       <td>{!!$setting->aboutus_ar!!}</td>
+                                      @endif
                                       <td>{{$setting->Facebook}}</td>
                                       <td>{{$setting->LinkedIn}}</td>
                                       <td>{{$setting->Twitter}}</td>
