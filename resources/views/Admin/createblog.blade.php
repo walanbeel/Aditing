@@ -10,12 +10,12 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Full Width</h4>
+                        <h4 class="page-title"></h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Library</li>
+                                    <li class="breadcrumb-item active" aria-current="page">News</li>
                                 </ol>
                             </nav>
                         </div>
@@ -25,7 +25,7 @@
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
-       <!-- ============================================================== -->
+            <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
@@ -36,6 +36,7 @@
                                 <h4 class="card-title"> Add News </h4>
                                 @if(Session::has('success'))
                                 <div class="alert alert-success" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
                                     {{ Session::get('success') }}
                                 </div>
                                 @endif
@@ -67,7 +68,7 @@
                                       <div class="col-12">
                                       <input type="hidden">
                                       <div class="form-group">
-                                        <label>{{__('messages.News content en')}}  </label>
+                                        <label>{{__('messages.News content en')}}</label>
                                         <div class="col-12">
                                             <textarea  id="mytextarea" class="form-control" name="content_en"  placeholder="{{__('messages.content_en')}}"></textarea>
                                             @error('content_en')
@@ -79,7 +80,7 @@
                                         <div class="col-12">
                                             <input type="hidden">
                                         <div class="form-group">
-                                        <label>{{__('messages.News content ar')}}  </label>
+                                        <label>{{__('messages.News content ar')}}</label>
                                         <div class="col-12">
                                             <textarea id="mytextarea" class="form-control" name="content_ar"  placeholder="{{__('messages.content_ar')}}"></textarea>
                                             @error('content_ar')
@@ -90,13 +91,15 @@
                                     </div>
                                     <div class="col-12">
                                         <input type="hidden">
+                                        <div class="form-group">
                                         <label for="exampleFormControlFile1">{{__('messages.News main img')}}</label>
-                                        <input type="file" id="file-ip-1"  class="form-control-file" name="main_img"  placeholder="{{__('messages.main_img')}}">
-
+                                        <input type="file" id="file-ip-1"  class="form-control-file"  accept="image/*" name="main_img"  placeholder="{{__('messages.main img')}}">
                                         @error('main_img')
-                                        <small>{{$message}}</small>
+                                        <small  class="form-text text-danger">{{$message}}</small>
                                         @enderror
+                                        </div>
                                     </div>
+
                                     {{-- <div class="col-12">
                                         <input type="hidden">
                                         <label for="exampleFormControlFile1">{{__('messages.News blog img')}}</label>
@@ -107,7 +110,7 @@
                                     </div> --}}
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label>{{__('messages. News Category')}} </label>
+                                            <label>{{__('messages.News Category')}} </label>
                                             <select class="form-control category_list" name="cat_id">
 
                                                 @foreach($category as $item)
@@ -124,13 +127,13 @@
                                     </div>
 
                                 </form>
-
+                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
                </div>
-            </div>
+
 
 
 

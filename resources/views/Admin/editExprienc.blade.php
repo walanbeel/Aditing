@@ -33,7 +33,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title"> Eidt Experience </h4>
+                                <h4 class="card-title"> {{__('Eidt Experience')}} </h4>
                                 @if(Session::has('success'))
                                 <div class="alert alert-success" role="alert">
                                     {{ Session::get('success') }}
@@ -68,7 +68,7 @@
                                       </div>
 
                                     <div class="col-12">
-                                        <label for="exampleFormControlFile1"> @error('logo')<small>{{$message}}</small> @enderror</label>
+                                        <label for="exampleFormControlFile1"> @error('logo')<small class="form-text text-danger">{{$message}}</small> @enderror</label>
                                         <input type="file" id="file-ip-1" onchange="showPreview(event);"  accept="image/*" class="form-control-file" name='logo[]' value="{{$item->logo}}">
                                         <input type="hidden"   accept="image/*" name='logo2' value="{{$item->logo}}">
                                        <br>
@@ -94,7 +94,7 @@
 
 
                                     <div class="col-12">
-                                     <button type="submit" class="btn btn-primary">{{__('messages.Add Experienc')}}</button>
+                                     <button type="submit" class="btn btn-primary">{{__('messages.Save Change')}}</button>
                                     </div>
 
                                 </form>

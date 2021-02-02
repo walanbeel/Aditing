@@ -28,6 +28,69 @@
     <div class="clearfix"></div>
 
     <br>
+    <script type="text/javascript" src="lib.js"></script>
+<script>
+  function decryptfun(id) {
+    console.log(id);
+
+
+    console.log(id);
+    $.ajax({
+            url: '/show/'+ id,
+            type: 'get',
+            dataType: 'json',
+            success: function (response) {
+                console.log("insaefdxfg sexx");
+                console.log(response);
+
+                if (response.length == 0) {
+                    console.log("not found thing");
+                } else {
+                    var car = '<div class="row">
+                    <div class="col-md-6 mb-4 mb-md-0">
+                    <div id="mdb-lightbox-ui"></div>
+                    <div class="mdb-lightbox">
+                    <div class="row product-gallery mx-1">
+                     <div class="col-12 mb-0">
+                     <figure class="view overlay rounded z-depth-1 main-img">
+                      <a href="#"> <img class="pic-1"  src="/images/books/'+response[0].cover+'">
+                       </a></figure>
+                       </div>
+                       </div>
+                       </div>
+                       </div>
+                       <div class="col-md-6">
+                       <h5>'+response[0].B_name_en+'</h5>
+                        <p class="pt-1">'+response[0].B_preface_en+'</p>
+                        <div class="table-responsive">
+                        <table class="table table-sm table-borderless mb-0">
+                        <tbody>
+                        <tr>
+                        <th class="pl-0 w-25" scope="row">
+                        <strong>Author</strong></th>
+                        <td>'+response[0].authoer_name_en+'</td></tr>
+                        <tr>
+                        <th class="pl-0 w-25" scope="row"><strong>Category</strong></th>
+                         <td>'+response[0].cat_id+'</td>
+                         </tr>
+                         </tbody>
+                         </table>
+                          </div>
+                          <hr>
+                           <button type="button" class="btn btn-outline-warning">
+                           <i class="fas fa-download"></i>Download</button>
+                            <button type="button" class="btn btn-light btn-md mr-1 mb-2">cancel</button>
+                            </div>
+                             </div>';
+                    $('#myModal_acc').modal('show');
+                    $('#details').html(car);
+                    console.log(response[0]);
+
+                }
+            },
+        });
+  }
+</script>
     <div class="container">
         <div class="row">
             @foreach($books as $book)
@@ -44,66 +107,28 @@
                     </div>
                     <div class="product-content">
                         <h3 class="title"><a href="#">{{$book->B_name_en}}</a></h3>
-                        <a href='{{route('show',$book->B_id)}}' class="btn read-more" data-toggle="modal" data-target="#product_view"><i class="fa fa-search"></i>View More</a>
+                        <a type="button" class="btnread-more" onclick="decryptfun({{$book->B_id}})"><iclass="fa fa-search"></i>View More</a>
+                    </div>
+                </div>
+            </div>
+               <!-- The Modal -->
+               <div class="modal fade  product_view" id="myModal_acc">
+            <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title"></h3>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body" id="details">
+                        </div>
+                        <div class="modal-footer">
+                        </div>
                     </div>
                 </div>
             </div>
             @endforeach
 
-            <div class="modal fade product_view" id="product_view">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
-                            <h3 class="modal-title">{{$book->B_name_en}}</h3>
-                        </div>
-                        <!--Section: Block Content-->
-                        <section class="mb-5">
-                        <div class="row">
-                            @if(isset($lib))
-                            @foreach($lib as $book)
-                        <div class="col-md-6 mb-4 mb-md-0">
-                            <div id="mdb-lightbox-ui"></div>
-                            <div class="mdb-lightbox">
-                            <div class="row product-gallery mx-1">
-                                <div class="col-12 mb-0">
-                                <figure class="view overlay rounded z-depth-1 main-img">
-                                    <a href="#">
-                                        <img class="pic-1" src="{{asset('/images/books/'.$book->cover)}}">
-                                    </a>
-                                </figure>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <h5>{{$book->B_name_en}}</h5>
-                            <p class="pt-1">{{$book->B_preface_en}}</p>
-                            <div class="table-responsive">
-                            <table class="table table-sm table-borderless mb-0">
-                                <tbody>
-                                <tr>
-                                    <th class="pl-0 w-25" scope="row"><strong>Author</strong></th>
-                                    <td>{{$book->authoer_name_en}}</td>
-                                </tr>
-                                <tr>
-                                    <th class="pl-0 w-25" scope="row"><strong>Category</strong></th>
-                                    <td>{{$book->cat_id}}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            </div>
-                            <hr>
-                            <button type="button"  class="btn btn-outline-warning"><i class="fas fa-download"></i>Download</button>
-                            <button type="button" class="btn btn-light btn-md mr-1 mb-2">cancel</button>
-                        </div>
-                        </div>
-                    </section>
-                    <!--Section: Block Content-->
-                 </div>
-                 @endforeach
-                 @endif
-                 </div>
                  </div>
 
 

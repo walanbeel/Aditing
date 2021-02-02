@@ -24,12 +24,12 @@ class SettingController extends Controller
         //   dd($request);
         //viladate data before insert to databse
 
-    //    $rules=$this ->getRules();
-    //     $messages=$this ->getMessages();
-    //     $validator = Validator::make($request->all(),$rules, $messages);
-    //      if( $validator ->fails()){
-    //         return redirect()->back()->withErrors($validator)->withInputs($request->all());
-    //      }
+       $rules=$this ->getRules();
+        $messages=$this ->getMessages();
+        $validator = Validator::make($request->all(),$rules, $messages);
+         if( $validator ->fails()){
+            return redirect()->back()->withErrors($validator)->withInputs($request->all());
+         }
         //insert,
         $set=new Setting;
         $logo='';
@@ -51,9 +51,6 @@ class SettingController extends Controller
             $set->icon= $iconName ;
          }
 
-
-
-     // $file_name = $this->saveImage($request->photo,'images/books');
         $id=Auth::user()->id;
         Setting::create([
              'id'=>$id,
@@ -74,7 +71,7 @@ class SettingController extends Controller
                ]);
 
 
-                return redirect()->back()->with(['success' => 'تم اضافه الصنف بنجاح ']);
+                return redirect()->route('experienc.all')->with(['success' => 'تم اضافه الصنف بنجاح ']);
             }
 
 
@@ -82,10 +79,19 @@ class SettingController extends Controller
         protected function getMessages()
         {
             return $messages = [
-                 'authoer_name_en.required'  =>  __('messages.book name required'),
-                'authoer_name_ar.required'  =>  __('messages.book name required'),
-                'B_preface_en.required'  =>  __('messages.book  must be required'),
-                'B_preface_ar.required'  =>  __('messages.book  must be required'),
+                'Website_name_en.required'  =>  __('messages.Website name en must be required'),
+                'Website_name_ar.required'  =>  __('messages.Website name ar must be required'),
+                'mobile_num.required'  =>  __('messages.mobile number  must be required'),
+                'location.required'  =>  __('messages.location  must be required'),
+                'icon.required'  =>  __('messages.icon  must be required'),
+                'logo.required'  =>  __('messages.logo  must be required'),
+                'email_web.required'  =>  __('messages.email web  must be required'),
+                'aboutus_en.required'  =>  __('messages.aboutus en  must be required'),
+                 'aboutus_ar.required'  =>  __('messages.aboutus ar  must be required'),
+                 'Facebook.required'  =>  __('messages.Facebook  must be required'),
+                 'LinkedIn.required'  =>  __('messages.LinkedIn  must be required'),
+                 'Twitter.required'  =>  __('messages.Twitter  must be required'),
+
 
 
             ];
@@ -93,10 +99,20 @@ class SettingController extends Controller
         protected function getRules()
         {
             return $rules = [
-                'authoer_name_en' => 'required|unique:books,authoer_name_en',
-                'authoer_name_ar' => 'required|unique:books,authoer_name_ar',
-                'B_preface_en' => 'required',
-                'B_preface_ar' => 'required',
+                'Website_name_en' => 'required',
+                'Website_name_ar' => 'required',
+                'mobile_num' => 'required|min:11|numeric',
+                'location' => 'required|max:255',
+                'icon' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+                'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+                'email_web' => 'required',
+                'aboutus_en' => 'required',
+                'aboutus_ar' => 'required',
+                'Facebook' => 'required',
+                'LinkedIn' => 'required',
+                'Twitter' => 'required',
+
+
 
             ];
         }
@@ -195,7 +211,7 @@ class SettingController extends Controller
         $settings=Setting::where('set_id',$set_id)->delete();
         return redirect()
             ->route('setting.all')
-            ->with(['success' => __('messages.book deleted successfully')]);
+            ->with(['success' => __('messages.Setting deleted successfully')]);
 
     }
 

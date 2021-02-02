@@ -10,12 +10,12 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Full Width</h4>
+                        <h4 class="page-title"></h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Library</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Category</li>
                                 </ol>
                             </nav>
                         </div>
@@ -25,19 +25,24 @@
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
-       <!-- ============================================================== -->
+            <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
+                 <div class="row">
+                 <div class="col-12">
+                 <div class="card">
+                 <div class="card-body">
                 <div class="content">
                     <div class="title m-b-md">
                         {{__('messages.Add your Category')}}
                     </div>
                     @if(Session::has('success'))
                     <div class="alert alert-success" role="alert">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
                         {{ Session::get('success') }}
                     </div>
                     @endif
@@ -46,8 +51,6 @@
 
                 <form method="POST" action="{{route('category.store')}}">
                     @csrf
-                    {{-- @if ( Config::get('app.locale') == 'en') --}}
-
                     <div class="col-12">
                         <input type="hidden">
                         <div class="form-group">
@@ -58,7 +61,6 @@
                           @enderror
                         </div>
                       </div>
-                    {{-- @elseif ( Config::get('app.locale') == 'ar' ) --}}
 
                     <div class="col-12">
                         <input type="hidden">
@@ -70,7 +72,6 @@
                           @enderror
                         </div>
                       </div>
-                    {{-- @endif --}}
                     <div class="col-12 ">
                     <div class="form-group col-sm-8">
                           <div class="form-check">
@@ -104,15 +105,10 @@
                                 <label>Parent </label>
                                 <div class="input-group mb-3">
                                     <select class="custom-select" name="parent" id="inputGroupSelect02">
-                                        <option selected>Choose...</option>
-                                         <option value='1'>parent</opiton>
+                                         <option value='0'>parent</opiton>
                                     </select>
                                 </div>
                             </div>
-
-
-
-
 
                             <div class="col-12">
                             <button type="submit" class="btn btn-primary">{{__('messages.Add Category')}}</button>
@@ -121,5 +117,13 @@
                             </form>
 
                             </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
              @endsection

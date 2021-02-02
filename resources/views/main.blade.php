@@ -228,10 +228,8 @@
                 <img src="{{asset('/images/news/'.$item->main_img)}}"  class="card-img-top" alt=" " />
                 <div class="card-body">
                   <h4 class="card-title">{{$item->title_en}}</h4>
-                  <h6 class="text-muted mb-2">{{ date('M j, Y h:ia', strtotime($item->created_at)) }} </h6>
+                  <h6 class="text-muted mb-2"> <i class="icofont-calendar">{{ date('M j, Y', strtotime($item->created_at)) }}</i></h6>
                   <p class="card-text">{!! Illuminate\Support\Str::limit($item->content_en, 130, $end='...')!!}</p>
-                  {{-- {!! Illuminate\Support\Str::limit($post->content_en, 130, $end='...') !!} --}}
-
                      <a href="#" class="card-link">Read More</a>
                 </div>
                </div>
@@ -243,177 +241,36 @@
 </div>
  <!-- end latest posts -->
 
- <!-- start Testimonials -->
- <div class="testimonials">
-    <div class="overly"></div>
-     <div class="container">
-       <div id="testimonials" class="carousel slide " data-ride="carousel" >
 
-            <div class="carousel-inner">
-                @foreach ($teams as $item)
-                <div class="carousel-item active">
-                       <div class="carousel-caption d-none d-block">
-                           <img src="{{asset('/images/teams/'.$item->t_profile)}}" alt="pic">
-                           <h2 >{{$item->name_en}}</h2>
-                           <span>{{$item->sub_title_en}}</span>
-                           <p>{!!$item->short_intro_en!!}</p>
-
-
-                       </div>
-
-                 </div>
-                 @endforeach
-                <div class="carousel-item ">
-
-                      <div class="carousel-caption d-none d-block" >
-                        <img src="images/photo 3.JPG"  alt="pic" >
-                          <h2 >Khailed Ahmed</h2>
-                          <span>Audit manager</span>
-                          <p >A partner in the company and holds the position of audit manager, with more than 20 years of experience in accounting, auditing, and financial and management consulting, and he is a fellow of the American Institute of Certified Financial Managers (IPM)
-                          </p>
-                      </div>
-                </div>
-                <div class="carousel-item ">
-
-                      <div class="carousel-caption d-none d-block" >
-                        <img src="images/al.jpg"  alt="pic" >
-                          <h2 >Dr.Aref Al-Haj</h2>
-                          <span>Senior advisor</span>
-                          <p >Dr. Aref is the senior advisor of MK, specialized in international NGOs consultants. He is associate professor in the accounting department at Sana'a University, and a consultant in finance, investment and strategic planning and development for many local and international companies and organizations
-                          </p>
-                      </div>
-                </div>
-
-                <ol class="carousel-indicators ">
-                  <li data-target="#testimonials" data-slide-to="0" ></li>
-                  <li data-target="#testimonials" data-slide-to="1"class="active"></li>
-                  <li data-target="#testimonials" data-slide-to="2"></li>
-                </ol>
-
-                <a class="carousel-control-prev" href="#testimonials" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next"  href="#testimonials" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-      </a>
-
-            </div>
-        </div>
-     </div>
-  </div>
-  <!-- end Testimonials -->
 
 
  <!-- start Testimonials -->
- {{-- <div class="testimonials">
-   <div class="overly"></div>
+
+ <div class="demo">
     <div class="container">
-
-      <div id="testimonials" class="carousel slide " data-ride="carousel" >
-           <div class="carousel-inner" id="inner-carousel">
+      <div class="row">
+        <div id="testimonial-slider" class="owl-carousel">
             @foreach ($teams as $item)
-              <div class="carousel-item">
-                     <div class="carousel-caption d-none d-block">
-                         {{-- <img src="{{asset('/images/teams/'.$item->t_profile)}}" alt="pic">
-                         <h2 >{{$item->name_en}}</h2>
-                         <span>{{$item->sub_title_en}}</span>
-                         <p>{!!$item->short_intro_en!!}</p> --}}
-                         <img src="jjc" alt="pic">
-                         <h2 >njnjf</h2>
-                         <span>kvkkv</span>
-                         <p>kckvkkl</p>
-
-                     </div>
-
-               </div>
-             <ol class="carousel-indicators ">
-                 <li data-target="#testimonials" data-slide-to="0" ></li>
-                 <li data-target="#testimonials" data-slide-to="1"class="active"></li>
-                 <li data-target="#testimonials" data-slide-to="2"></li>
-               </ol>
-
-               <a class="carousel-control-prev" href="#testimonials" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-               </a>
-            <a class="carousel-control-next"  href="#testimonials" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-           </div>
-       </div>
-       @endforeach
-
+          <div class="testimonial">
+            <span class="icon fa fa-quote-left"></span>
+            <p class="description">
+                {!!$item->short_intro_en!!}
+            </p>
+            <div class="testimonial-content">
+              <div class="pic">
+                <img src="{{asset('/images/teams/'.$item->t_profile)}}" alt="pic" style="width:100px">
+              </div>
+              <h3 class="name">{{$item->name_en}}</h3>
+              <span class="title">{{$item->sub_title_en}}</span>
+            </div>
+          </div>
+          @endforeach
+        </div>
+      </div>
     </div>
- </div> --}}
+  </div>
  <!-- end Testimonials -->
 
-
-
-
- <!-- satrt stat -->
- <div class="demo">
-   <div class="container">
-       <div class="row">
-           <div id="testimonial_slider" class="owl-carosel">
-               <div class="testimonial">
-                   <span class="icon fa fa-quote-left"></span>
-                   <p class="description"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia similique enim cum.
-                        Tenetur maiores nihil fugiat ducimus architecto, es
-                        numquam consequatur, quisquam deserunt commodi officia illum odio
-                         repudiandae, quia voluptate!
-                        </p>
-                        <div class="testimonial-content">
-                              <div class="pi">
-                                <img src="images/al.jpg"  alt="pic" >
-                              </div>
-                              <h3 class="title">Williamson-</h3>
-                              <span class="post">wev devloper</span>
-
-                        </div>
-               </div>
-               <div class="testimonial">
-                <span class="icon fa fa-quote-left"></span>
-                <p class="description"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia similique enim cum.
-                     Tenetur maiores nihil fugiat ducimus architecto, es
-                     numquam consequatur, quisquam deserunt commodi officia illum odio
-                      repudiandae, quia voluptate!
-                     </p>
-                     <div class="testimonial-content">
-                           <div class="pi">
-                             <img src="images/al.jpg"  alt="pic" >
-                           </div>
-                           <h3 class="title">nabil-</h3>
-                           <span class="post">wev devloper</span>
-
-                     </div>
-            </div>
-            <div class="testimonial">
-                <span class="icon fa fa-quote-left"></span>
-                <p class="description"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia similique enim cum.
-                     Tenetur maiores nihil fugiat ducimus architecto, es
-                     numquam consequatur, quisquam deserunt commodi officia illum odio
-                      repudiandae, quia voluptate!
-                     </p>
-                     <div class="testimonial-content">
-                           <div class="pi">
-                             <img src="images/al.jpg"  alt="pic" >
-                           </div>
-                           <h3 class="title">wala-</h3>
-                           <span class="post">wev devloper</span>
-
-                     </div>
-            </div>
-           </div>
-
-
-   </div>
-</div>
-
- </div>
- <!-- satrt stat -->
 
 
 

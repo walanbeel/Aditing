@@ -10,7 +10,7 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Full Width</h4>
+                        <h4 class="page-title"></h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
@@ -38,7 +38,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="title m-b-md">
-                                        {{__('messages.Add your Category')}}
+                                        <h6>{{__('messages.Edit your Teams')}}</h6>
                                     </div>
                                     @if(Session::has('success'))
                                     <div class="alert alert-success" role="alert">
@@ -53,12 +53,17 @@
                                       @csrf
                                           <div class="col-12">
                                             <input type="hidden" name="t_id" value="{{$item->t_id}}">
-                                            <label for="exampleFormControlFile1"> @error('t_profile')<small>{{$message}}</small> @enderror</label>
+                                            <div class="form-group">
+                                            <label for="exampleFormControlFile1">{{__('messages.Team t_profile')}}</label>
                                             <input type="file" id="file-ip-1" onchange="showPreview(event);"  accept="image/*" class="form-control-file" name='t_profile[]' value="{{$item->t_profile}}">
                                             <input type="hidden"   accept="image/*" name='t_profile2' value="{{$item->t_profile}}">
                                            <br>
                                             <img  class="img-fluid" id="file-ip-1-preview" width="70">
-                                        </div>
+                                            @error('t_profile')
+                                            <small class="form-text text-danger">{{$message}}</small>
+                                             @enderror
+                                           </div>
+                                          </div>
                                           <div class="col-12">
                                             <input type="hidden">
                                             <div class="form-group">
@@ -102,7 +107,7 @@
                                             <div class="col-12">
                                                 <input type="hidden">
                                             <div class="form-group">
-                                            <label>{{__('messages.News short_intro_en')}}  </label>
+                                            <label>{{__('messages.Team short_intro_en')}}</label>
                                             <div class="col-12">
                                                 <textarea class="form-control" name="short_intro_en"  placeholder="{{__('messages.short_intro_en')}}"> {{$item->short_intro_en}}</textarea>
                                                 @error('short_intro_en')
@@ -114,7 +119,7 @@
                                         <div class="col-12">
                                             <input type="hidden">
                                         <div class="form-group">
-                                        <label>{{__('messages.News short_intro_ar')}}  </label>
+                                        <label>{{__('messages.Team short_intro_ar')}}  </label>
                                         <div class="col-12">
                                             <textarea class="form-control" name="short_intro_ar"  placeholder="{{__('messages.short_intro_ar')}}"> {{$item->short_intro_ar}}</textarea>
                                             @error('short_intro_ar')
@@ -124,7 +129,7 @@
                                        </div>
                                     </div>
                                         <div class="col-12">
-                                        <button type="submit" class="btn btn-primary">{{__('messages.save')}}</button>
+                                        <button type="submit" class="btn btn-primary">{{__('messages.Save Change')}}</button>
                                         </div>
 
                                     </form>

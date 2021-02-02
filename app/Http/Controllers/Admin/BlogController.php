@@ -17,20 +17,19 @@ class BlogController extends Controller
         $cat['category']=Category::all();
 
         return view('Admin.createblog',$cat);
-
-
     }
+
 
     public function add(Request $request){
 
         //viladate data before insert to databse
 
-       $rules=$this ->getRules();
+        $rules=$this ->getRules();
         $messages=$this ->getMessages();
         $validator = Validator::make($request->all(),$rules, $messages);
-         if( $validator ->fails()){
+        if( $validator ->fails()){
             return redirect()->back()->withErrors($validator)->withInputs($request->all());
-         }
+        }
        // insert,
         $blog=new Blog;
         $main_img='';
@@ -84,18 +83,18 @@ class BlogController extends Controller
             'main_img'=>$imgName,
 
                ]);
-               return redirect()->back()->with(['success' => 'تم اضافه المقال بنجاح ']);
+               return redirect()->route('blogs.all')->with(['success' => 'تم اضافه المقال بنجاح ']);
             }
 
 
         protected function getMessages()
         {
             return $messages = [
-                 'title_en.required'  =>  __('messages.blog name required'),
-                'title_ar.required'  =>  __('messages.blog name required'),
-                'content_en.required'       =>  __('messages.blog name required'),
-                'content_en.required'       =>  __('messages.blog name required'),
-
+                 'title_en.required'   =>  __('messages.blog title en required'),
+                'title_ar.required'    =>  __('messages.blog title ar required'),
+                'content_en.required'  =>  __('messages.blog content en required'),
+                'content_ar.required'  =>  __('messages.blog content ar required'),
+                'main_img.required'    =>  __('messages.blog image required'),
 
 
             ];
@@ -103,10 +102,11 @@ class BlogController extends Controller
         protected function getRules()
         {
             return $rules = [
-                'title_en' => 'required',
-                'title_ar' => 'required',
+                'title_en' => 'required|max:255',
+                'title_ar' => 'required|max:255',
                 'content_en' => 'required',
                 'content_ar' => 'required',
+                'main_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             ];
         }
 
@@ -204,17 +204,9 @@ public function deleteblog($blog_id){
 
     $blogs=Blog::where('blog_id',$blog_id)->delete();
 
-    // if(!$s_id)
-
-    // return redirect()->back()->with(['error' => __('messages.category not exist')]);
-
-    // $services->delete();
-
     return redirect()
         ->route('blogs.all')
         ->with(['success' => __('messages.blogs deleted successfully')]);
-
-
 
 }
 

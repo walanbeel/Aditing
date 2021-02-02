@@ -52,8 +52,7 @@ class CategoryController extends Controller
         ]);
 
 
-        return redirect()->back()->with(['success' => 'تم اضافه الصنف بنجاح ']);
-        // return redirect('category/showcategory');
+        return redirect()->route('category.show')->with(['success' => 'تم اضافه الصنف بنجاح ']);
 
     }
 
@@ -63,8 +62,8 @@ class CategoryController extends Controller
             return $messages = [
                 'cat_name_en.required'  =>  __('messages.catgory name required'),
                 'cat_name_en.unique'    =>  __('messages.category must be unique'),
-                'cat_name_ar.required'  => 'اسم الصنف مطلوب',
-                'cat_name_ar.unique'    => 'اسم الصنف موجود',
+                'cat_name_ar.required'  => 'اسم القسم مطلوب',
+                'cat_name_ar.unique'    => 'اسم القسم موجود',
             ];
         }
         protected function getRules()
@@ -72,8 +71,7 @@ class CategoryController extends Controller
             return $rules = [
                 'cat_name_en' => 'required|unique:categories,cat_name_en',
                 'cat_name_ar' => 'required|unique:categories,cat_name_ar',
-                'is_active' => 'required',
-                'parent'    => 'required',
+
             ];
         }
 
@@ -85,15 +83,6 @@ class CategoryController extends Controller
         $Categorys =DB::table('categories')->join('users','categories.id','=','users.id')->get(); // return collection of all result*/
        return view('Admin.showcategory',['Categorys'=> $Categorys]);
     }
-
-    // public function changeCatStatus(Request $request)
-    // {
-    //     $cat = Category::find($request->cat_id);
-    //     $cat->status = $request->status;
-    //     $cat->save();
-
-    //     return response()->json(['success'=>'User status change successfully.']);
-    // }
 
 
 
@@ -116,11 +105,16 @@ class CategoryController extends Controller
     public function update(Request $request)
     {
         $cat=new Category;
+        $active='';
+        if(isset($request->is_active))
+        $active=1;
+        else
+        $active=0;
 
         $cat::where('cat_id',$request->cat_id)
         ->update(['cat_name_en'=>$request->cat_name_en ,
         'cat_name_ar'=>$request->cat_name_ar,
-        'is_active'=>$request->is_active,
+        'is_active'=>$active,
         'parent'=>$request->parent ]);
 
         $data['category'] = Category::get();

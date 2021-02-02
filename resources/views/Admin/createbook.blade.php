@@ -10,12 +10,12 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Full Width</h4>
+                        <h4 class="page-title"></h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Library</li>
+                                    <li class="breadcrumb-item active" aria-current="page">library</li>
                                 </ol>
                             </nav>
                         </div>
@@ -25,7 +25,7 @@
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
-       <!-- ============================================================== -->
+            <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
@@ -36,6 +36,7 @@
                                 <h4 class="card-title"> Add Books </h4>
                                 @if(Session::has('success'))
                                 <div class="alert alert-success" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
                                     {{ Session::get('success') }}
                                 </div>
                                 @endif
@@ -44,7 +45,7 @@
 
                                 <form method="POST" action="{{route('books.add')}}" enctype="multipart/form-data">
                                     @csrf
-                                    @if ( Config::get('app.locale') == 'en')
+
                                     <div class="col-12">
                                         <input type="hidden">
                                         <div class="form-group">
@@ -55,7 +56,6 @@
                                           @enderror
                                         </div>
                                       </div>
-                                      @elseif ( Config::get('app.locale') == 'ar' )
                                       <div class="col-12">
                                         <input type="hidden">
                                         <div class="form-group">
@@ -66,9 +66,6 @@
                                           @enderror
                                         </div>
                                       </div>
-                                      @endif
-
-                                      @if ( Config::get('app.locale') == 'en')
                                       <div class="col-12">
                                         <input type="hidden">
                                         <div class="form-group">
@@ -79,7 +76,6 @@
                                           @enderror
                                         </div>
                                       </div>
-                                      @elseif ( Config::get('app.locale') == 'ar' )
                                       <div class="col-12">
                                         <input type="hidden">
                                         <div class="form-group">
@@ -90,24 +86,27 @@
                                           @enderror
                                         </div>
                                       </div>
-                                      @endif
                                       <div class="col-12">
                                         <input type="hidden">
+                                        <div class="form-group">
                                         <label for="exampleFormControlFile1">{{__('messages.Book cover')}}</label>
-                                        <input type="file" id="file-ip-1"  class="form-control-file" name="cover"  placeholder="{{__('messages.cover')}}">
+                                        <input type="file" id="file-ip-1" accept="image/*" class="form-control-file" name="cover"  placeholder="{{__('messages.cover')}}">
                                         @error('cover')
-                                        <small>{{$message}}</small>
+                                        <small class="form-text text-danger">{{$message}}</small>
                                         @enderror
-                                    </div>
+                                       </div>
+                                      </div>
                                       <div class="col-12">
                                         <input type="hidden">
+                                        <div class="form-group">
                                         <label for="exampleFormControlFile1">{{__('messages.Book file')}}</label>
                                         <input type="file" id="file-ip-1"  class="form-control-file" name="file"  placeholder="{{__('messages.file')}}">
                                         @error('file')
-                                        <small>{{$message}}</small>
+                                        <small class="form-text text-danger">{{$message}}</small>
                                         @enderror
-                                    </div>
-                                    @if ( Config::get('app.locale') == 'en')
+                                        </div>
+                                      </div>
+
                                     <div class="col-12">
                                         <input type="hidden">
                                     <div class="form-group">
@@ -120,7 +119,7 @@
                                     </div>
                                     </div>
                                    </div>
-                                   @elseif ( Config::get('app.locale') == 'ar' )
+
                                    <div class="col-12">
                                     <input type="hidden">
                                 <div class="form-group">
@@ -133,18 +132,15 @@
                                 </div>
                                 </div>
                                </div>
-                               @endif
+                             
                                <div class="col-12">
                                 <div class="form-group">
                                     <label>{{__('messages.Category')}} </label>
                                     <select class="form-control category_list" name="cat_id">
-
                                         @foreach($category as $item)
                                         <option value="{{$item->cat_id}}"> {{$item->cat_name_en}}</opiton>
-
                                         @endforeach
                                         </select>
-
                                     </div>
                                     </div>
 

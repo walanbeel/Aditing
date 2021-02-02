@@ -17,6 +17,7 @@
 
         <div class="main-contant single">
            <h4 class="post-title">{{$blog->title_en}}</h4>
+           <hr>
            <div class="post-content">
             <img src="{{asset('/images/news/'.$blog->main_img)}}" style="width:750px;highet:200px" alt="">
                <p>{!!$blog->content_en !!}</p>

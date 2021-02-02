@@ -75,9 +75,12 @@ Route::group(['namespace'=>'Front','prefix'=>'books'],function(){
     Route::get('/books','BookController@show_books')->name('books.show');
     Route::get('/files/{B_id}','BookController@show')->name('books.view');
     Route::get('/file/dowenload/{file}','BookController@download')->name('download');
-    Route::get('deatails/{B_id}','BookController@show_book')->name('show');
+    // Route::get('deatails/{B_id}','BookController@show_book')->name('show');
+    // Route::get('/show/{id}','BookController@show_book')->name('books.show');
+
 
 });
+Route::get('/show/{B_id}','Front\BookController@show')->name('show');
 
 Route::group(['namespace'=>'Front','prefix'=>'home'],function(){
     Route::get('/main','SettingController@show_setting')->name('home.master');
