@@ -25,7 +25,7 @@
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
-       <!-- ============================================================== -->
+            <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
@@ -37,10 +37,14 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title m-b-0">Library</h5>
+                                <div class="text-right mb-3">
+                                    <a class="btn btn-outline-warning so_form_btn" href="{{ route('books.create')}}">
+                                        <i class="fa fa-plus" aria-hidden="true"></i> Add New Book</a>
+                                </div>
                             </div>
                             @if(Session::has('success'))
-
                                 <div class="alert alert-success">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
                                     {{Session::get('success')}}
                                 </div>
                                 @endif
@@ -48,6 +52,7 @@
 
                             @if(Session::has('error'))
                                 <div class="alert alert-danger">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
                                     {{Session::get('error')}}
                                 </div>
                             @endif
@@ -57,16 +62,25 @@
                                   <thead>
                                     <tr>
                                       <th scope="col">{{__('messages.B_id')}}</th>
-                                      <th scope="col">{{__('messages.name')}}</th>
-                                      <th scope="col">{{__('messages.cat_id')}}</th>
-                                      <th scope="col">{{__('messages.authoer_name_en')}}</th>
-                                      <th scope="col">{{__('messages.authoer_name_ar')}}</th>
-                                      <th scope="col">{{__('messages.B_name_en')}}</th>
-                                      <th scope="col">{{__('messages.B_name_ar')}}</th>
-                                      <th scope="col">{{__('messages.file')}}</th>
+                                      @if ( Config::get('app.locale') == 'en')
+                                      <th scope="col"  style="width: 30px">{{__('messages.authoer_name_en')}}</th>
+                                      @elseif ( Config::get('app.locale') == 'ar' )
+                                      <th scope="col"  style="width: 30px">{{__('messages.authoer_name_ar')}}</th>
+                                      @endif
+                                      @if ( Config::get('app.locale') == 'en')
+                                      <th scope="col"  style="width: 30px">{{__('messages.B_name_en')}}</th>
+                                      @elseif ( Config::get('app.locale') == 'ar' )
+                                      <th scope="col"  style="width: 30px">{{__('messages.B_name_ar')}}</th>
+                                      @endif
+                                      <th scope="col" style="width: 30px">{{__('messages.file')}}</th>
                                       <th scope="col">{{__('messages.cover')}}</th>
-                                      {{-- <th scope="col" >{{__('messages.B_preface_en')}}</th>
-                                      <th scope="col" >{{__('messages.B_preface_ar')}}</th> --}}
+                                      @if ( Config::get('app.locale') == 'en')
+                                      <th scope="col" style="width:30px">{{__('messages.B_preface_en')}}</th>
+                                      @elseif ( Config::get('app.locale') == 'ar' )
+                                      <th scope="col"style="width:30px" >{{__('messages.B_preface_ar')}}</th>
+                                      @endif
+                                      <th scope="col">{{__('messages.cat_id')}}</th>
+                                      <th scope="col">{{__('messages.name')}}</th>
                                       <th scope="col">{{__('messages.operation')}}</th>
                                     </tr>
                                   </thead>
@@ -75,23 +89,29 @@
 
                                     <tr>
                                       <td scope="row">{{$book->B_id}}</td>
-                                      <td>{{$book->name}}</td>
-                                      <td>{{$book->cat_name_en}}</td>
-                                      <td style="width:10px">{{$book->authoer_name_en}}</td>
-                                      <td style="width:10px">{{$book->authoer_name_ar}}</td>
-                                      <td>{{$book->B_name_en}}</td>
-                                      <td>{{$book->B_name_ar}}</td>
-                                      <td>{{$book->file}}</td>
+                                      @if ( Config::get('app.locale') == 'en')
+                                      <td style="width: 30px">{{$book->authoer_name_en}}</td>
+                                      @elseif ( Config::get('app.locale') == 'ar' )
+                                      <td  style="width: 30px">{{$book->authoer_name_ar}}</td>
+                                      @endif
+                                      @if ( Config::get('app.locale') == 'en')
+                                      <td  style="width: 30px">{{$book->B_name_en}}</td>
+                                      @elseif ( Config::get('app.locale') == 'ar' )
+                                      <td  style="width: 30px">{{$book->B_name_ar}}</td>
+                                      @endif
+                                      <td style="width:30px">{{$book->file}}</td>
                                       <td><img src="{{asset('/images/books/'.$book->cover)}}" alt="imgExper"  style="width:60%;hight:50%"></td>
                                       @if ( Config::get('app.locale') == 'en')
-                                      <td  class="mycell">{!! $book->B_preface_en !!}</td>
+                                      <td style="width:30px">{!! substr($book->B_preface_en, 0, 100) !!}{!!strlen($book->B_preface_en) > 100 ? "..." : "" !!}</td>
                                       @elseif ( Config::get('app.locale') == 'ar' )
-                                      <td  class="mycell">{!! $book->B_preface_ar !!}</td>
+                                      <td style="width:30px">{!! substr($book->B_preface_ar, 0, 100) !!}{!!strlen($book->B_preface_ar) > 100 ? "..." : "" !!}</td>
                                       @endif
+                                      <td>{{$book->cat_name_en}}</td>
+                                      <td>{{$book->name}}</td>
                                       <td>
-                                        <a href="" class="btn btn-primary"><i class="fa fa-eye"></i></a>
-                                        <a href="{{route('books.edit',$book->B_id)}}" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                                        <a href="{{route('books.delete',$book->B_id)}}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                                        {{-- <a href="" class="btn btn-primary"><i class="fa fa-eye"></i></a> --}}
+                                        <a href="{{route('books.edit',$book->B_id)}}" class="btn btn-outline-success"><i class="fas fa-pencil-alt"></i></a>
+                                        <a href="{{route('books.delete',$book->B_id)}}" class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
 
                                        </td>
 

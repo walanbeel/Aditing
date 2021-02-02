@@ -22,12 +22,12 @@ class ExperiencController extends Controller
 
         //viladate data before insert to databse
 
-    //    $rules=$this->getRules();
-    //     $messages=$this->getMessages();
-    //     $validator = Validator::make($request->all(),$rules, $messages);
-    //      if( $validator ->fails()){
-    //         return redirect()->back()->withErrors($validator)->withInputs($request->all());
-    //      }
+       $rules=$this->getRules();
+        $messages=$this->getMessages();
+        $validator = Validator::make($request->all(),$rules, $messages);
+         if( $validator ->fails()){
+            return redirect()->back()->withErrors($validator)->withInputs($request->all());
+         }
        // insert,
        $experienc=new Experienc;
        $active='';
@@ -53,26 +53,29 @@ class ExperiencController extends Controller
             'logo'=>$imgName,
             'url'=>$request->url,
             'is_active'=>$active,
-           
+
              ]);
-               return redirect()->back()->with(['success' => 'تم اضافه  بنجاح ']);
+               return redirect()->route('experienc.all')->with(['success' => 'تم اضافه  بنجاح ']);
             }
 
             protected function getMessages()
             {
                 return $messages = [
-                    'name_en.required'=>__('messages.name required'),
-                    'name_ar.required'=>__('messages.name required'),
-                    'logo.required'=>__('messages.function must be required'),
+                    'name_en.required'=>__('messages.name en required'),
+                    'name_ar.required'=>__('messages.name ar required'),
+                    'logo.required'=>__('messages.image must be required'),
+                    'is_active.required'=>__('messages.is_active must be required'),
+
 
                 ];
             }
             protected function getRules()
             {
                 return $rules = [
-                    'ame_en' => 'required',
-                    'name_ar' => 'required',
-                    'logo' => 'required',
+                    'name_en' => 'required|max:255',
+                    'name_ar' => 'required|max:255',
+                    'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+                    'is_active'=> 'required',
                 ];
             }
 

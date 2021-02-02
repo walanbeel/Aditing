@@ -57,19 +57,24 @@
                                   <thead>
                                     <tr>
                                       <th scope="col">{{__('messages.set_id')}}</th>
-                                      <th scope="col">{{__('messages.user')}}</th>
                                       <th scope="col">{{__('messages.icon')}}</th>
                                       <th scope="col">{{__('messages.logo')}}</th>
+                                      @if ( Config::get('app.locale') == 'en')
                                       <th scope="col">{{__('messages.Website_name_en')}}</th>
-                                      <th scope="col">{{__('messages.Website_name_en')}}</th>
+                                      @elseif ( Config::get('app.locale') == 'ar' )
+                                      <th scope="col">{{__('messages.Website_name_ar')}}</th>
+                                      @endif
                                       <th scope="col">{{__('messages.mobile_num')}}</th>
                                       <th scope="col">{{__('messages.location')}}</th>
                                       <th scope="col">{{__('messages.email_web')}}</th>
-                                      <th scope="col">{{__('messages.aboutus_en')}}</th>
-                                      <th scope="col">{{__('messages.aboutus_ar')}}</th>
-                                      <th scope="col">{{__('messages.Facebook')}}</th>
-                                      <th scope="col">{{__('messages.LinkedIn')}}</th>
-                                      <th scope="col">{{__('messages.Twitter')}}</th>
+                                      @if ( Config::get('app.locale') == 'en')
+                                      <th scope="col" style="width:300px">{{__('messages.aboutus_en')}}</th>
+                                      @elseif ( Config::get('app.locale') == 'ar' )
+                                      <th scope="col"style="width:300px">{{__('messages.aboutus_ar')}}</th>
+                                      @endif
+                                      <th scope="col" style="width:100px">{{__('messages.Facebook')}}</th>
+                                      <th scope="col"style="width:100px">{{__('messages.LinkedIn')}}</th>
+                                      <th scope="col"style="width:100px">{{__('messages.Twitter')}}</th>
                                       <th scope="col">{{__('messages.operation')}}</th>
                                     </tr>
                                   </thead>
@@ -78,9 +83,8 @@
 
                                     <tr>
                                       <td scope="row">{{$setting->set_id}}</td>
-                                      <td>{{$setting->name}}</td>
-                                      <td><img src="{{asset('/images/set/'.$setting->icon)}}" alt="imgset"  style="width:60%;hight:50%"></td>
-                                      <td><img src="{{asset('/images/set/'.$setting->logo)}}" alt="imgset"  style="width:60%;hight:50%"></td>
+                                      <td><img src="{{asset('/images/set/'.$setting->icon)}}" alt="imgset"  style="width:60px;height:50px"></td>
+                                      <td><img src="{{asset('/images/set/'.$setting->logo)}}" alt="imgset"  style="width:60px;hight:50px"></td>
                                       @if ( Config::get('app.locale') == 'en')
                                       <td>{{$setting->Website_name_en}}</td>
                                       @elseif ( Config::get('app.locale') == 'ar' )
@@ -90,18 +94,19 @@
                                       <td>{{$setting->location}}</td>
                                       <td>{{$setting->email_web}}</td>
                                       @if ( Config::get('app.locale') == 'en')
-                                      <td>{!!$setting->aboutus_en!!}</td>
+                                      <td style="width:300px">{!! substr($setting->aboutus_en, 0, 300) !!}{!!strlen($setting->aboutus_en) > 300 ? "..." : "" !!}</td>
                                       @elseif ( Config::get('app.locale') == 'ar' )
-                                      <td>{!!$setting->aboutus_ar!!}</td>
+                                      <td style="width:300px">{!! substr($setting->aboutus_ar, 0, 300) !!}{!!strlen($setting->aboutus_ar) > 300 ? "..." : "" !!}</td>
                                       @endif
-                                      <td>{{$setting->Facebook}}</td>
-                                      <td>{{$setting->LinkedIn}}</td>
-                                      <td>{{$setting->Twitter}}</td>
+                                      <td style="width:100px">{{$setting->Facebook}}</td>
+                                      <td style="width:100px">{{$setting->LinkedIn}}</td>
+                                      <td style="width:100px">{{$setting->Twitter}}</td>
+                                      {{-- <td>{{$setting->name}}</td> --}}
                                       <td>
-                                        <a href="{{route('setting.edit',$setting->set_id)}}" class="btn btn-success"> {{__('messages.update')}}</a>
+                                        <a href="{{route('setting.edit',$setting->set_id)}}" class="btn btn-outline-success"><i class="fas fa-pencil-alt"></i></a>
 
                                         {{-- <a href="{{url('services/edit/'.$service->s_id)}}" class="btn btn-success"> {{__('messages.update')}}</a> --}}
-                                        <a href="{{route('setting.delete',$setting->set_id)}}" class="btn btn-danger"> {{__('messages.delete')}}</a>
+                                        <a href="{{route('setting.delete',$setting->set_id)}}" class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
 
                                        </td>
 

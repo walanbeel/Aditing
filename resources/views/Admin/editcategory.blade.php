@@ -95,20 +95,19 @@
                                 </div>
                               </div>
 
-                              <div class="col-12">
+                               {{-- <div class="col-12">
                                 <label>Parent </label>
                                 <div class="input-group mb-3">
 
                                     <select class="custom-select" name="parent" value="{{$item->parent}}" id="inputGroupSelect02">
-                                        @foreach($cate as $cat)
-                                    {{-- <option selected>Choose...</option> --}}
-                                    <option value='{{$cat['cat_id']}}'>{{$cat['cat_name_en']}}</opiton>
+                                        @foreach($Categorys as $item)
+                                    <option value='{{$item['cat_id']}}'>{{$item['cat_name_en']}}</opiton>
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
+                                </div> --}}
 
-                   {{-- <div class="col-12">
+                   <div class="col-12">
         			<div class="form-group">
 		        		<label>Parent </label>
 		        		<select class="form-control category_list" id="parent_catergory" name="parent" value="{{$item->parent}}">
@@ -117,15 +116,14 @@
 
 		        		</select>
                        </div>
-        		</div> --}}
+        		     </div>
 
 
                 <div class="col-12">
-                 <button type="submit" class="btn btn-primary">{{__('messages.Add Category')}}</button>
-
+                 <button type="submit" class="btn btn-primary">{{__('messages.Save Change')}}</button>
                  </div>
                 </form>
+                @endforeach
 
                 </div>
-                @endforeach
                @endsection

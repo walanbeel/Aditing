@@ -132,7 +132,8 @@
 
 
                                         <div class="col-12">
-                                        <button type="submit" class="btn btn-primary">{{__('messages.Add Services')}}</button>
+                                        <button type="submit" class="btn btn-outline-primary">{{__('messages.Save Change')}}</button>
+
                                         </div>
 
                                     </form>

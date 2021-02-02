@@ -22,12 +22,12 @@ class TeamController extends Controller
 
         //viladate data before insert to databse
 
-    //    $rules=$this->getRules();
-    //     $messages=$this->getMessages();
-    //     $validator = Validator::make($request->all(),$rules, $messages);
-    //      if( $validator ->fails()){
-    //         return redirect()->back()->withErrors($validator)->withInputs($request->all());
-    //      }
+       $rules=$this->getRules();
+        $messages=$this->getMessages();
+        $validator = Validator::make($request->all(),$rules, $messages);
+         if( $validator ->fails()){
+            return redirect()->back()->withErrors($validator)->withInputs($request->all());
+         }
        // insert,
         $team=new Team;
         $t_profile='';
@@ -52,31 +52,31 @@ class TeamController extends Controller
             'short_intro_ar'=>$request->short_intro_ar,
 
              ]);
-               return redirect()->back()->with(['success' => 'تم اضافه الفريق بنجاح ']);
+               return redirect()->route('team.all')->with(['success' => 'تم اضافه الفريق بنجاح ']);
             }
 
             protected function getMessages()
             {
                 return $messages = [
-                    'name_en.required'=>__('messages.name required'),
-                    'name_ar.required'=>__('messages.name required'),
-                    'sub_title_en.required'=>__('messages.function must be required'),
-                    'sub_title_ar.required'=>__('messages.function must be required'),
-                    'short_intro_en.required'=>__('messages.intro must be required'),
-                    'short_intro_ar.required'=>__('messages.intro must be required'),
+                    'name_en.required'=>__('messages.name en required'),
+                    'name_ar.required'=>__('messages.name ar required'),
+                    'sub_title_en.required'=>__('messages.sub title en must be required'),
+                    'sub_title_ar.required'=>__('messages.sub title ar must be required'),
+                    'short_intro_en.required'=>__('messages.intro en must be required'),
+                    'short_intro_ar.required'=>__('messages.intro ar must be required'),
                     't_profile.required'=>__('messages.image must be required'),
                 ];
             }
             protected function getRules()
             {
                 return $rules = [
-                    'ame_en' => 'required',
-                    'name_ar' => 'required',
-                    'sub_title_en' => 'required',
-                    'sub_title_ar' => 'required',
+                    'name_en' => 'required|max:255',
+                    'name_ar' => 'required|max:255',
+                    'sub_title_en' => 'required|max:255',
+                    'sub_title_ar' => 'required|max:255',
                     'short_intro_en' => 'required',
                     'short_intro_ar'=> 'required',
-                    't_profile'=> 'required',
+                    't_profile'=> 'required|image|mimes:jpeg,png,jpg,gif,svg',
 
                 ];
             }

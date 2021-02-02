@@ -10,7 +10,7 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Full Width</h4>
+                        <h4 class="page-title"></h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
@@ -36,6 +36,7 @@
                                 <h4 class="card-title"> Add Experience </h4>
                                 @if(Session::has('success'))
                                 <div class="alert alert-success" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
                                     {{ Session::get('success') }}
                                 </div>
                                 @endif
@@ -48,7 +49,7 @@
                                         <input type="hidden">
                                         <div class="form-group">
                                           <label>{{__('messages.experienc name en')}} </label>
-                                          <input type="text"  class="form-control" name="name_en"  placeholder="{{__('messages.name_en')}}">
+                                          <input type="text"  class="form-control" name="name_en"  placeholder="{{__('messages.experienc name en')}}">
                                           @error('name_en')
                                           <small class="form-text text-danger">{{$message}}</small>
                                           @enderror
@@ -58,7 +59,7 @@
                                         <input type="hidden">
                                         <div class="form-group">
                                           <label>{{__('messages.experienc name ar')}}  </label>
-                                          <input type="text"  class="form-control" name="name_ar"   placeholder="{{__('messages.name_ar')}}">
+                                          <input type="text"  class="form-control" name="name_ar"   placeholder="{{__('messages.experienc name ar')}}">
                                           @error('name_ar')
                                           <small class="form-text text-danger">{{$message}}</small>
                                           @enderror
@@ -68,21 +69,22 @@
                                     <div class="col-12">
                                         <input type="hidden">
                                         <label for="exampleFormControlFile1">{{__('messages.Experienc logo')}}</label>
-                                        <input type="file" id="file-ip-1"  class="form-control-file" name="logo"  placeholder="{{__('messages.logo')}}">
+                                        <input type="file" id="file-ip-1"  class="form-control-file" name="logo" accept="image/*" placeholder="{{__('messages.Experienc logo')}}">
                                         @error('logo')
-                                        <small>{{$message}}</small>
+                                        <small  class="form-text text-danger">{{$message}}</small>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputEmail">logo address</label>
+                                        <label for="inputEmail">{{__('messages.Experienc url')}}</label>
                                         <input id="inputEmail" type="url" placeholder="name@example.com" class="form-control" name="url">
                                     </div>
                                     <div class="col-12">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" checked class="custom-control-input" value="1" name="is_active" id="customCheck1">
-                                            <label class="custom-control-label" for="customCheck1">is Active</label>
+                                            <label class="custom-control-label" for="customCheck1">{{__('messages.is active')}}</label>
                                           </div>
-                                       </div>
+                                    </div>
+                                    <br>
                                     <div class="col-12">
                                      <button type="submit" class="btn btn-primary">{{__('messages.Add Experienc')}}</button>
                                     </div>

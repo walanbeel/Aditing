@@ -36,6 +36,7 @@
                                 {{-- <h4 class="card-title"> General settings </h4> --}}
                                 @if(Session::has('success'))
                                 <div class="alert alert-success" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
                                     {{ Session::get('success') }}
                                 </div>
                                 @endif
@@ -49,63 +50,99 @@
                                                 <form method="POST" action="{{route('setting.add')}}" enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="form-group">
-                                                        <label for="inputText3" class="col-form-label">Website Name en</label>
+                                                        <label for="inputText3" class="col-form-label">{{__('messages.Website Name en')}}</label>
                                                         <input id="inputText3" type="text" class="form-control" name="Website_name_en">
+                                                        @error('Website_name_en')
+                                                        <small class="form-text text-danger">{{$message}}</small>
+                                                        @enderror
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="inputText3" class="col-form-label">Website Name ar</label>
-                                                        <input id="inputText3" type="text" class="form-control" name="Website_name_ar">
+                                                        <label for="inputText3" class="col-form-label">{{__('messages.Website Name ar')}}</label>
+                                                        <input id="inputText3" type="text" class="form-control" name="Website_name_ar" >
+                                                        @error('Website_name_ar')
+                                                        <small class="form-text text-danger">{{$message}}</small>
+                                                        @enderror
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="inputText3" class="col-form-label">Location</label>
+                                                        <label for="inputText3" class="col-form-label">{{__('messages.Location')}}</label>
                                                         <input id="inputText3" type="text" class="form-control" name="location">
+                                                        @error('location')
+                                                         <small class="form-text text-danger">{{$message}}</small>
+                                                        @enderror
                                                     </div>
                                                         <div class="form-group">
-                                                            <label>Phone <small class="text-muted">(967) 999-9999</small></label>
-                                                            <input type="text" class="form-control phone-inputmask" id="phone-mask" placeholder="" name="mobile_num">
+                                                            <label for="inputText3" class="col-form-label">>{{__('messages.Phone')}} </label>
+                                                            <input type="text" class="form-control phone-inputmask" id="phone-mask" placeholder="{{__('messages.(1) 517-519')}}" name="mobile_num">
+                                                            @error('mobile_num')
+                                                            <small class="form-text text-danger">{{$message}}</small>
+                                                            @enderror
                                                         </div>
 
 
                                                         <div class="form-group">
                                                             <input type="hidden">
-                                                            <label>website icon</label>
+                                                            <label>{{__('messages.website icon ')}}</label>
                                                             <input type="file" id="file-ip-1"  class="form-control-file" name="icon">
+                                                            @error('icon')
+                                                            <small class="form-text text-danger">{{$message}}</small>
+                                                            @enderror
                                                         </div>
                                                     <div class="form-group">
                                                         <input type="hidden">
-                                                        <label>website images</label>
-                                                        <input type="file" id="file-ip-1"  class="form-control-file" name="logo" >
+                                                        <label>{{__('messages.website logo')}}</label>
+                                                        <input type="file" id="file-ip-1"  class="form-control-file" name="logo">
+                                                        @error('logo')
+                                                        <small class="form-text text-danger">{{$message}}</small>
+                                                        @enderror
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="inputEmail">Facebook address</label>
+                                                        <label for="inputEmail">{{__('messages.Facebook address')}}</label>
                                                         <input id="inputEmail" type="url" placeholder="name@example.com" class="form-control" name="Facebook">
+                                                        @error('Facebook')
+                                                        <small class="form-text text-danger">{{$message}}</small>
+                                                        @enderror
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="inputEmail">Tiwtter address</label>
+                                                        <label for="inputEmail">{{__('messages.LinkedIn address')}}</label>
                                                         <input id="inputEmail" type="url" placeholder="name@example.com" class="form-control" name="LinkedIn">
+                                                        @error('LinkedIn')
+                                                        <small class="form-text text-danger">{{$message}}</small>
+                                                        @enderror
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="inputEmail">Linkind address</label>
+                                                        <label for="inputEmail">{{__('messages.Twitter address')}}</label>
                                                         <input id="inputEmail" type="url" placeholder="name@example.com" class="form-control" name="Twitter">
+                                                        @error('Twitter')
+                                                        <small class="form-text text-danger">{{$message}}</small>
+                                                        @enderror
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="inputEmail">Email address</label>
+                                                        <label for="inputEmail">{{__('messages.Email address')}}</label>
                                                         <input id="inputEmail" type="email"  name="email_web" placeholder="name@example.com" class="form-control">
+                                                        @error('email_web')
+                                                        <small class="form-text text-danger">{{$message}}</small>
+                                                        @enderror
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="exampleFormControlTextarea1">Page Content</label>
+                                                        <label for="exampleFormControlTextarea1">{{__('messages.Page Content en')}}</label>
                                                         <textarea class="form-control" name="aboutus_en"  id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                        @error('aboutus_en')
+                                                        <small class="form-text text-danger">{{$message}}</small>
+                                                        @enderror
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="exampleFormControlTextarea1">Page Content</label>
+                                                        <label for="exampleFormControlTextarea1">{{__('messages.Page Content ar')}}</label>
                                                         <textarea class="form-control" name="aboutus_ar"  id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                        @error('aboutus_ar')
+                                                        <small class="form-text text-danger">{{$message}}</small>
+                                                        @enderror
                                                     </div>
 
                                                     <div class="col-12">
-                                                        <button type="submit" class="btn btn-secondary">{{__('messages.Add Services')}}</button>
+                                                        <button type="submit" class="btn btn-secondary">{{__('messages.Save setting')}}</button>
                                                         </div>
                                                 </form>
                                             </div>

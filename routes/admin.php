@@ -14,9 +14,9 @@ use App\Http\Controllers\ServicesController;
 |
 */
 
-Route::get('/admin', function () {
-    return "hellow admin";
-});
+// Route::get('/admin', function () {
+//     return "hellow admin";
+// });
 
 
 
@@ -79,9 +79,9 @@ Route::group(['namespace'=>'Admin','prefix'=>'services','middleware'=>'auth'],fu
 
 });
 });
-Route::get('/is_active_ser/{s_id}','Admin\ServicesController@is_active');
+Route::get('/ser_active/{s_id}','Admin\ServicesController@is_active');
 
-Route::get('/no_active_ser/{s_id}','Admin\ServicesController@is_not_active');
+Route::get('/ser_no_active/{s_id}','Admin\ServicesController@is_not_active');
 #################### End Services route ####################
 
 

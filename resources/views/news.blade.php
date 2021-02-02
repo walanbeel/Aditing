@@ -19,11 +19,10 @@
                 <div class="post-preview">
                     <h4><a href='deatails/{{$post->blog_id}}'>{{Illuminate\Support\Str::limit($post->title_en,60, $end='...') }}</a></h4>
 
-                    <i class="fa fa-user-circle-o">{{$post->id}}</i>
+                    <i class="icofont-user">by{{$post->id}}</i>
                     &nbsp;
-                    <i class="fa fa-calendar">{{$post->created_at}}</i>
-                    {{-- <p class="preview-text">{!!strlen($post->content_en) > 150 ? substr($post->content_en,0,150,$end = '...') : $post->content_en!!} --}}
-                        {{-- {!!str_limit($post->content_en, $limit = 100, $end = '...')!!} --}}
+                    <i class="icofont-calendar">{{ date('M j, Y', strtotime($post->created_at)) }}</i>
+                    <p class="preview-text">
                         {!! Illuminate\Support\Str::limit($post->content_en, 130, $end='...') !!}
 
                     </p>

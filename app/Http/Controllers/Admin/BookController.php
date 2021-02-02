@@ -28,12 +28,12 @@ class BookController extends Controller
 
         //viladate data before insert to databse
 
-    //    $rules=$this ->getRules();
-    //     $messages=$this ->getMessages();
-    //     $validator = Validator::make($request->all(),$rules, $messages);
-    //      if( $validator ->fails()){
-    //         return redirect()->back()->withErrors($validator)->withInputs($request->all());
-    //      }
+       $rules=$this ->getRules();
+        $messages=$this ->getMessages();
+        $validator = Validator::make($request->all(),$rules, $messages);
+         if( $validator ->fails()){
+            return redirect()->back()->withErrors($validator)->withInputs($request->all());
+         }
         //insert,
 
          $book=new Book;
@@ -85,7 +85,7 @@ class BookController extends Controller
             'B_preface_ar'=>$request->B_preface_ar,
 
                ]);
-                return redirect()->back()->with(['success' => 'تم اضافه الكتاب بنجاح ']);
+                return redirect()->route('books.all')->with(['success' => 'تم اضافه الكتاب بنجاح ']);
 
         }
 
@@ -93,11 +93,14 @@ class BookController extends Controller
         protected function getMessages()
         {
             return $messages = [
-                 'authoer_name_en.required'  =>  __('messages.book name required'),
-                'authoer_name_ar.required'  =>  __('messages.book name required'),
-                'B_preface_en.required'  =>  __('messages.book  must be required'),
-                'B_preface_ar.required'  =>  __('messages.book  must be required'),
-                'image' => __('messages.images must be required'),
+                'authoer_name_en.required'  =>  __('messages.authoer name en required'),
+                'authoer_name_ar.required'  =>  __('messages.authoer name ar required'),
+                'B_name_en.required'  =>  __('messages.Book name en required'),
+                'B_name_ar.required'  =>  __('messages.Book name ar required'),
+                'B_preface_en.required'  =>  __('messages.preface en book  must be required'),
+                'B_preface_ar.required'  =>  __('messages.preface ar book  must be required'),
+                'cover' => __('messages.images must be required'),
+                'file' => __('messages.file must be required'),
 
 
 
@@ -107,11 +110,14 @@ class BookController extends Controller
         protected function getRules()
         {
             return $rules = [
-                'authoer_name_en' => 'required|unique:books,authoer_name_en',
-                'authoer_name_ar' => 'required|unique:books,authoer_name_ar',
+                'authoer_name_en' => 'required|max:255',
+                'authoer_name_ar' => 'required|max:255',
+                'B_name_en'=>        'required|max:255',
+                'B_name_ar'=>        'required|max:255',
                 'B_preface_en' => 'required',
                 'B_preface_ar' => 'required',
-                'image' => 'required',
+                'cover' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+                "file" => 'required|mimetypes:application/pdf,doc,docx,xlsx,xls,txt',
 
 
             ];
@@ -218,11 +224,6 @@ class BookController extends Controller
 
         $services=Book::where('B_id',$B_id)->delete();
 
-        // if(!$s_id)
-
-        // return redirect()->back()->with(['error' => __('messages.category not exist')]);
-
-        // $services->delete();
 
         return redirect()
             ->route('books.all')

@@ -31,7 +31,7 @@ class BookController extends Controller
     }
     /******************** download ***************************/
 
-    public function show_book($B_id)
+    public function show($B_id)
     {
         // echo $B_id;
         $sets =DB::table('books')->join('users','books.id','=','users.id')
@@ -39,23 +39,12 @@ class BookController extends Controller
         $book =Book::join('categories','books.cat_id','=','categories.cat_id')
 
         ->select('categories.cat_name_en','books.*')
-        ->where('books.B_id',$B_id);
+        ->where('books.B_id',$B_id)->get();
 
 
-    // dd($book);
-    if($book->exists())
-    {
-        $book=$book->get();
-        $libray=['lib' => $book];
-        $sets=['sets'=> $sets];
+        echo json_encode($book);
 
-        return  view('books')->with([$libray,$sets]);
 
-    }
-    else
-    {
-
-    }
 
 }
 }
