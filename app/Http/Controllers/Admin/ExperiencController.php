@@ -83,7 +83,7 @@ class ExperiencController extends Controller
             public function getAllExprienc()
             {
 
-                $experience =DB::table('experiences')->join('users','experiences.id','=','users.id')->get(); // return collection of all result*/
+                $experience =DB::table('experiences')->join('users','experiences.id','=','users.id')->paginate(4); // return collection of all result*/
 
                 return view('Admin.allExprienc',['experience'=> $experience]);
 

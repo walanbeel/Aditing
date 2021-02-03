@@ -13,18 +13,20 @@ class SettingController extends Controller
     //
     public function show_setting()
     {
+
         // print_r($sets);
-     $blogs = DB::table('blogs')->select()->limit(3)->get();
+     $sets =DB::table('settings')->join('users','settings.id','=','users.id')
+     ->get();
+     $blogs = DB::table('blogs')->select()->orderBy('blog_id','DESC')->limit(3)->get();
      $aboutus =Setting::join('users','settings.id','=','users.id')
      ->select('*')
-     ->get();
-     $sets =DB::table('settings')->join('users','settings.id','=','users.id')
      ->get();
      $teams =Team::join('users','teams.id','=','users.id')
      ->select('*')
      ->get();
+     $where=['is_active'=>1];
      $exper =Experienc::join('users','experiences.id','=','users.id')
-     ->select('*')
+     ->where($where)->orderBy('exp_id','DESC')
      ->get();
        return  view('main',['sets'=> $sets ,'aboutus'=> $aboutus,'blogs'=> $blogs,'teams'=>$teams ,'exper'=>$exper]);
 

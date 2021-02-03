@@ -164,8 +164,16 @@
                                     @endforeach
 
                                   </tbody>
-                            </table>
+                                  </table>
+                                     </div>
+                                   </div>
+                               </div>
+                             </div>
+                             <div class="d-flex justify-content-center">
+                                {!!  $services -> links() !!}
+                                </div>
                             </div>
                         </div>
+
 
                         @endsection

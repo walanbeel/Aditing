@@ -85,7 +85,7 @@ class TeamController extends Controller
             public function getAllTeams()
             {
 
-                $teams =DB::table('teams')->join('users','teams.id','=','users.id')->get(); // return collection of all result*/
+                $teams =DB::table('teams')->join('users','teams.id','=','users.id')->paginate(4); // return collection of all result*/
 
                 return view('Admin.allteams',['teams'=> $teams]);
 

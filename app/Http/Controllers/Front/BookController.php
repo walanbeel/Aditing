@@ -31,7 +31,7 @@ class BookController extends Controller
     }
     /******************** download ***************************/
 
-    public function show($B_id)
+    public function show_more($B_id)
     {
         // echo $B_id;
         $sets =DB::table('books')->join('users','books.id','=','users.id')

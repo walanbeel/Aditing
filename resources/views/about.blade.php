@@ -39,7 +39,11 @@
           @foreach ($aboutus as $item)
           <div class="info col-lg-6">
               <h2 class="h1">About us </h2>
+              @if ( Config::get('app.locale') == 'en')
               <p>{!!$item->aboutus_en!!}</p>
+              @elseif ( Config::get('app.locale') == 'ar' )
+              <p>{!!$item->aboutus_ar!!}</p>
+              @endif
           </div>
           @endforeach
         </div>

@@ -115,7 +115,7 @@ class BlogController extends Controller
     {
         $blogs = DB::table('blogs')->join('users','blogs.id','=','users.id')
         ->join('categories','blogs.cat_id','=','categories.cat_id')
-        ->get(); // return collection of all result*/
+        ->paginate(4); // return collection of all result*/
 
        return view('Admin.allblog',['blogs'=> $blogs]);
     }
