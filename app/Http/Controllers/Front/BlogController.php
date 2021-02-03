@@ -13,12 +13,15 @@ class BlogController extends Controller
     public function show_news()
     {
         // dd('aa');
-
-    $posts =DB::table('blogs')->paginate(5);
-
-     $blogs =DB::table('blogs')->select()->limit(6)->get();
      $sets =DB::table('settings')->join('users','settings.id','=','users.id')
-    ->get();
+     ->get();
+
+     $posts =DB::table('blogs')->join('users','blogs.id','=','users.id')
+    ->orderBy('blog_id','DESC')->paginate(5);
+
+     $blogs =DB::table('blogs')->select()->orderBy('blog_id','DESC')
+     ->limit(6)->get();
+
      return  view('news',['posts'=> $posts , 'blogs' => $blogs , 'sets'=> $sets ]);
 
     }
@@ -28,8 +31,6 @@ class BlogController extends Controller
         $sets =DB::table('settings')->join('users','settings.id','=','users.id')
         ->get();
         $blogs =Blog::join('categories','blogs.cat_id','=','categories.cat_id')
-        // $blogs =DB::table('blogs')->select()->get();
-
         ->select('categories.cat_name_en','blogs.*')
         ->where('blogs.blog_id',$blog_id);
 

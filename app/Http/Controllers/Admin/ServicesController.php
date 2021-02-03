@@ -83,7 +83,7 @@ class ServicesController extends Controller
     {
         $services = DB::table('services')->join('users','services.id','=','users.id')
         ->join('categories','services.cat_id','=','categories.cat_id')
-        ->get(); // return collection of all result*/
+        ->paginate(4); // return collection of all result*/
 
        return view('Admin.allservices',['services'=> $services]);
     }

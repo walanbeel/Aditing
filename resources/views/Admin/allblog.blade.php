@@ -109,8 +109,20 @@
 
                                     </tbody>
                               </table>
+
                             </div>
 
                         </div>
+                    </div>
+
+                </div>
+                <div class="d-flex justify-content-center">
+                    {!!  $blogs ->links() !!}
+                    </div>
+            </div>
+        </div>
+
+
+
 
                         @endsection

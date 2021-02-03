@@ -24,8 +24,8 @@
 
            </div>
         </div>
-        @endforeach
-    </div>
+          @endforeach
+        </div>
         <!--Main Content-->
         <div class="sidebar single">
             @foreach($blogs as $blog)
@@ -34,12 +34,14 @@
                 <h2 class="section-title">Popular</h2>
                 <div class="post clearfix ">
                     <img src="{{asset('/images/news/'.$blog->main_img)}}" style="width:90px;highet:90px" alt="">
-                    <a href="#" class="title"><h6>{{Illuminate\Support\Str::limit($blog->title_en,30, $end='...') }}</h6></a>
+                    <a href='{{$blog->blog_id}}' class="title"><h6>{{Illuminate\Support\Str::limit($blog->title_en,30, $end='...') }}</h6></a>
                 </div>
 
                 @endforeach
 
             </div>
+
+
             <div class="section topic">
                 <h2 class="section-title">Topics</h2>
                 <ul>
@@ -67,6 +69,12 @@
         </div>
     </div>
     <!--End Content-->
+
+    <br><br><br>
+
+    <br><br><br>
+    <br><br><br>
+    <br><br><br>
 
 @endsection
 

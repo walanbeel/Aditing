@@ -157,7 +157,15 @@
                                     </tbody>
                               </table>
                             </div>
-
                         </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    {!!  $experience->links() !!}
+                    </div>
+            </div>
+        </div>
+
+
 
                         @endsection
