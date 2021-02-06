@@ -36,15 +36,20 @@ class BookController extends Controller
         // echo $B_id;
         $sets =DB::table('books')->join('users','books.id','=','users.id')
         ->get();
-        $book =Book::join('categories','books.cat_id','=','categories.cat_id')
+        $book =Book::join('categories','categories.cat_id','=','books.cat_id')
 
         ->select('categories.cat_name_en','books.*')
         ->where('books.B_id',$B_id)->get();
-
-
+        // return  view('books',['book'=> $book],['sets'=> $sets]);
+        return  $book;
         echo json_encode($book);
 
+        // $book=Book::all();
+        // return  $book;
+        // $book=DB::select('select * from books , categories where books.B_id = 22 and books.cat_id=categories.cat_id');
 
+
+         echo json_encode($book);
 
 }
 }

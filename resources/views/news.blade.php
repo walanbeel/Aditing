@@ -5,6 +5,7 @@
 <br><br><br>
 <br><br><br>
 
+<div class="page-wrapper">
        <!-- Start Content-->
        <div class="content clearfix">
         <!--Main Content-->
@@ -41,18 +42,16 @@
             @endforeach
         </div>
         <!--Main Content-->
-        <div class="sidebar">
+        <div class="sidebar single">
 
             <div class="section search">
                 <h2 class="section-title">Search</h2>
-                <form action="index.html" method="post">
+                <form action="#" method="post">
                     <input type="text" name="search-term" class="text-input" placeholder="search..">
                 </form>
             </div>
 
-
-
-            <div class="section popular">
+              <div class="section popular">
                 <h2 class="section-title">Popular</h2>
                 @foreach($blogs as $blog)
                 <div class="post clearfix ">
@@ -61,41 +60,21 @@
                 </div>
 
                 @endforeach
-
-            {{-- <div class="section topic">
-                <h2 class="section-title">Topics</h2>
-                 @foreach ($blogs  as $blog)
-                <ul>
-                    <li>
-                    <h6>
-                    <a href="#">{{$blog->title_en}}</a>
-                    </h6>
-                   </li>
-                </ul>
-                @endforeach
-
-            </div> --}}
+             </div>
 
 
         </div>
     </div>
-
-
-   </div>
-    <!--End Content-->
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-            <div class="pagination justify-content-center">
-               {{$posts->links()}}
-            </div>
-            </div>
+    <div class="d-flex justify-content-center">
+        {!!  $posts->links() !!}
         </div>
-    </div>
+</div>
 
-    <br><br><br>
-    <br><br><br>
-    <br><br><br>
+
+
+
+
+
 
 @endsection
 

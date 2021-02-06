@@ -16,7 +16,7 @@
     </div>
     </section>
    <!-- end breadcrumb-->
-   @foreach($services as $ser)
+   {{-- @foreach($services as $ser)
 
    <div class="details-services">
     <div class="row">
@@ -28,22 +28,43 @@
       <div class="col-lg-8 col-md-8 col-sm-12 desc">
 
        <h3>{{$ser->s_name_en}}</h3>
-       <p>{!!$ser->s_describe_en!!}
-        {{-- At MK we provide financial Audit Assurance services to companies of all sizes
-         from SMEs to joint stock companies. We realize that building and maintaining trust
-          has never been more important and more challenging and therefore being the independent
-           financial auditors, we perform the valuable role of trusted intermediary between the
-           providers of business information and its user, ranging from general public to private
-           businesses and decision makers. --}}
-        </p>
-
+       <p>{!!$ser->s_describe_en!!} </p>
         </div>
         </div>
 
       </div>
-      @endforeach
+      @endforeach --}}
+
+      @foreach($services as $ser)
+      <div class="py-5 service-26">
+        <div class="container">
+
+            <div class="row wrap-service-26">
+                <div class="col-md-7 align-self-center">
+                    <div class="max-box">
+                        <h3 class="mt-3">{{$ser->s_name_en}}</h3>
+                        <p class="mt-3">{!!$ser->s_describe_en!!}</p>
+                    </div>
+                </div>
+                <div class="col-md-5 col-md-5">
+                    <img src="{{asset('Front/images/3.jpg')}}" class="img-fluid" />
+                </div>
+            </div>
+          
+
+            <div class="row wrap-service-26 mt-4 pt-3">
+                <div class="col-md-6">
+                                <img src="{{asset('Front/images/3.jpg')}}" class="img-fluid" />
+                            </div>
+                <div class="col-md-6 align-self-center">
+                    <h3 class="mt-3">{{$ser->s_name_en}}</h3>
+                    <p class="mt-3">{!!$ser->s_describe_en!!}</p>
+                </div>
+            </div>
+        </div>
 
 
+    </div>
 
-
+    @endforeach
 @endsection

@@ -1,44 +1,45 @@
 @extends('layout.master')
 
 @section('content')
-
 <br><br><br>
 <br><br><br>
 
 
 
 
-
+    <!--Page Wrapper-->
+    <div class="page-wrapper">
      <!-- Start Content wrapper-->
     <div class="content clearfix">
-        <!--Main Content-->
+        <!--Main Content Wrapper-->
         <div class="main-content-wrapper">
-            @foreach($blogs as $blog)
-
+        @foreach($blogs as $blog)
         <div class="main-contant single">
            <h4 class="post-title">{{$blog->title_en}}</h4>
            <hr>
            <div class="post-content">
-            <img src="{{asset('/images/news/'.$blog->main_img)}}" style="width:750px;highet:200px" alt="">
+            <img src="{{asset('/images/news/'.$blog->main_img)}}"  alt="">
                <p>{!!$blog->content_en !!}</p>
 
            </div>
         </div>
-          @endforeach
-        </div>
+         </div>
+        @endforeach
+
         <!--Main Content-->
         <div class="sidebar single">
-            @foreach($blogs as $blog)
 
-            <div class="section popular">
-                <h2 class="section-title">Popular</h2>
-                <div class="post clearfix ">
-                    <img src="{{asset('/images/news/'.$blog->main_img)}}" style="width:90px;highet:90px" alt="">
-                    <a href='{{$blog->blog_id}}' class="title"><h6>{{Illuminate\Support\Str::limit($blog->title_en,30, $end='...') }}</h6></a>
-                </div>
-
+            <div class="section topic">
+                <h2 class="section-title">Topics</h2>
+                 @foreach ($blogs as $blog)
+                <ul>
+                    <li>
+                    <h6>
+                    <a href="#">{{$blog->title_en}}</a>
+                    </h6>
+                   </li>
+                </ul>
                 @endforeach
-
             </div>
 
 
@@ -54,27 +55,14 @@
                     <li><a href="#"> Life Lessons</a></li>
                 </ul>
             </div>
-            {{-- <div class="section topic">
-                <h2 class="section-title">Topics</h2>
-                 @foreach ($blogs  as $blog)
-                <ul>
-                    <li><h5>
-                    <a href="#">{{$blog->title_en}}
-                    </a></h5></li>
-                </ul>
-                @endforeach
 
-            </div> --}}
-
+           </div>
         </div>
     </div>
+
     <!--End Content-->
 
-    <br><br><br>
 
-    <br><br><br>
-    <br><br><br>
-    <br><br><br>
 
 @endsection
 

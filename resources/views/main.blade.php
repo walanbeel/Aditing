@@ -7,7 +7,7 @@
     <div id="mysild" class="carousel slide " data-ride="carousel" >
 
          <div class="carousel-inner">
-            <h2>We are a professional <br> firm of Certified Public<span> Accountants </span> <br>in Yemen .</h2>
+            <h6>We are a professional <br> firm of Certified Public<span> Accountants </span> <br>in Yemen .</h6>
             <div class="overly"></div>
              <div class="carousel-item  carousel-one active"></div>
              <div class="carousel-item carousel-tow"></div>

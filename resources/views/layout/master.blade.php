@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="{{app()->getLocale()}}" dir="<?php if(app()->getLocale() =='ar') {echo 'rtl';}?>">
   <head>
     @foreach ($sets as $set)
 
@@ -42,20 +42,55 @@
             <a href="{{$set->LinkedIn}}" class="linkedin"><i class="icofont-linkedin"></i></a>
             <a href="{{$set->Twitter}}" class="twitter"><i class="icofont-twitter"></i></a>
            </div>
-             <!-- <div class="col-sm info text-center text-sm-right">
-            <button class="get-quote"><i class="fa fa-user"></i>  login</button>
+              <div class="col-lg lang text-center text-sm-right">
+               <ul>
+                <?php if (app()->getLocale()=='ar')
+                {
+                 ?>
+                  <li class="nav-item ">
+                    <a class="nav-link menu btn btn-md" style="color: white ;font-size:16px;" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}">
+                     <?php if(app()->getLocale() =='ar')echo __('Arabic'); ?>
+                     <?php if(app()->getLocale() =='en')echo __('English');?></a>
+                </li>
+                <?php }else
+                {
+                    ?>
+                     <li class="nav-item ">
+                        <a class="nav-link menu btn btn-md" style="color: white ;font-size:16px;" href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}">
+                         <?php if(app()->getLocale() =='ar')echo __('Arabic');?>
+                         <?php if(app()->getLocale() =='en')echo __('English');?></a>
+                    </li>
+                    <?php
 
-              <a class="get-quote dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-language"></i> Langauge
-              </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#"><img src={{asset("Front/images/ar.png")}}> Arabic</a>
-                <a class="dropdown-item" href="#"><img src={{asset("Front/images/en.png")}}>  English</a>
-              </div>
+                }
+              ?>
+              </ul>
 
-            </div> -->
+            </div>
+            {{-- <ul>
+            <?php if (app()->getLocale()=='ar')
+            {
+             ?>
+              <li class="nav-item ">
+                <a class="nav-link menu btn btn-md" style="color: white ;font-size:16px;" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}">
+                 <?php if(app()->getLocale() =='ar')echo __('Arabic'); ?>
+                 <?php if(app()->getLocale() =='en')echo __('English');?></a>
+            </li>
+            <?php }else
+            {
+                ?>
+                 <li class="nav-item ">
+                    <a class="nav-link menu btn btn-md" style="color: white ;font-size:16px;" href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}">
+                     <?php if(app()->getLocale() =='ar')echo __('Arabic');?>
+                     <?php if(app()->getLocale() =='en')echo __('English');?></a>
+                </li>
+                <?php
 
-         </div>
+            }
+          ?>
+          </ul> --}}
+
+        </div>
        </div>
      </div>
 
@@ -87,8 +122,9 @@
          </li>
 
          <li class="nav-item">
-          <div class="dropdown show">
-            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link" href="{{ route('services.services')}}"> Services</a>
+          {{-- <div class="dropdown show">
+            <a class="nav-link dropdown-toggle" href="{{ route('services.services')}}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Services
             </a>
 
@@ -99,7 +135,7 @@
               <a class="dropdown-item" href="{{ route('services.services')}}">Due Diligence</a>
 
             </div>
-          </div>
+          </div> --}}
          </li>
          <li class="nav-item" disabled>
           <a class="nav-link" href="{{ route('books.show')}}">Library</a>
@@ -113,10 +149,10 @@
 
        </ul>
      </div>
-     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+     {{-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link"
                        href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"> {{ $properties['native'] }}
                         <span class="sr-only">(current)</span></a>
@@ -126,7 +162,7 @@
 
         </ul>
 
-    </div>
+    </div> --}}
    </div>
    </nav>
 </header>

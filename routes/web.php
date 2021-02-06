@@ -44,7 +44,7 @@ Route::group(['namespace'=>'Front','prefix'=>'blogs'],function(){
 Route::get('/news', [BlogController::class,'show_news'])->name('blogs.news');
 // Route::get('/news','BlogController@show_news');
 Route::get('deatails/{blog_id}', [BlogController::class,'show_deatails'])->name('deatails/{blog_id}');
-// Route::get('/books', [BookController::class,'show_books']);
+// Route::get('/topic/{blog_id}', [BookController::class,'show_topic'])->name('topic/{blog_id}');
 
 });
 
@@ -59,12 +59,13 @@ Route::group(['namespace'=>'Front','prefix'=>'books'],function(){
     Route::get('/file/dowenload/{file}','BookController@download')->name('download');
     // Route::get('deatails/{B_id}','BookController@show_book')->name('show');
     // Route::get('/show/{id}','BookController@show_book')->name('books.show');
-    Route::get('/show/{B_id}','BookController@show_more')->name('show');
+    // Route::get('/show/{B_id}','BookController@show_more')->name('showmore');
 
 
 
 });
 });
+Route::get('/show/{B_id}','Front\BookController@show_more');
 
 Route::group(['prefix' => LaravelLocalization::setLocale(),
   'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){

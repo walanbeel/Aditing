@@ -72,8 +72,8 @@
                                                         @enderror
                                                     </div>
                                                         <div class="form-group">
-                                                            <label for="inputText3" class="col-form-label">>{{__('messages.Phone')}} </label>
-                                                            <input type="text" class="form-control phone-inputmask" id="phone-mask" placeholder="{{__('messages.(1) 517-519')}}" name="mobile_num">
+                                                            <label for="inputText3" class="col-form-label">{{__('messages.Phone')}} </label>
+                                                            <input type="number" class="form-control phone-inputmask" id="phone-mask" placeholder="{{__('messages.(1) 517-519')}}" name="mobile_num">
                                                             @error('mobile_num')
                                                             <small class="form-text text-danger">{{$message}}</small>
                                                             @enderror
@@ -83,7 +83,12 @@
                                                         <div class="form-group">
                                                             <input type="hidden">
                                                             <label>{{__('messages.website icon ')}}</label>
-                                                            <input type="file" id="file-ip-1"  class="form-control-file" name="icon">
+                                                            <input type="file" id="file-ip-1-img"  class="form-control-file" name="icon" onchange="showPreviewimg(event);">
+                                                            <div class="timeline-item">
+                                                                <div class="timeline-body preview">
+                                                                  <img  id="file-preview" style="width:50px;height:50px;margin-top:10px;">
+                                                                </div>
+                                                                </div>
                                                             @error('icon')
                                                             <small class="form-text text-danger">{{$message}}</small>
                                                             @enderror
@@ -91,7 +96,12 @@
                                                     <div class="form-group">
                                                         <input type="hidden">
                                                         <label>{{__('messages.website logo')}}</label>
-                                                        <input type="file" id="file-ip-1"  class="form-control-file" name="logo">
+                                                        <input type="file" id="file-ip-1"  class="form-control-file" name="logo" onchange="showPreview(event);" >
+                                                        <div class="timeline-item">
+                                                        <div class="timeline-body preview">
+                                                          <img  id="file-ip-1-preview" style="width:50px;height:50px;margin-top:10px;">
+                                                        </div>
+                                                        </div>
                                                         @error('logo')
                                                         <small class="form-text text-danger">{{$message}}</small>
                                                         @enderror
@@ -158,5 +168,28 @@
                  </div>
                 </div>
             </div>
+            <!--Preview image-->
+            <script>
+                function showPreview(event)
+                {
+                   if(event.target.files.length >0){
+                       var src =URL.createObjectURL(event.target.files[0]);
+                       var preview =document.getElementById("file-ip-1-preview");
+                       preview.src=src;
+                       preview.style.display="block";
+                   }
+                }
+            </script>
+             <script>
+                function showPreviewimg(event)
+                {
+                   if(event.target.files.length >0){
+                       var src =URL.createObjectURL(event.target.files[0]);
+                       var preview =document.getElementById("file-preview");
+                       preview.src=src;
+                       preview.style.display="block";
+                   }
+                }
+            </script>
+             @endsection
 
-                            @endsection
