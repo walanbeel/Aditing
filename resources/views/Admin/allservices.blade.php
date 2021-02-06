@@ -169,9 +169,9 @@
                                    </div>
                                </div>
                              </div>
-                             <div class="d-flex justify-content-center">
+                             {{-- <div class="d-flex justify-content-center">
                                 {!!  $services -> links() !!}
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
 

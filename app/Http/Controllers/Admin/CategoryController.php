@@ -17,6 +17,8 @@ class CategoryController extends Controller
         $category= Category::all()->where('is_active',1);
 
         return view('Admin.category',['cate'=>$category]);
+        // return view('Admin.category',['cate'=>$category]);
+
 
     }
 

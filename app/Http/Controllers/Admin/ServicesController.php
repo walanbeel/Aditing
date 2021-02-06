@@ -81,9 +81,11 @@ class ServicesController extends Controller
 
         public function getAllService()
     {
-        $services = DB::table('services')->join('users','services.id','=','users.id')
-        ->join('categories','services.cat_id','=','categories.cat_id')
-        ->paginate(4); // return collection of all result*/
+        $services = DB::select('select * from services inner join users on users.id = services.id
+        inner join categories on categories.cat_id =services.cat_id');
+        // $services = DB::table('services')->join('users','services.id','=','users.id')
+        // ->join('categories','services.cat_id','=','categories.cat_id')
+        // ->paginate(4); // return collection of all result*/
 
        return view('Admin.allservices',['services'=> $services]);
     }
@@ -169,17 +171,25 @@ public function display_row($s_id )
     return view('update',$data);
                 }
                 public function is_active($s_id ){
-                    $affected1= Service::where('s_id ',$s_id )
-                    ->update(['is_active'=>'1']);
+
+                     $affected1=DB::update('update `services` set is_active = 1 where s_id= $s_id');
+                    // $affected1= Service::where('s_id ',$s_id )
+                    // ->update(['is_active'=>'1']);
                     // $affected = Category::where('is_delete',0)->paginate(25);
-                    $services =DB::table('services')->join('users','services.id','=','users.id')->get(); // return collection of all result*/
+                    $services =DB::table('services')->join('users','services.id','=','users.id')
+                    ->join('categories','services.cat_id','=','categories.cat_id')
+                    ->get(); // return collection of all result*/
                     return view('Admin.allservices',['services'=> $services]);
 
                     }
                     public function is_not_active($s_id ){
-                        $affected1= Service::where('s_id ',$s_id )
-                        ->update(['is_active'=>'0']);
-                        $services =DB::table('services')->join('users','services.id','=','users.id')->get(); // return collection of all result*/
+
+                         $affected1=DB::update('update `services` set is_active = 0 where s_id= $s_id');
+                        // $affected1= Service::where('s_id ',$s_id )
+                        // ->update(['is_active'=>'0']);
+                        $services =DB::table('services')->join('users','services.id','=','users.id')
+                        ->join('categories','services.cat_id','=','categories.cat_id')
+                        ->get(); // return collection of all result*/
                         return view('Admin.allservices',['services'=>  $services]);
 
                         }

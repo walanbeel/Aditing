@@ -33,6 +33,7 @@ class BlogController extends Controller
         $blogs =Blog::join('categories','blogs.cat_id','=','categories.cat_id')
         ->select('categories.cat_name_en','blogs.*')
         ->where('blogs.blog_id',$blog_id);
+        
 
     // return view('deatails_news',['blogs'=> $blogs ]);
 
@@ -42,19 +43,20 @@ class BlogController extends Controller
         $blogs=$blogs->get();
         $posts=['blogs' => $blogs];
         $sets=['sets'=> $sets];
+
         return  view('deatails_news',$posts,$sets);
 
     }
 
-
-
-
-        // $services = Service::where('s_id',$s_id)->get();
-        // $category = Category::select()->get();
-
-        // return view('Admin.editservices',['services'=>  $services , 'category' => $category]);
-
     }
+
+    // public function show_topic()
+    // {
+    //     $topics =DB::table('blogs')->select()->orderBy('blog_id','DESC')
+    //         ->limit(6)->get();
+    //         $topics=['topics'=> $topics];
+    //         return  view('deatails_news',$topics );
+    // }
 
 
 }

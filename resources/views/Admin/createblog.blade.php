@@ -93,7 +93,12 @@
                                         <input type="hidden">
                                         <div class="form-group">
                                         <label for="exampleFormControlFile1">{{__('messages.News main img')}}</label>
-                                        <input type="file" id="file-ip-1"  class="form-control-file"  accept="image/*" name="main_img"  placeholder="{{__('messages.main img')}}">
+                                        <input type="file" id="file-ip-1"  class="form-control-file"  accept="image/*" name="main_img" onchange="showPreview(event);"  placeholder="{{__('messages.main img')}}">
+                                        <div class="timeline-item">
+                                            <div class="timeline-body preview">
+                                              <img  id="file-ip-1-preview" style="width:50px;height:50px;margin-top:10px;">
+                                            </div>
+                                            </div>
                                         @error('main_img')
                                         <small  class="form-text text-danger">{{$message}}</small>
                                         @enderror
@@ -149,4 +154,16 @@
                 tinycomments_author: 'Author name',
             });
           </script>
+
+           <script>
+            function showPreview(event)
+            {
+               if(event.target.files.length >0){
+                   var src =URL.createObjectURL(event.target.files[0]);
+                   var preview =document.getElementById("file-ip-1-preview");
+                   preview.src=src;
+                   preview.style.display="block";
+               }
+            }
+        </script>
             @endsection

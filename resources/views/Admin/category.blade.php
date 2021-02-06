@@ -106,6 +106,10 @@
                                 <div class="input-group mb-3">
                                     <select class="custom-select" name="parent" id="inputGroupSelect02">
                                          <option value='0'>parent</opiton>
+                                            @foreach($cate as $item)
+                                            <option value="{{$item->cat_id}}"> {{$item->cat_name_en}}</opiton>
+
+                                            @endforeach
                                     </select>
                                 </div>
                             </div>
