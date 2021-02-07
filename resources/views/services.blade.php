@@ -47,14 +47,14 @@
                     </div>
                 </div>
                 <div class="col-md-5 col-md-5">
-                    <img src="{{asset('Front/images/3.jpg')}}" class="img-fluid" />
+                    <img src="{{asset('/images/services/'.$ser->ser_images)}}" class="img-fluid" />
                 </div>
             </div>
-          
+
 
             <div class="row wrap-service-26 mt-4 pt-3">
                 <div class="col-md-6">
-                                <img src="{{asset('Front/images/3.jpg')}}" class="img-fluid" />
+                                <img src="{{asset('/images/services/'.$ser->ser_images)}}" class="img-fluid" />
                             </div>
                 <div class="col-md-6 align-self-center">
                     <h3 class="mt-3">{{$ser->s_name_en}}</h3>

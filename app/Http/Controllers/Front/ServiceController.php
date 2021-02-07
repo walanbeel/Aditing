@@ -11,7 +11,8 @@ class ServiceController extends Controller
     //
     public function show_services()
     {
-    $services =DB::table('services')->join('users','services.id','=','users.id')
+
+    $services =DB::table('services')->where('services.is_active','1')->join('users','services.id','=','users.id')
     ->join('categories','services.cat_id','=','categories.cat_id')
     ->get();
     $sets =DB::table('settings')->join('users','settings.id','=','users.id')

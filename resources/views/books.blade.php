@@ -72,7 +72,7 @@
                     </div>
                     <div class="product-content">
                         <h3 class="title"><a href="#" class="btnread-more" onclick="decryptfun({{$book->B_id}})">{{$book->B_name_en}}</a></h3>
-                        <a href="#"><p>{{$book->authoer_name_en}}</p></a>
+                        <a href="{{route('download', $book->file)}}"><p>{{$book->authoer_name_en}}</p></a>
                     </div>
                 </div>
             </div>

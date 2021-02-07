@@ -67,6 +67,7 @@
                                       @elseif ( Config::get('app.locale') == 'ar' )
                                       <th scope="col">{{__('messages.s_name_ar')}}</th>
                                       @endif
+                                      <th scope="col">{{__('messages.ser_images')}}</th>
                                       @if ( Config::get('app.locale') == 'en')
                                       <th scope="col" style="width:200px">{{__('messages.s_describe_en')}}</th>
                                       @elseif ( Config::get('app.locale') == 'ar' )
@@ -88,6 +89,9 @@
                                       @elseif ( Config::get('app.locale') == 'ar' )
                                       <td>{{$service->s_name_ar}}</td>
                                       @endif
+                                      {{-- <td style="width:100px"><img src="{{asset('/images/services/'.$service->ser_images)}}" alt="imgpost" style="width:80%;hight:50%"></td> --}}
+                                      <td><img src="{{asset('/images/services/'.$service->ser_images)}}" alt="imgset"  style="width:60px;height:50px"></td>
+
                                       @if ( Config::get('app.locale') == 'en')
                                       <td style="width:200px">{!! substr($service->s_describe_en, 0,255) !!}{!!strlen($service->s_describe_en) > 255 ? "..." : "" !!}</td>
                                       @elseif ( Config::get('app.locale') == 'ar' )
@@ -169,9 +173,9 @@
                                    </div>
                                </div>
                              </div>
-                             {{-- <div class="d-flex justify-content-center">
+                             <div class="d-flex justify-content-center">
                                 {!!  $services -> links() !!}
-                                </div> --}}
+                                </div>
                             </div>
                         </div>
 
