@@ -33,17 +33,32 @@ class ServicesController extends Controller
             return redirect()->back()->withErrors($validator)->withInputs($request->all());
          }
         //insert,
+        $services=new Service;
         $id=Auth::user()->id;
         $active='';
         if(isset($request->is_active))
         $active=1;
         else
         $active=0;
+
+        $ser_images='';
+        $imgName='';
+        $attchment='';
+        if($request->hasfile('ser_images'))
+        {
+           $imgFile =$request->file('ser_images') ;
+           $imgName =time().basename($_FILES["ser_images"]["name"]);
+           $ser_images=$imgFile->move('images/services/',$imgName);
+           $services->ser_images=$imgName;
+        }
+
+
         Service::create([
              'id'=>$id,
              'cat_id'=>$request->cat_id,
             's_name_en' =>$request->s_name_en,
             's_name_ar'=>$request->s_name_ar,
+            'ser_images'=>$imgName,
             's_describe_en'=>$request->s_describe_en,
             's_describe_ar'=>$request->s_describe_ar,
             'is_active'=>$active,
@@ -63,6 +78,8 @@ class ServicesController extends Controller
                 's_describe_en'       =>  __('messages.service name required'),
                 's_describe_ar.unique'  =>  __('messages.service  must be unique'),
                 's_describe_en.unique'  =>  __('messages.service  must be unique'),
+                // 'ser_images.required'    =>  __('messages.service image required'),
+
 
 
             ];
@@ -74,6 +91,7 @@ class ServicesController extends Controller
                 's_name_ar' => 'required|unique:categories,cat_name_ar',
                 's_describe_en' => 'required|unique:categories,cat_name_en',
                 's_describe_ar' => 'required|unique:categories,cat_name_ar',
+                // 'ser_images' => 'required|image',
 
             ];
         }
@@ -81,11 +99,12 @@ class ServicesController extends Controller
 
         public function getAllService()
     {
-        $services = DB::select('select * from services inner join users on users.id = services.id
-        inner join categories on categories.cat_id =services.cat_id');
-        // $services = DB::table('services')->join('users','services.id','=','users.id')
-        // ->join('categories','services.cat_id','=','categories.cat_id')
-        // ->paginate(4); // return collection of all result*/
+        // $services = DB::select('select * from services inner join users on users.id = services.id
+        // inner join categories on categories.cat_id =services.cat_id');
+
+        $services = DB::table('services')->join('users','services.id','=','users.id')
+        ->join('categories','services.cat_id','=','categories.cat_id')
+        ->paginate(4); // return collection of all result*/
 
        return view('Admin.allservices',['services'=> $services]);
     }
@@ -111,34 +130,71 @@ class ServicesController extends Controller
  ################## Update services ##################
 
  public function updateservice(Request $request)
-    {
+ {
+        // dd($request);
+        $service=Service::where('s_id',$request->s_id);
         $id=Auth::user()->id;
-        $services=new Service;
+        // $active='';
+        // if(isset($request->is_active))
+        // $active=1;
+        // else
+        // $active=0;
+        $imgName='';
+         $ser_images='';
 
-        $active='';
-        if(isset($request->is_active))
-        $active=1;
-        else
-        $active=0;
+        if($service->exists())
+        {
+            $service->cat_id=$request->input('cat_id');
+            $service->s_name_en=$request->input('s_name_en');
+            $service->s_name_ar=$request->input('s_name_ar');
+            $service->id=$request->input('id');
+            $service->s_describe_en=$request->input('s_describe_en');
+            $service->s_describe_ar=$request->input('s_describe_ar');
+            $service->is_active=$request->input('is_active');
 
-        $services::where('s_id',$request->s_id)
-        ->update(['id'=>$id,
-        'cat_id'=>$request->cat_id,
-        's_name_en'=>$request->s_name_en,
-        's_name_ar'=>$request->s_name_ar,
-        's_describe_en'=>$request->s_describe_en,
-        's_describe_ar'=>$request->s_describe_ar,
-        'is_active'=>$active,
-         ]);
+            if($request->ser_image != '')
+            {
+
+                if($request->hasfile('ser_images'))
+                {
+                   $imgFile =$request->file('ser_images') ;
+                   $imgName =time().basename($_FILES["ser_images"]["name"]);
+                   $ser_images=$imgFile->move('images/services/',$imgName);
+                   $ser_images=$imgName;
+                }
+
+
+                    $service->update(['id'=> $service->$id,
+                    'cat_id'=>$ $service->cat_id,
+                    's_name_en'=>$service->s_name_en,
+                    's_name_ar'=>$service->s_name_ar,
+                    'ser_images'=>$service->ser_images,
+                    's_describe_en'=>$service->s_describe_en,
+                    's_describe_ar'=>$service->s_describe_ar,
+                    'is_active'=>$service->is_active,
+                    ]);
+
+            }
+
+        else{
+            $service->update(['id'=> $service->$id,
+            'cat_id'=>$ $service->cat_id,
+            's_name_en'=>$service->s_name_en,
+            // 's_name_ar'=>$service->s_name_ar,
+            's_describe_en'=>$service->s_describe_en,
+            's_describe_ar'=>$service->s_describe_ar,
+            'is_active'=>$service->is_active,
+             ]);
+
+
+            }
 
         // print_r($request->s_id);
         $servicesss['services'] = Service::get();
-
       return redirect('/services/allservices')->with($servicesss);
-     //  return view('Admin.allservices',['services'=> $services]);
 
-
-    }
+}
+   }
 
 
 ################## Update services ##################
@@ -148,11 +204,7 @@ class ServicesController extends Controller
 
         $services=Service::where('s_id',$s_id)->delete();
 
-        // if(!$s_id)
 
-        // return redirect()->back()->with(['error' => __('messages.category not exist')]);
-
-        // $services->delete();
 
         return redirect()
             ->route('services.all')

@@ -50,9 +50,11 @@
 
                                     <form method="POST" enctype="multipart/form-data" action="{{route('services.update')}}">
                                         @foreach($services  as $item)
+
                                       @csrf
                                         <div class="col-12">
-                                            <input type="hidden" name="set_id" value="{{$item->set_id}}">
+                                            {{-- {{ print_r() }} --}}
+                                            <input type="hidden" name="s_id" value="{{$item->s_id}}">
                                             <input type="hidden" name="id" value="{{$item->id}}">
 
                                             <div class="form-group">
@@ -73,6 +75,17 @@
                                               @enderror
                                             </div>
                                           </div>
+                                          <div class="col-12">
+                                            <input type="hidden">
+                                            <label for="exampleFormControlFile1"> @error('ser_images')<small>{{$message}}</small> @enderror</label>
+                                            <input type="file" id="file-ip-1" onchange="showPreview(event);"  accept="image/*" class="form-control-file" name='ser_images[]' value="{{$item->ser_images}}">
+                                            <input type="hidden"   accept="image/*" name='ser_images2' value="{{$item->ser_images}}">
+                                            <div class="timeline-item">
+                                                <div class="timeline-body preview">
+                                                  <img  id="file-preview" style="width:50px;height:50px;margin-top:10px;">
+                                                </div>
+                                                </div>
+                                        </div>
                                           <div class="col-12">
                                           <input type="hidden">
                                           <div class="form-group">
@@ -153,4 +166,17 @@
                     </div>
                    </div>
                    @endforeach
+
+
+                   <script>
+                    function showPreview(event)
+                    {
+                       if(event.target.files.length >0){
+                           var src =URL.createObjectURL(event.target.files[0]);
+                           var preview =document.getElementById("file-preview");
+                           preview.src=src;
+                           preview.style.display="block";
+                       }
+                    }
+                </script>
               @endsection

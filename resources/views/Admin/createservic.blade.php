@@ -43,7 +43,7 @@
 
                                   <br>
 
-                                <form method="POST" action="{{route('services.add')}}">
+                                <form method="POST" action="{{route('services.add')}}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="col-12">
                                         <input type="hidden">
@@ -65,6 +65,19 @@
                                           @enderror
                                         </div>
                                       </div>
+                                      <div class="form-group">
+                                        <input type="hidden">
+                                        <label>{{__('messages.website ser_images ')}}</label>
+                                        <input type="file" id="file-ip-1-img"  class="form-control-file" name="ser_images" onchange="showPreviewimg(event);">
+                                        <div class="timeline-item">
+                                            <div class="timeline-body preview">
+                                              <img  id="file-preview" style="width:50px;height:50px;margin-top:10px;">
+                                            </div>
+                                            </div>
+                                        @error('ser_images')
+                                        <small class="form-text text-danger">{{$message}}</small>
+                                        @enderror
+                                    </div>
                                       <div class="col-12">
                                       <input type="hidden">
                                       <div class="form-group">
@@ -98,7 +111,7 @@
                                               </div>
                                           </div>
                                         </div>
-                                        
+
                                     {{-- <div class="col-12">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" value="1" name="active" id="customCheck1">
@@ -131,5 +144,15 @@
                 </div>
                </div>
             </div>
-
+            <script>
+                function showPreviewimg(event)
+                {
+                   if(event.target.files.length >0){
+                       var src =URL.createObjectURL(event.target.files[0]);
+                       var preview =document.getElementById("file-preview");
+                       preview.src=src;
+                       preview.style.display="block";
+                   }
+                }
+            </script>
           @endsection

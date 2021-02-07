@@ -106,7 +106,7 @@ class BlogController extends Controller
                 'title_ar' => 'required|max:255',
                 'content_en' => 'required',
                 'content_ar' => 'required',
-                'main_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+                'main_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
             ];
         }
 
