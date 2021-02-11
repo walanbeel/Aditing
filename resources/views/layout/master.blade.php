@@ -49,16 +49,16 @@
                  ?>
                   <li class="nav-item ">
                     <a class="nav-link menu btn btn-md" style="color: white ;font-size:16px;" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}">
-                     <?php if(app()->getLocale() =='ar')echo __('Arabic'); ?>
-                     <?php if(app()->getLocale() =='en')echo __('English');?></a>
+                     <?php if(app()->getLocale() =='ar')echo __('Ara'); ?>
+                     <?php if(app()->getLocale() =='en')echo __('Eng');?></a>
                 </li>
                 <?php }else
                 {
                     ?>
                      <li class="nav-item ">
                         <a class="nav-link menu btn btn-md" style="color: white ;font-size:16px;" href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}">
-                         <?php if(app()->getLocale() =='ar')echo __('Arabic');?>
-                         <?php if(app()->getLocale() =='en')echo __('English');?></a>
+                         <?php if(app()->getLocale() =='ar')echo __('Ara');?>
+                         <?php if(app()->getLocale() =='en')echo __('Eng');?></a>
                     </li>
                     <?php
 
@@ -115,36 +115,36 @@
      <div class="collapse navbar-collapse" id="main-nav">
        <ul class="navbar-nav ml-auto">
          <li class="nav-item ">
-           <a class="nav-link active" href="{{ route('home.master')}}">Home <span class="sr-only">(current)</span></a>
+           <a class="nav-link active" href="{{ route('home.master')}}">{{__('messages.Home')}} <span class="sr-only">(current)</span></a>
          </li>
          <li class="nav-item ">
-           <a class="nav-link" href="{{ route('home.about')}}">About</a>
+           <a class="nav-link" href="{{ route('home.about')}}">{{__('messages.About us')}} </a>
          </li>
 
          <li class="nav-item">
-            <a class="nav-link" href="{{ route('services.services')}}"> Services</a>
-          {{-- <div class="dropdown show">
+            {{-- <a class="nav-link" href="{{ route('services.services')}}"> Services</a> --}}
+           <div class="dropdown show">
             <a class="nav-link dropdown-toggle" href="{{ route('services.services')}}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Services
+               {{__('messages.Services')}}
             </a>
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="{{ route('services.services')}}">Financial Statement Audit</a>
-              <a class="dropdown-item" href="{{ route('services.services')}}">Review</a>
-              <a class="dropdown-item" href="{{ route('services.services')}}">Agreed Upon Procedures</a>
-              <a class="dropdown-item" href="{{ route('services.services')}}">Due Diligence</a>
+              <a class="dropdown-item" href="{{ route('services.services')}}">{{__('messages.eIFRS')}}</a>
+              <a class="dropdown-item" href="{{ route('services.services')}}">{{__('messages.IFRS shop')}}</a>
+              <a class="dropdown-item" href="{{ route('services.services')}}">{{__('messages.Products and services')}}</a>
+              {{-- <a class="dropdown-item" href="{{ route('services.services')}}">Due Diligence</a> --}}
 
             </div>
-          </div> --}}
+          </div>
          </li>
          <li class="nav-item" disabled>
-          <a class="nav-link" href="{{ route('books.show')}}">Library</a>
+          <a class="nav-link" href="{{ route('books.show')}}">{{__('messages.Library')}}</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link" href="{{ route('blogs.news')}}">News</a>
+          <a class="nav-link" href="{{ route('blogs.news')}}">{{__('messages.News')}}</a>
         </li>
          <li class="nav-item">
-           <a class="nav-link" href="{{ route('contact.contact-us')}}">Contact Us</a>
+           <a class="nav-link" href="{{ route('contact.contact-us')}}">{{__('messages.Contact Us')}}</a>
          </li>
 
        </ul>
@@ -179,25 +179,25 @@
           <div class="row">
                  <div class="col-sm-12 col-lg-6 ">
                      <div class="web-info">
-                        <h2> <span>About</span><span>Us</span> </h2>
+                        <h4> <span> {{__('messages.Us')}}</span><span> {{__('messages.About')}}</span> </h4>
                          <p>
                             {!!Illuminate\Support\Str::limit($set->aboutus_en,370, $end='...') !!}
                         </p>
 
-                             <a href="{{ route('home.about')}}" class="web-info-btn">Read More</a>
+                             <a href="{{ route('home.about')}}" class="web-info-btn">{{__('messages.Read More')}} <i class="icofont-double-right"></i></a>
                      </div>
                  </div>
                  <div class="col-sm-6 col-lg-3 ">
                    <div class="helpful-links">
-                        <h2>Helpful Links</h2>
+                        <h2>{{__('messages.Helpful Links')}}</h2>
                         <div class="row">
                           <div class="col">
                              <ul class="list-unstyled">
-                                <li> <a href="{{ route('home.about')}}">About</a></li>
-                                <li><a href="{{ route('services.services')}}">services</a></li>
-                                <li><a href="{{ route('books.show')}}">Libaray</a></li>
-                                <li><a href="{{ route('blogs.news')}}">News</a></li>
-                                <li><a href="{{ route('contact.contact-us')}}">Contact</a></li>
+                                <li> <a href="{{ route('home.about')}}">{{__('messages.About us')}} </a></li>
+                                <li><a href="{{ route('services.services')}}">{{__('messages.Services')}}</a></li>
+                                <li><a href="{{ route('books.show')}}">{{__('messages.Library')}}</a></li>
+                                <li><a href="{{ route('blogs.news')}}">{{__('messages.News')}}</a></li>
+                                <li><a href="{{ route('contact.contact-us')}}">{{__('messages.Contact Us')}}</a></li>
                              </ul>
                           </div>
 
@@ -215,14 +215,14 @@
                    </div>
 
                  </div>
-                 <div class="col-sm-6 col-lg-3 ">
+                 <div class="col-md-6 col-lg-3 ">
                    <div class="contact-us">
-                        <h2>Contact Us</h2>
+                        <h2>{{__('messages.Contact Us')}}</h2>
                         <ul class="list-unstyled">
-                          <li><i class="fa fa-map-marker"></i>
+                          <li><i class="icofont-google-map"></i>
                             {{$set->location}}</li>
-                          <li><i  class="fa fa-phone"></i> +0{{$set->mobile_num}}</li>
-                           <li><i  class="fa fa-envelope"></i>
+                          <li><i  class=" icofont-phone"></i> +0{{$set->mobile_num}}</li>
+                           <li><i  class="icofont-envelope"></i>
                             <a href="mailto:info@mkyacpa.com">{{$set->email_web}}</a></li>
                         </ul>
                    </div>

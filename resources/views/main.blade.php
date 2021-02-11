@@ -41,9 +41,9 @@
             <div class="col-md-12 text-center mb-4">
                 <div class="service-title">
                     <h2>Our Services</h2>
-                    <p style="color: #777;">Services By sharing a common set of values, our teams create tailored solutions and consistently deliver high levels of professional<br> advice across
-                       Audit, Assurance, Tax and Consultancy services. Our specialist teams proactively engage with you to understand your<br>needs and create tailored solutions. Our experts work
-                       with you on a wide range of issues from Assurance, Tax and Business<br> Consulting delivered through a proactive, partner-led approach that helps you to achieve your ambitions.</p>
+                    <p style="color: #777;  text-align: justify;">Services By sharing a common set of values, our teams create tailored solutions and consistently deliver high levels of professional advice across
+                       Audit, Assurance, Tax and Consultancy services. Our specialist teams proactively engage with you to understand your needs and create tailored solutions. Our experts work
+                       with you on a wide range of issues from Assurance, Tax and Business Consulting delivered through a proactive, partner-led approach that helps  you to achieve your ambitions.</p>
 
                   </div>
             </div>
@@ -68,7 +68,7 @@
             <div class="col-lg-4 col-md-6 text-center mb-3">
               <div class="service-wrap">
                   <div class="service-icon">
-                      <i class="fa fa-exclamation-triangle"></i>
+                      <i class="icofont-ban"></i>
                   </div>
                    <h4> Risk Assurance</h4>
                    <ul class="list-sevice">
@@ -146,7 +146,7 @@
             </div>
         </div>
         <div class="col-sm-12 text-center mb-4">
-          <a href="about.html" class="btn-service">View All <i class="fas fa-angle-double-right"></i></a>
+          <a href="about.html" class="btn-service">View All <i class="icofont-double-right"></i></a>
       </div>
     </div>
    </section>
@@ -395,7 +395,7 @@
     <div class="container">
         <div class="col-xl-12 text-center mb-4">
             <div class="team-title">
-                <h2>OUR TEAM</h2>
+                <h2>Our Members</h2>
               </div>
         </div>
 

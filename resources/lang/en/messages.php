@@ -226,6 +226,25 @@ return [
 
 
 
+################ home page ###########################
+################  menu #########################
+"Home" => 'Home',
+"About us" => 'About us',
+"Services" => 'Services',
+"eIFRS"=> 'eIFRS',
+"IFRS shop" =>'FRS shop',
+"Products and services" => 'Products and services',
+"Library" => 'Library',
+"News"=>'News',
+"Contact Us"=>'Contact Us',
+"About"=>'About',
+"About"=>'About',
+"Us"=>'Us',
+"Helpful Links"=>'Helpful Links ',
+
+################ home page ###########################
+
+
 
 
 

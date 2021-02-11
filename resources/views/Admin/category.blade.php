@@ -80,7 +80,14 @@
                           </div>
                       </div>
                     </div>
-
+                    {{-- <div class="col-12 ">
+                        <div class="form-group col-sm-8">
+                              <div class="form-check">
+                                <input type="random" checked class="form-check-input" name="status" id="active">
+                                <label class="form-check-label" for="exampleCheck2">status</label>
+                              </div>
+                          </div>
+                        </div> --}}
 
 
                       {{-- <div class="col-12">

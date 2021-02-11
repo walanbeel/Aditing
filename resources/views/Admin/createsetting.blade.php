@@ -71,14 +71,32 @@
                                                          <small class="form-text text-danger">{{$message}}</small>
                                                         @enderror
                                                     </div>
-                                                        <div class="form-group">
+                                                    <div class="form-row">
+                                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-2">
                                                             <label for="inputText3" class="col-form-label">{{__('messages.Phone')}} </label>
                                                             <input type="number" class="form-control phone-inputmask" id="phone-mask" placeholder="{{__('messages.(1) 517-519')}}" name="mobile_num">
                                                             @error('mobile_num')
                                                             <small class="form-text text-danger">{{$message}}</small>
                                                             @enderror
-                                                        </div>
 
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-2">
+                                                            <label for="inputText3" class="col-form-label">{{__('messages.Tellphone')}} </label>
+                                                            <input type="number" class="form-control phone-inputmask" id="phone-mask" placeholder="{{__('messages.(967) 777-777-777')}}" name="phone_num">
+                                                            @error('phone_num')
+                                                            <small class="form-text text-danger">{{$message}}</small>
+                                                            @enderror
+
+                                                        </div>
+                                                    </div>
+
+                                                        {{-- <div class="form-group">
+                                                            <label for="inputText3" class="col-form-label">{{__('messages.Phone')}} </label>
+                                                            <input type="number" class="form-control phone-inputmask" id="phone-mask" placeholder="{{__('messages.(1) 517-519')}}" name="mobile_num">
+                                                            @error('mobile_num')
+                                                            <small class="form-text text-danger">{{$message}}</small>
+                                                            @enderror
+                                                        </div> --}}
 
                                                         <div class="form-group">
                                                             <input type="hidden">
@@ -107,7 +125,32 @@
                                                         @enderror
                                                     </div>
 
-                                                    <div class="form-group">
+                                                    <div class="form-row">
+
+                                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                            <label for="inputEmail">{{__('messages.Facebook address')}}</label>
+                                                            <input id="inputEmail" type="url" placeholder="name@example.com" class="form-control" name="Facebook">
+                                                            @error('Facebook')
+                                                             <small class="form-text text-danger">{{$message}}</small>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                            <label for="inputEmail">{{__('messages.LinkedIn address')}}</label>
+                                                            <input id="inputEmail" type="url" placeholder="name@example.com" class="form-control" name="LinkedIn">
+                                                            @error('LinkedIn')
+                                                            <small class="form-text text-danger">{{$message}}</small>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                            <label for="inputEmail">{{__('messages.Twitter address')}}</label>
+                                                            <input id="inputEmail" type="url" placeholder="name@example.com" class="form-control" name="Twitter">
+                                                            @error('Twitter')
+                                                              <small class="form-text text-danger">{{$message}}</small>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+
+                                                    {{-- <div class="form-group">
                                                         <label for="inputEmail">{{__('messages.Facebook address')}}</label>
                                                         <input id="inputEmail" type="url" placeholder="name@example.com" class="form-control" name="Facebook">
                                                         @error('Facebook')
@@ -127,7 +170,7 @@
                                                         @error('Twitter')
                                                         <small class="form-text text-danger">{{$message}}</small>
                                                         @enderror
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="form-group">
                                                         <label for="inputEmail">{{__('messages.Email address')}}</label>
                                                         <input id="inputEmail" type="email"  name="email_web" placeholder="name@example.com" class="form-control">

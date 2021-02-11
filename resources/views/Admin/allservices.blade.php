@@ -80,6 +80,7 @@
                                     </tr>
                                   </thead>
                                   <tbody>
+                                  <?php print_r($services);?>
                                     @foreach($services as $service)
 
                                     <tr>
@@ -103,6 +104,7 @@
                                         @if($service->is_active==0)
 
                                         <div class="form-group">
+                                            <input type="text" value={{$service->s_id}}>
                                             <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                                             <input onclick="myFunction{{$service->s_id}}()" type="checkbox" class="custom-control-input" id="customSwitch{{$service->s_id}}">
                                             <label class="custom-control-label" for="customSwitch{{$service->s_id}}"></label>
@@ -110,6 +112,7 @@
                                         </div>
                                         @elseif($service->is_active == 1)
                                         <div class="form-group">
+                                            <input type="text" value={{$service->s_id}}>
                                             <div  class="custom-control custom-switch custom-switch-on-success custom-switch-off-danger ">
                                             <input onclick="myFunction{{$service->s_id}}()" checked type="checkbox" class="custom-control-input" id="customSwitch{{$service->s_id}}">
                                             <label class="custom-control-label" for="customSwitch{{$service->s_id}}"></label>
@@ -173,9 +176,9 @@
                                    </div>
                                </div>
                              </div>
-                             <div class="d-flex justify-content-center">
+                             {{-- <div class="d-flex justify-content-center">
                                 {!!  $services -> links() !!}
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
 

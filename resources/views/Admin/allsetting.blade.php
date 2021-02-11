@@ -36,11 +36,17 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title m-b-0">Settings</h5>
+                                <h5 class="card-title m-b-0">Services</h5>
+                                <div class="text-right mb-3">
+                                    <a class="btn btn-outline-warning so_form_btn" href="{{ route('setting.create')}}">
+                                        <i class="fa fa-plus" aria-hidden="true"></i> Add Setting</a>
+                                </div>
+
                             </div>
                             @if(Session::has('success'))
 
                                 <div class="alert alert-success">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
                                     {{Session::get('success')}}
                                 </div>
                                 @endif
@@ -48,6 +54,7 @@
 
                             @if(Session::has('error'))
                                 <div class="alert alert-danger">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
                                     {{Session::get('error')}}
                                 </div>
                             @endif
@@ -65,6 +72,7 @@
                                       <th scope="col">{{__('messages.Website_name_ar')}}</th>
                                       @endif
                                       <th scope="col">{{__('messages.mobile_num')}}</th>
+                                      <th scope="col">{{__('messages.phone_num')}}</th>
                                       <th scope="col">{{__('messages.location')}}</th>
                                       <th scope="col">{{__('messages.email_web')}}</th>
                                       @if ( Config::get('app.locale') == 'en')
@@ -91,6 +99,7 @@
                                       <td>{{$setting->Website_name_ar}}</td>
                                       @endif
                                       <td>{{$setting->mobile_num}}</td>
+                                      <td>{{$setting->phone_num}}</td>
                                       <td>{{$setting->location}}</td>
                                       <td>{{$setting->email_web}}</td>
                                       @if ( Config::get('app.locale') == 'en')

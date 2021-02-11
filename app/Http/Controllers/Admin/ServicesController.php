@@ -99,12 +99,12 @@ class ServicesController extends Controller
 
         public function getAllService()
     {
-        // $services = DB::select('select * from services inner join users on users.id = services.id
-        // inner join categories on categories.cat_id =services.cat_id');
+        $services = DB::select('select * from services inner join users on users.id = services.id
+        inner join categories on categories.cat_id =services.cat_id');
 
-        $services = DB::table('services')->join('users','services.id','=','users.id')
-        ->join('categories','services.cat_id','=','categories.cat_id')
-        ->paginate(4); // return collection of all result*/
+        // $services = DB::table('services')->join('users','services.id','=','users.id')
+        // ->join('categories','services.cat_id','=','categories.cat_id')
+        // ->paginate(4); // return collection of all result*/
 
        return view('Admin.allservices',['services'=> $services]);
     }
@@ -131,70 +131,103 @@ class ServicesController extends Controller
 
  public function updateservice(Request $request)
  {
-        // dd($request);
-        $service=Service::where('s_id',$request->s_id);
-        $id=Auth::user()->id;
-        // $active='';
-        // if(isset($request->is_active))
-        // $active=1;
-        // else
-        // $active=0;
-        $imgName='';
-         $ser_images='';
 
-        if($service->exists())
-        {
-            $service->cat_id=$request->input('cat_id');
-            $service->s_name_en=$request->input('s_name_en');
-            $service->s_name_ar=$request->input('s_name_ar');
-            $service->id=$request->input('id');
-            $service->s_describe_en=$request->input('s_describe_en');
-            $service->s_describe_ar=$request->input('s_describe_ar');
-            $service->is_active=$request->input('is_active');
+    $service=new Service;
+    $id=Auth::user()->id;
+    $active='';
+    if(isset($request->is_active))
+    $active=1;
+    else
+    $active=0;
+    $image='';
+    $ser_images='';
+    $attchment='';
+    $imgName='';
+    if($request->hasfile('ser_images'))
+    {
+    $attchmentFile =$request->file('ser_images') ;
+    $num=count($attchmentFile);
+    for($i=0;$i<$num;$i++){
+    $ext=$attchmentFile[$i]->getClientOriginalExtension();
+    $imgName =rand(123456,999999).".".$ext;
+    $ser_images=$attchmentFile[$i]->move('images/services/',$imgName);
+    $attchment.=$imgName;
 
-            if($request->ser_image != '')
-            {
+    }}
+    else{
+       $imgName=$request->ser_images2;
+    }
+            $service::where('s_id',$request->s_id)
+            ->update(['id'=>$id,
+                's_name_en'=>$request->s_name_en,
+                's_name_ar' =>$request->s_name_ar,
+                'ser_images'=>$imgName,
+                's_describe_en'=>$request->s_describe_en,
+                's_describe_ar'=>$request->s_describe_ar,
+                'is_active'=>$active,
+                 ]);
 
-                if($request->hasfile('ser_images'))
-                {
-                   $imgFile =$request->file('ser_images') ;
-                   $imgName =time().basename($_FILES["ser_images"]["name"]);
-                   $ser_images=$imgFile->move('images/services/',$imgName);
-                   $ser_images=$imgName;
-                }
-
-
-                    $service->update(['id'=> $service->$id,
-                    'cat_id'=>$ $service->cat_id,
-                    's_name_en'=>$service->s_name_en,
-                    's_name_ar'=>$service->s_name_ar,
-                    'ser_images'=>$service->ser_images,
-                    's_describe_en'=>$service->s_describe_en,
-                    's_describe_ar'=>$service->s_describe_ar,
-                    'is_active'=>$service->is_active,
-                    ]);
-
-            }
-
-        else{
-            $service->update(['id'=> $service->$id,
-            'cat_id'=>$ $service->cat_id,
-            's_name_en'=>$service->s_name_en,
-            // 's_name_ar'=>$service->s_name_ar,
-            's_describe_en'=>$service->s_describe_en,
-            's_describe_ar'=>$service->s_describe_ar,
-            'is_active'=>$service->is_active,
-             ]);
+                 $servicesss['services'] = Service::get();
+                   return redirect('/services/allservices')->with($servicesss);
 
 
-            }
 
-        // print_r($request->s_id);
-        $servicesss['services'] = Service::get();
-      return redirect('/services/allservices')->with($servicesss);
 
 }
-   }
+//     $service=Service::where('s_id',$request->s_id);
+//     $id=Auth::user()->id;
+//     dd($request);
+//     if($service->exists())
+//     {
+//         $service->cat_id=$request->input('cat_id');
+//         $service->s_name_en=$request->input('s_name_en');
+//         $service->s_name_ar=$request->input('s_name_ar');
+//         $service->id=$request->input('id');
+//         $service->s_describe_en=$request->input('s_describe_en');
+//         $service->s_describe_ar=$request->input('s_describe_ar');
+//         $service->is_active=$request->input('is_active');
+
+
+//         if($request->ser_image != '')
+//         {
+//             if($request->hasfile('ser_images'))
+//             {
+//                $imgFile =$request->file('ser_images') ;
+//                $imgName =time().basename($_FILES["ser_images"]["name"]);
+//                $ser_images=$imgFile->move('images/services/',$imgName);
+//                $ser_images=$imgName;
+//             }
+//             $service->update(['id'=> $service->$id,
+//             'cat_id'=>$service->cat_id,
+//             's_name_en'=>$service->s_name_en,
+//             's_name_ar'=>$service->s_name_ar,
+//             'ser_images'=>$service->ser_images,
+//             's_describe_en'=>$service->s_describe_en,
+//             's_describe_ar'=>$service->s_describe_ar,
+//             'is_active'=>$service->is_active,
+//             ]);
+
+
+//         }else{
+//             $service->update(['id'=> $service->$id,
+//             'cat_id'=>$service->cat_id,
+
+//             's_name_en'=>$service->s_name_en,
+//              's_name_ar'=>$service->s_name_ar,
+//             's_describe_en'=>$service->s_describe_en,
+//             's_describe_ar'=>$service->s_describe_ar,
+//             'is_active'=>$service->is_active,
+//             ]);
+
+
+//         }
+//     }else{
+//         return "wala";
+//     }
+//     $servicesss['services'] = Service::get();
+//     return redirect('/services/allservices')->with($servicesss);
+
+//    }
 
 
 ################## Update services ##################
@@ -223,20 +256,22 @@ public function display_row($s_id )
     return view('update',$data);
                 }
                 public function is_active($s_id ){
-
-                     $affected1=DB::update('update `services` set is_active = 1 where s_id= $s_id');
+                    $affected1= Service::where('s_id ',$s_id)
+                    ->update(['is_active'=>'1']);
+                    //  $affected1=DB::update('update `services` set is_active = 1 where s_id= $s_id');
                     // $affected1= Service::where('s_id ',$s_id )
                     // ->update(['is_active'=>'1']);
                     // $affected = Category::where('is_delete',0)->paginate(25);
                     $services =DB::table('services')->join('users','services.id','=','users.id')
                     ->join('categories','services.cat_id','=','categories.cat_id')
-                    ->get(); // return collection of all result*/
+                    ->paginate(4); // return collection of all result*/
                     return view('Admin.allservices',['services'=> $services]);
 
                     }
                     public function is_not_active($s_id ){
-
-                         $affected1=DB::update('update `services` set is_active = 0 where s_id= $s_id');
+                        $affected1= Service::where('s_id ',$s_id )
+                        ->update(['is_active'=>'0']);
+                        //  $affected1=DB::update('update `services` set is_active = 0 where s_id= $s_id');
                         // $affected1= Service::where('s_id ',$s_id )
                         // ->update(['is_active'=>'0']);
                         $services =DB::table('services')->join('users','services.id','=','users.id')

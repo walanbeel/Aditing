@@ -54,18 +54,23 @@ Route::get('deatails/{blog_id}', [BlogController::class,'show_deatails'])->name(
 Route::group(['prefix' => LaravelLocalization::setLocale(),
   'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){
 Route::group(['namespace'=>'Front','prefix'=>'books'],function(){
-    Route::get('/books','BookController@show_books')->name('books.show');
+    Route::get('/book','BookController@show_books')->name('books.show');
     Route::get('/files/{B_id}','BookController@show')->name('books.view');
     Route::get('/file/dowenload/{file}','BookController@download')->name('download');
-    // Route::get('deatails/{B_id}','BookController@show_book')->name('show');
-    // Route::get('/show/{id}','BookController@show_book')->name('books.show');
-    // Route::get('/show/{B_id}','BookController@show_more')->name('showmore');
+    // Route::get('book/{B_id}','BookController@show_more')->name('deatails/{B_id}');
+    Route::get('/deatail/{B_id}','BookController@deatail')->name('/deatail/{B_id}');
+
+    // Route::get('/filter','BookController@filter')->name('books.filter');
+      Route::get('/books/{B_id}','BookController@filter')->name('filter');
+
+      Route::get('/books/{cat_id}','BookController@cate_filter')->name('catgory');
 
 
 
 });
 });
-Route::get('/show/{B_id}','Front\BookController@show_more');
+//Route::get('/books/{id}','Front/BookController@filter')->name('filter');
+
 
 Route::group(['prefix' => LaravelLocalization::setLocale(),
   'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){
@@ -90,6 +95,7 @@ Route::group(['namespace'=>'Front','prefix'=>'services'],function(){
 });
 
 });
+
 
 
 
