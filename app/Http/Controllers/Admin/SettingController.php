@@ -57,6 +57,7 @@ class SettingController extends Controller
             'Website_name_en' =>$request->Website_name_en,
             'Website_name_ar'=>$request->Website_name_ar,
             'mobile_num'=>$request->mobile_num,
+            'phone_num'=>$request->phone_num,
             'location'=>$request->location,
             'icon'=>$iconName,
             'logo'=>$imgName,
@@ -71,7 +72,7 @@ class SettingController extends Controller
                ]);
 
 
-                return redirect()->route('experienc.all')->with(['success' => 'تم اضافه الصنف بنجاح ']);
+                return redirect()->route('setting.all')->with(['success' => 'تم اضافه  بنجاح ']);
             }
 
 
@@ -82,6 +83,7 @@ class SettingController extends Controller
                 'Website_name_en.required'  =>  __('messages.Website name en must be required'),
                 'Website_name_ar.required'  =>  __('messages.Website name ar must be required'),
                 'mobile_num.required'  =>  __('messages.mobile number  must be required'),
+                'phone_num.required'  =>  __('messages.phone number  must be required'),
                 'location.required'  =>  __('messages.location  must be required'),
                 'icon.required'  =>  __('messages.icon  must be required'),
                 'logo.required'  =>  __('messages.logo  must be required'),
@@ -101,10 +103,11 @@ class SettingController extends Controller
             return $rules = [
                 'Website_name_en' => 'required',
                 'Website_name_ar' => 'required',
-                'mobile_num' => 'required|min:11|numeric',
+                'mobile_num' => 'required|min:13|numeric',
+                'phone_num'=>'required|min:13|numeric',
                 'location' => 'required|max:255',
-                'icon' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
-                'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+                'icon' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
+                'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg,.webp',
                 'email_web' => 'required',
                 'aboutus_en' => 'required',
                 'aboutus_ar' => 'required',
@@ -187,6 +190,7 @@ class SettingController extends Controller
         'Website_name_en'=>$request->Website_name_en,
         'Website_name_ar'=>$request->Website_name_ar,
         'mobile_num'=>$request->mobile_num,
+        'phone_num'=>$request->phone_num,
         'location'=>$request->location,
         'email_web'=>$request->email_web,
         'aboutus_en'=>$request->aboutus_en,

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Front;
+
 use App\Models\Category;
 use App\Models\Book;
 use Illuminate\Support\Facades\DB;
@@ -12,44 +13,38 @@ use League\CommonMark\Block\Element\Document;
 class BookController extends Controller
 {
     //
-    public function show_books()
+    public function show_books(Request $request)
     {
         // $books=Book::all();
-    $books =DB::table('books')->paginate(8);
-
-    $sets =DB::table('settings')->join('users','settings.id','=','users.id')
-    ->get();
-     return  view('books',['books'=> $books],['sets'=> $sets]);
-
-
+        $library = DB::table('books')->join('categories', 'categories.cat_id', '=', 'books.cat_id')->paginate(8);
+        $category = Category::all()->where('is_active', 1)->where('status', 1);
+        $sets = DB::table('settings')->join('users', 'settings.id', '=', 'users.id')
+            ->get();
+        return  view('books', ['books' => $library, 'sets' => $sets, 'category' => $category]);
     }
     /******************** download ***************************/
     public function download($file)
     {
-     return response()->download(public_path() . "/images/books/".$file);
-
+        return response()->download(public_path() . "/images/books/" . $file);
     }
     /******************** download ***************************/
+    ###################### Filtering ###########################
 
-    public function show_more($B_id)
+    public function filter($B_id)
     {
-        // echo $B_id;
-        $sets =DB::table('books')->join('users','books.id','=','users.id')
-        ->get();
-        $book =Book::join('categories','categories.cat_id','=','books.cat_id')
+        $sets = DB::table('settings')->join('users', 'settings.id', '=', 'users.id')->get();
+        $category = Category::all()->where('is_active', 1)->where('status', 1);
+        $books = DB::table('books')->join('categories', 'categories.cat_id', '=', 'books.cat_id')->where('books.cat_id', '=', $B_id)->get();
+        return view('books', ['books' => $books, 'sets' => $sets, 'category' => $category]);
+    }
+    ###################### Filtering ###########################
 
-        ->select('categories.cat_name_en','books.*')
-        ->where('books.B_id',$B_id)->get();
-        // return  view('books',['book'=> $book],['sets'=> $sets]);
-        return  $book;
-        echo json_encode($book);
+    //  public function cate_filter()
+    //  {
 
-        // $book=Book::all();
-        // return  $book;
-        // $book=DB::select('select * from books , categories where books.B_id = 22 and books.cat_id=categories.cat_id');
-
-
-         echo json_encode($book);
-
-}
+    //     $category= Category::all()->where('is_active',1);
+    //                 //   dd($category);
+    //                 $data=['category'=>$category];
+    //      return view('books',$data);
+    //  }
 }

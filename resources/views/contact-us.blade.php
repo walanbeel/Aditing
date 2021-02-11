@@ -32,7 +32,7 @@
 
         <div class="col-lg-6">
           <div  class="info-box mb-4">
-            <i class="fa fa-map-marker mb-4"></i>
+            <i class="icofont-google-map mb-4"></i>
             <h3>Our Address</h3>
             <p> {{$set->location}}</p>
           </div>
@@ -40,7 +40,7 @@
 
         <div class="col-lg-3 col-md-6">
           <div class="info-box  mb-4">
-            <i  class="fa fa-envelope"></i>
+            <i  class="icofont-envelope"></i>
             <h3>Email Us</h3>
             <p><a href="{{$set->email_web}}">{{$set->email_web}}</a></p>
           </div>
@@ -48,7 +48,7 @@
 
         <div class="col-lg-3 col-md-6">
           <div class="info-box  mb-4">
-            <i  class="fa fa-phone"></i>
+            <i  class="icofont-phone"></i>
             <h3>Call Us</h3>
             <p> +0{{$set->mobile_num}}</p>
 

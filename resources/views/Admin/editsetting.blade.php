@@ -73,13 +73,31 @@
                                                          <small class="form-text text-danger">{{$message}}</small>
                                                         @enderror
                                                     </div>
-                                                        <div class="form-group">
+                                                    <div class="form-row">
+                                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-2">
+                                                            <label>{{__('messages.Phone')}}</label>
+                                                            <input type="number" class="form-control phone-inputmask" id="phone-mask" placeholder="" name="mobile_num" value="{{$item->mobile_num}}">
+                                                            @error('mobile_num')
+                                                            <small class="form-text text-danger">{{$message}}</small>
+                                                            @enderror
+
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-2">
+                                                            <label >{{__('messages.Tellphone')}} </label>
+                                                            <input type="number" class="form-control phone-inputmask" id="phone-mask"  placeholder="" name="phone_num" value="{{$item->phone_num}}">
+                                                            @error('phone_num')
+                                                            <small class="form-text text-danger">{{$message}}</small>
+                                                            @enderror
+
+                                                        </div>
+                                                       </div>
+                                                        {{-- <div class="form-group">
                                                             <label>{{__('messages.Phone')}}</label>
                                                             <input type="text" class="form-control phone-inputmask" id="phone-mask" placeholder="" name="mobile_num" value="{{$item->mobile_num}}">
                                                             @error('mobile_num')
                                                             <small class="form-text text-danger">{{$message}}</small>
                                                             @enderror
-                                                        </div>
+                                                        </div> --}}
                                                         {{-- <div class="col-12">
                                                             <input type="hidden">
                                                             <input type="file" id="file-ip-1"  class="form-control-file" name="icon" value="{{$item->icon}}">
@@ -88,13 +106,17 @@
                                                         <input type="hidden">
                                                         <input type="file" id="file-ip-1"  class="form-control-file" name="logo" value="{{$item->logo}}">
                                                     </div> --}}
+                                                    
                                                     <div class="form-group">
                                                         <input type="hidden">
                                                         <label for="exampleFormControlFile1"> @error('icon')<small>{{$message}}</small> @enderror</label>
                                                         <input type="file" id="file-ip-1" onchange="showPreview(event);"  accept="image/*" class="form-control-file" name='icon[]' value="{{$item->icon}}">
                                                         <input type="hidden"   accept="image/*" name='icon2'value="{{$item->icon}}">
-                                                       <br>
-                                                        <img  class="img-fluid" id="file-ip-1-preview" width="70">
+                                                        <div class="timeline-item">
+                                                            <div class="timeline-body preview">
+                                                              <img  id="file-preview" style="width:50px;height:50px;margin-top:10px;">
+                                                            </div>
+                                                            </div>
                                                         @error('icon')
                                                         <small class="form-text text-danger">{{$message}}</small>
                                                         @enderror
@@ -104,14 +126,43 @@
                                                         <label for="exampleFormControlFile1"> @error('logo')<small>{{$message}}</small> @enderror</label>
                                                         <input type="file" id="file-ip-1" onchange="showPreview(event);"  accept="image/*" class="form-control-file" name='logo[]' value="{{$item->logo}}">
                                                         <input type="hidden" accept="image/*" class="form-control-file" name='logo2' value="{{$item->logo}}">
-                                                       <br>
-                                                        <img  class="img-fluid" id="file-ip-1-preview" width="70">
+                                                        <div class="timeline-item">
+                                                            <div class="timeline-body preview">
+                                                              <img  id="file-preview" style="width:50px;height:50px;margin-top:10px;">
+                                                            </div>
+                                                            </div>
                                                         @error('logo')
                                                         <small class="form-text text-danger">{{$message}}</small>
                                                         @enderror
                                                     </div>
 
-                                                    <div class="form-group">
+
+                                                    <div class="form-row">
+
+                                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                            <label for="inputEmail">{{__('messages.Facebook address')}}</label>
+                                                            <input id="inputEmail" type="url" placeholder="name@example.com" class="form-control" name="Facebook" value="{{$item->Facebook}}">
+                                                            @error('Facebook')
+                                                             <small class="form-text text-danger">{{$message}}</small>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                            <label for="inputEmail">{{__('messages.LinkedIn address')}}</label>
+                                                            <input id="inputEmail" type="url" placeholder="name@example.com" class="form-control" name="LinkedIn" value="{{$item->LinkedIn}}">
+                                                            @error('LinkedIn')
+                                                            <small class="form-text text-danger">{{$message}}</small>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                            <label for="inputEmail">{{__('messages.Twitter address')}}</label>
+                                                            <input id="inputEmail" type="url" placeholder="name@example.com" class="form-control" name="Twitter" value="{{$item->Twitter}}">
+                                                            @error('Twitter')
+                                                              <small class="form-text text-danger">{{$message}}</small>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+
+                                                    {{-- <div class="form-group">
                                                         <label for="inputEmail">{{__('messages.Facebook address')}}</label>
                                                         <input id="inputEmail" type="url" placeholder="name@example.com" class="form-control" name="Facebook" value="{{$item->Facebook}}">
                                                         @error('Facebook')
@@ -131,7 +182,7 @@
                                                         @error('Twitter')
                                                         <small class="form-text text-danger">{{$message}}</small>
                                                         @enderror
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="form-group">
                                                         <label for="inputEmail">{{__('messages.Email address')}}</label>
                                                         <input id="inputEmail" type="email"  name="email_web" placeholder="name@example.com" class="form-control" value="{{$item->email_web}}">
@@ -141,7 +192,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleFormControlTextarea1">{{__('messages.Page Content en')}}</label>
-                                                        <textarea class="form-control" name="aboutus_en"  id="exampleFormControlTextarea1" rows="3">{{$item->aboutus_en}}</textarea>
+                                                        <textarea class="form-control" name="aboutus_en"  id="exampleFormControlTextarea1" rows="3">{!!$item->aboutus_en!!}</textarea>
                                                         @error('aboutus_en')
                                                         <small class="form-text text-danger">{{$message}}</small>
                                                         @enderror
@@ -150,14 +201,14 @@
                                                     <div class="form-group">
                                                         <label for="exampleFormControlTextarea1">{{__('messages.Page Content ar')}}</label>
                                                         <textarea class="form-control" name="aboutus_ar"  id="exampleFormControlTextarea1"
-                                                        rows="3">{{$item->aboutus_ar}}</textarea>
+                                                        rows="3">{!! $item->aboutus_ar !!}</textarea>
                                                         @error('aboutus_ar')
                                                         <small class="form-text text-danger">{{$message}}</small>
                                                         @enderror
                                                     </div>
 
                                                     <div class="col-12">
-                                                        <button type="submit" class="btn btn-secondary">{{__('messages.Save Change')}}</button>
+                                                        <button type="submit" class="btn btn-primary">{{__('messages.Save Change')}}</button>
                                                         </div>
                                                 </form>
                                             </div>
@@ -175,4 +226,16 @@
                 </div>
             </div>
 
-                            @endsection
+            <script>
+                function showPreview(event)
+                {
+                   if(event.target.files.length >0){
+                       var src =URL.createObjectURL(event.target.files[0]);
+                       var preview =document.getElementById("file-ip-1-preview");
+                       preview.src=src;
+                       preview.style.display="block";
+                   }
+                }
+            </script>
+
+           @endsection

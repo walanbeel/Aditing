@@ -130,7 +130,7 @@ class BookController extends Controller
         $books = DB::table('books')->join('users','books.id','=','users.id')
 
                ->join('categories','books.cat_id','=','categories.cat_id')
-               ->paginate(4);
+               ->paginate(6);
 
         return view('Admin.allbooks',['books'=> $books]);
     }

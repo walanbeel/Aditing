@@ -5,114 +5,128 @@
 <br><br><br>
 <br><br><br>
 <br><br><br>
+
 <div class="container wrapper">
-
-    <br>
-    <h2>IFRS and IAS Summaries</h2>
-
-    <hr>
-    <div class="button-group  pull-right">
-        <button class="btn btn-small btn-primary" data-toggle="portfilter" data-target="all">
-            All
-        </button>
-        <button class="btn btn-small btn-primary" data-toggle="portfilter" data-target="consulting">
-            consulting
-        </button>
-        <button class="btn btn-small btn-primary" data-toggle="portfilter" data-target="Auditing">
-            Auditing
-        </button>
-        <button class="btn btn-small btn-primary" data-toggle="portfilter" data-target="Tax">
-            Tax
-        </button>
-    </div>
-    <div class="clearfix"></div>
-
-    <br>
-    <script type="text/javascript" ></script>
-<script>
-  function decryptfun(id) {
-    console.log(id);
-    $('#myModal_acc').modal('show');
-    $('#details').html('wala');
-
-    console.log(id);
-    $.ajax({
-            url: '/show/'+ id,
-            type: 'get',
-            dataType: 'json',
-            success: function (response) {
-                console.log("insaefdxfg sexx");
-                console.log(response);
-
-                if (response.length == 0) {
-                    console.log("not found thing");
-                } else {
-                    var car = '<div class="row"><div class="col-md-6 mb-4 mb-md-0"><div id="mdb-lightbox-ui"></div><div class="mdb-lightbox"><div class="row product-gallery mx-1"> <div class="col-12 mb-0"><figure class="view overlay rounded z-depth-1 main-img"> <a href="#"> <img class="pic-1"  src="/images/books/'+response[0].cover+'"> </a></figure> </div></div></div></div> <div class="col-md-6"><h5>'+response[0].B_name_en+'</h5> <p class="pt-1">'+response[0].B_preface_en+'</p><div class="table-responsive"><table class="table table-sm table-borderless mb-0"><tbody><tr><th class="pl-0 w-25" scope="row"><strong>Author</strong></th> <td>'+response[0].authoer_name_en+'</td></tr><tr><th class="pl-0 w-25" scope="row"><strong>Category</strong></th> <td>'+response[0].cat_id+'</td></tr></tbody></table> </div><hr> <button type="button" class="btn btn-outline-warning"><i class="fas fa-download"></i>Download</button> <button type="button" class="btn btn-light btn-md mr-1 mb-2">cancel</button></div> </div>';
-
-                    console.log(response[0]);
-
-                }
-            },
-        });
-  }
-</script>
     <div class="container">
         <div class="row">
-            @foreach($books as $book)
+            <div class="col-lg-12">
+                <div class="main">
+                   <a href="{{route('books.show')}}" class="btn btn-small btn-primary" data-toggle="portfilter" data-target="all">
+                        all
+                  </a>
+
+                @foreach ($category as $cat)
+                 <a href="{{route('filter',$cat->cat_id)}}" class="btn btn-small btn-primary" data-toggle="portfilter" data-target="all">
+                    {{$cat->cat_name_en}}
+                 </a>
+                @endforeach
+     @foreach($books as $item)
+    <div class="button-group  pull-center">
+
+    </div>
+
+@endforeach
+    <div class="clearfix"></div>
+    <br><br><br>
+
+    <div class="container">
+        <div class="row">
+            @foreach($books  as $book)
             <div class="col-md-3 col-sm-6"  data-tag="Tax">
                 <div class="product-grid4">
                     <div class="product-image4">
                         <a href="#">
                             <img class="pic-1" src="{{asset('/images/books/'.$book->cover)}}">
                         </a>
-                        {{-- <ul class="social">
-                            <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="{{route('download', $book->file)}}" data-tip="Quick download"><i class="fa fa-download"></i></a></li>
-                        </ul> --}}
+
                     </div>
                     <div class="product-content">
                         <h3 class="title"><a href="#" class="btnread-more" onclick="decryptfun({{$book->B_id}})">{{$book->B_name_en}}</a></h3>
-                        <a href="{{route('download', $book->file)}}"><p>{{$book->authoer_name_en}}</p></a>
+                        <a data-toggle="modal" data-target="#myModal{{$book->B_id}}"><p>{{$book->authoer_name_en}}</p></a>
                     </div>
+                    <div class="product-image4">
+                    <ul class="social">
+                        <li><a href="{{route('download', $book->file)}}" data-tip="download"><i class="fa fa-download"></i></a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#myModal{{$book->B_id}}" data-tip="view"><i class="fa fa-eye"></i></a></li>
+                    </ul>
                 </div>
+            </div>
             </div>
  <!-- The Modal -->
- <div class="modal fade  product_view" id="myModal_acc">
-    <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title"></h3>
-                </div>
-                <!-- Modal body -->
-                <div class="modal-body" id="details">
-                </div>
-                <div class="modal-footer">
-                </div>
-            </div>
+
+ <!-- The Modal -->
+ <div class="modal fade bd-example-modal-lg" id="myModal{{$book->B_id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h6 class="modal-title">{{$book->B_name_en}}</h6>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+         <section class="mb-5">
+
+             <div class="row">
+              <div class="col-md-6 mb-4 mb-md-0">
+                 <div id="mdb-lightbox-ui"></div>
+                 <div class="mdb-lightbox">
+                   <div class="col-12 mb-0 ml-6">
+                     <figure class="view overlay rounded z-depth-1 main-img">
+                        <img src="{{asset('/images/books/'.$book->cover)}}"
+                           class="img-fluid z-depth-1" data-size="710x823">
+                     </figure>
+                   </div>
+                 </div>
+               </div>
+               <div class="col-md-6">
+                   <h5>{{$book->B_name_en}}</h5>
+                 <p class="pt-1">{!! Illuminate\Support\Str::limit($book->B_preface_en,600, $end='...') !!}</p>
+                 <div class="table-responsive">
+                   <table class="table table-sm table-borderless mb-0">
+                     <tbody>
+                       <tr>
+                         <th class="pl-0 w-25" scope="row"><strong>Author</strong></th>
+                         <td>{{$book->authoer_name_en}}</td>
+                       </tr>
+                       <tr>
+                         <th class="pl-0 w-25" scope="row"><strong>Catgory</strong></th>
+                         <td>{{$book->cat_name_en}}</td>
+                       </tr>
+
+                     </tbody>
+                   </table>
+                 </div>
+               </div>
+             </div>
+           </section>
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
     </div>
+  </div>
     @endforeach
 
                  </div>
                 </div>
 
+                {{-- <div class="d-flex justify-content-center mt-4">
+                    {!!  $books->links() !!}
+                    </div> --}}
    </div>
+</div>
+</div>
+</div>
+</div>
 
 
-   <div class="d-flex justify-content-center mt-4">
-    {!!  $books->links() !!}
-    </div>
-
-   {{-- <div class="container">
-       <div class="row">
-           <div class="col-xl-12">
-           <div class="pagination justify-content-center">
-              {{$books->links()}}
-           </div>
-           </div>
-       </div>
-   </div> --}}
 
 
 <script >

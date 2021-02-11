@@ -58,7 +58,7 @@
                                             <input type="file" id="file-ip-1" onchange="showPreview(event);"  accept="image/*" class="form-control-file" name='t_profile[]' value="{{$item->t_profile}}">
                                             <input type="hidden"   accept="image/*" name='t_profile2' value="{{$item->t_profile}}">
                                            <br>
-                                            <img  class="img-fluid" id="file-ip-1-preview" width="70">
+                                            <img  class="img-fluid" id="file-ip-1-preview" name='t_profile[]' src="{{URL::asset('/images/teams/'.$item->t_profile)}}"  value="{{$item->t_profile}}" style="width:50px;height:50px">
                                             @error('t_profile')
                                             <small class="form-text text-danger">{{$message}}</small>
                                              @enderror
@@ -140,4 +140,17 @@
                     </div>
                    </div>
                    @endforeach
+
+                   <script>
+                    function showPreview(event)
+                    {
+                       if(event.target.files.length >0){
+                           var src =URL.createObjectURL(event.target.files[0]);
+                           var preview =document.getElementById("file-ip-1-preview");
+                           preview.src=src;
+                           preview.style.display="block";
+                       }
+                    }
+                </script>
+                
               @endsection
