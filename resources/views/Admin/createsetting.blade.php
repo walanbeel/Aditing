@@ -180,7 +180,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleFormControlTextarea1">{{__('messages.Page Content en')}}</label>
-                                                        <textarea class="form-control" name="aboutus_en"  id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                        <textarea class="form-control" name="aboutus_en"  id="mytextarea" rows="3"></textarea>
                                                         @error('aboutus_en')
                                                         <small class="form-text text-danger">{{$message}}</small>
                                                         @enderror
@@ -188,7 +188,7 @@
 
                                                     <div class="form-group">
                                                         <label for="exampleFormControlTextarea1">{{__('messages.Page Content ar')}}</label>
-                                                        <textarea class="form-control" name="aboutus_ar"  id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                        <textarea class="form-control" name="aboutus_ar"  id="mytextarea" rows="3"></textarea>
                                                         @error('aboutus_ar')
                                                         <small class="form-text text-danger">{{$message}}</small>
                                                         @enderror
@@ -212,6 +212,17 @@
                 </div>
             </div>
             <!--Preview image-->
+            <script src="https://cdn.tiny.cloud/1/8khmkr26c2my4f7ivzjbi7v6gc06qs3rs6cr8r24x5meautp/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>          <script>
+                tinymce.init({
+                  selector: '#mytextarea',
+                  plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker textcolor colorpicker',
+                    toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table ',
+                    toolbar_mode: 'floating',
+                    tinycomments_mode: 'embedded',
+                    tinycomments_author: 'Author name',
+                });
+              </script>
+              
             <script>
                 function showPreview(event)
                 {

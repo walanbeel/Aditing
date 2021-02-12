@@ -67,6 +67,11 @@
                                       @elseif ( Config::get('app.locale') == 'ar' )
                                       <th scope="col">{{__('messages.s_name_ar')}}</th>
                                       @endif
+                                      @if ( Config::get('app.locale') == 'en')
+                                      <th scope="col">{{__('messages.sub_services_en')}}</th>
+                                      @elseif ( Config::get('app.locale') == 'ar' )
+                                      <th scope="col">{{__('messages.sub_services_ar')}}</th>
+                                      @endif
                                       <th scope="col">{{__('messages.ser_images')}}</th>
                                       @if ( Config::get('app.locale') == 'en')
                                       <th scope="col" style="width:200px">{{__('messages.s_describe_en')}}</th>
@@ -80,7 +85,7 @@
                                     </tr>
                                   </thead>
                                   <tbody>
-                                  <?php print_r($services);?>
+                                  {{-- <?php print_r($services);?> --}}
                                     @foreach($services as $service)
 
                                     <tr>
@@ -89,6 +94,11 @@
                                       <td>{{$service->s_name_en}}</td>
                                       @elseif ( Config::get('app.locale') == 'ar' )
                                       <td>{{$service->s_name_ar}}</td>
+                                      @endif
+                                      @if ( Config::get('app.locale') == 'en')
+                                      <td>{!!$service->sub_services_en!!}</td>
+                                      @elseif ( Config::get('app.locale') == 'ar' )
+                                      <td>{!!$service->sub_services_ar!!}</td>
                                       @endif
                                       {{-- <td style="width:100px"><img src="{{asset('/images/services/'.$service->ser_images)}}" alt="imgpost" style="width:80%;hight:50%"></td> --}}
                                       <td><img src="{{asset('/images/services/'.$service->ser_images)}}" alt="imgset"  style="width:60px;height:50px"></td>
@@ -104,7 +114,6 @@
                                         @if($service->is_active==0)
 
                                         <div class="form-group">
-                                            <input type="text" value={{$service->s_id}}>
                                             <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                                             <input onclick="myFunction{{$service->s_id}}()" type="checkbox" class="custom-control-input" id="customSwitch{{$service->s_id}}">
                                             <label class="custom-control-label" for="customSwitch{{$service->s_id}}"></label>
@@ -112,7 +121,6 @@
                                         </div>
                                         @elseif($service->is_active == 1)
                                         <div class="form-group">
-                                            <input type="text" value={{$service->s_id}}>
                                             <div  class="custom-control custom-switch custom-switch-on-success custom-switch-off-danger ">
                                             <input onclick="myFunction{{$service->s_id}}()" checked type="checkbox" class="custom-control-input" id="customSwitch{{$service->s_id}}">
                                             <label class="custom-control-label" for="customSwitch{{$service->s_id}}"></label>

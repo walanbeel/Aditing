@@ -50,7 +50,9 @@
           <div class="info-box  mb-4">
             <i  class="icofont-phone"></i>
             <h3>Call Us</h3>
-            <p> +0{{$set->mobile_num}}</p>
+            <p>0{{$set->mobile_num}} ||  {{$set->phone_num}}</p>
+
+
 
           </div>
         </div>

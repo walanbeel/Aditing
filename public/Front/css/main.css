@@ -11,6 +11,9 @@
 {
   box-sizing: border-box;
 }
+body{
+    direction: ltr;
+}
 a:hover {
   /* color: #3b8af2; */
   text-decoration: none;
@@ -127,6 +130,20 @@ a {
   margin-left: 5px;
 }
 /* End Upper Bar */
+@media only screen and (orientation: landscape) {
+    .upper-bar{
+        display: flex;
+    }
+    .upper-bar .contact-info{
+        margin-top: -7px;
+        margin-left: -7px;
+      }
+      .upper-bar .social-links
+      {
+            margin-top:14px;
+            margin-left: 632px;
+       }
+  }
 /* Start NavBar */
 #header{
   background: #fff;
@@ -240,6 +257,17 @@ header .navbar-brand{
       padding-bottom:10px;
       padding-top:10px;
   }
+}
+@media only screen and (max-width: 640px){
+    .navbar-toggler {
+        margin-left: 213px;
+    }
+    .nav-link{
+
+        margin-right: -71px;
+        margin-top: -19px;
+
+    }
 }
 /* End NavBar */
 /* Start Silder */

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{app()->getLocale()}}" dir="<?php if(app()->getLocale() =='ar') {echo 'rtl';}?>">
+<html>
   <head>
     @foreach ($sets as $set)
 
@@ -18,7 +18,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="{{asset('Front/css/main.css')}}" />
+    <link rel="stylesheet" href="{{asset(__('messages.css-file'))}}" />
 
   </head>
   <body>
@@ -42,7 +42,7 @@
             <a href="{{$set->LinkedIn}}" class="linkedin"><i class="icofont-linkedin"></i></a>
             <a href="{{$set->Twitter}}" class="twitter"><i class="icofont-twitter"></i></a>
            </div>
-              <div class="col-lg lang text-center text-sm-right">
+              <div class="col-lg col-sm lang text-center text-sm-right">
                <ul>
                 <?php if (app()->getLocale()=='ar')
                 {
@@ -221,7 +221,8 @@
                         <ul class="list-unstyled">
                           <li><i class="icofont-google-map"></i>
                             {{$set->location}}</li>
-                          <li><i  class=" icofont-phone"></i> +0{{$set->mobile_num}}</li>
+                          <li><i class="icofont-phone"></i>0{{$set->mobile_num}} <i class="icofont-whatsapp"></i>{{$set->phone_num}}
+                          </li>
                            <li><i  class="icofont-envelope"></i>
                             <a href="mailto:info@mkyacpa.com">{{$set->email_web}}</a></li>
                         </ul>

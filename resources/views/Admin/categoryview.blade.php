@@ -72,7 +72,7 @@
                         </div>
                       </div>
                       <div class="col-12">
-                          
+
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" value="1" name="active" id="customCheck1">
                             <label class="custom-control-label" for="customCheck1">is Active</label>
@@ -89,6 +89,15 @@
                                 </div>
                             </div> --}}
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group col-sm-8">
+                                <label>{{__('messages.Type Category')}}  </label>
+                                <select class="custom-select" name="status" id="inputGroupSelect02">
+                                    <option value="1">Books</opiton>
+                                       <option value="2"> Services</opiton>
+                               </select>
+                              </div>
+                            </div>
 
                             <div class="col-12">
                                 <label>Parent </label>

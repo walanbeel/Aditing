@@ -242,6 +242,6 @@ return [
 "About"=>'الشركة',
 "Helpful Links"=>'الروابط المساعدة',
 ################ home page ###########################
-
+"css-file"=>'Front/css/ar-style.css',
 
 ];
