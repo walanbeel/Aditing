@@ -106,7 +106,7 @@
                                                         <input type="hidden">
                                                         <input type="file" id="file-ip-1"  class="form-control-file" name="logo" value="{{$item->logo}}">
                                                     </div> --}}
-                                                    
+
                                                     <div class="form-group">
                                                         <input type="hidden">
                                                         <label for="exampleFormControlFile1"> @error('icon')<small>{{$message}}</small> @enderror</label>
@@ -238,4 +238,15 @@
                 }
             </script>
 
+<script src="https://cdn.tiny.cloud/1/8khmkr26c2my4f7ivzjbi7v6gc06qs3rs6cr8r24x5meautp/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>          <script>
+    tinymce.init({
+      selector: '#mytextarea',
+      plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker textcolor colorpicker',
+        toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table ',
+        toolbar_mode: 'floating',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+    });
+  </script>
+  
            @endsection

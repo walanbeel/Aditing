@@ -48,24 +48,22 @@
                   </div>
             </div>
         </div>
+        @foreach ($services as $item)
         <div class="row">
             <div class="col-lg-4 col-md-6 text-center mb-3">
                 <div class="service-wrap">
                     <div class="service-icon">
                         <i class="fa fa-search"></i>
                     </div>
-                    <h4>Assurance</h4>
+                    <h4>{{$item->s_name_en}}</h4>
                     <ul class="list-sevice">
-                      <li>Auditing</li>
-                      <li>Technology Audit</li>
-                      <li>Agreed Upon Procedures</li>
-                      <li>Due Diligence</li>
+                      {!!$item->sub_services_en!!}
 
                    </ul>
                     <a  class="service-link" href="#">Read More</a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 text-center mb-3">
+            {{-- <div class="col-lg-4 col-md-6 text-center mb-3">
               <div class="service-wrap">
                   <div class="service-icon">
                       <i class="icofont-ban"></i>
@@ -143,8 +141,10 @@
                     <a  class="service-link" href="#">Read More</a>
 
                 </div>
-            </div>
+            </div> --}}
         </div>
+
+        @endforeach
         <div class="col-sm-12 text-center mb-4">
           <a href="about.html" class="btn-service">View All <i class="icofont-double-right"></i></a>
       </div>

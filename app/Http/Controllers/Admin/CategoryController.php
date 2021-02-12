@@ -50,6 +50,7 @@ class CategoryController extends Controller
             'cat_name_en' =>$request->cat_name_en,
             'cat_name_ar'=>$request->cat_name_ar,
             'is_active'=>$active,
+            'status'=>$request->status,
             'parent'=>$request->parent,
         ]);
 
@@ -63,16 +64,16 @@ class CategoryController extends Controller
         {
             return $messages = [
                 'cat_name_en.required'  =>  __('messages.catgory name required'),
-                'cat_name_en.unique'    =>  __('messages.category must be unique'),
+                // 'cat_name_en.unique'    =>  __('messages.category must be unique'),
                 'cat_name_ar.required'  => 'اسم القسم مطلوب',
-                'cat_name_ar.unique'    => 'اسم القسم موجود',
+                // 'cat_name_ar.unique'    => 'اسم القسم موجود',
             ];
         }
         protected function getRules()
         {
             return $rules = [
-                'cat_name_en' => 'required|unique:categories,cat_name_en',
-                'cat_name_ar' => 'required|unique:categories,cat_name_ar',
+                'cat_name_en' => 'required',
+                'cat_name_ar' => 'required',
 
             ];
         }
@@ -117,6 +118,7 @@ class CategoryController extends Controller
         ->update(['cat_name_en'=>$request->cat_name_en ,
         'cat_name_ar'=>$request->cat_name_ar,
         'is_active'=>$active,
+        'status'=>$request->status,
         'parent'=>$request->parent ]);
 
         $data['category'] = Category::get();

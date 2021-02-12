@@ -73,12 +73,15 @@ Route::group(['namespace'=>'Admin','prefix'=>'services','middleware'=>'auth'],fu
 
     // Route::get('/services/{s_id}','ServicesController@filter');
 
-    Route::get('/services/{s_id}','ServicesController@display_with_status');
+    // Route::get('/services/{s_id}','ServicesController@display_with_status');
+
+    Route::get('/servicesactivation/{s_id}','ServicesController@servicesactivation')->name('servicesactivation');
 
 
 
 });
 });
+
 Route::get('/ser_active/{s_id}','Admin\ServicesController@is_active');
 
 Route::get('/ser_no_active/{s_id}','Admin\ServicesController@is_not_active');

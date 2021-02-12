@@ -125,14 +125,14 @@
                                 <div class="form-group">
                                 <label>{{__('messages.B_preface_ar')}}  </label>
                                 <div class="col-12">
-                                    <textarea class="form-control" name="B_preface_ar"  placeholder="{{__('messages.B_preface_ar')}}"></textarea>
+                                    <textarea class="form-control"id="mytextarea" name="B_preface_ar"  placeholder="{{__('messages.B_preface_ar')}}"></textarea>
                                     @error('B_preface_ar')
                                     <small class="form-text text-danger">{{$message}}</small>
                                     @enderror
                                 </div>
                                 </div>
                                </div>
-                             
+
                                <div class="col-12">
                                 <div class="form-group">
                                     <label>{{__('messages.Category')}} </label>
@@ -157,6 +157,18 @@
                </div>
             </div>
 
+            <script src="https://cdn.tiny.cloud/1/8khmkr26c2my4f7ivzjbi7v6gc06qs3rs6cr8r24x5meautp/tinymce/5/tinymce.min.js" referrerpolicy="origin">
+            </script>
+            <script>
+                tinymce.init({
+                  selector: '#mytextarea',
+                  plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker textcolor colorpicker',
+                    toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table ',
+                    toolbar_mode: 'floating',
+                    tinycomments_mode: 'embedded',
+                    tinycomments_author: 'Author name',
+                });
+              </script>
 
 
 

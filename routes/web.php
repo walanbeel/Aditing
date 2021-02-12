@@ -15,18 +15,11 @@ use App\Http\Controllers\ContactController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
 
 
 Auth::routes();
 
-// Route::get('/home', function(){
-//     return view('home');
-// })->name('home');
+
 /*************Route contact page************ */
 Route::group(['prefix' => LaravelLocalization::setLocale(),
   'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){

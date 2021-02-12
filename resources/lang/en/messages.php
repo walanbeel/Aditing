@@ -244,6 +244,7 @@ return [
 
 ################ home page ###########################
 
+"css-file"=>'Front/css/main.css',
 
 
 

@@ -65,7 +65,7 @@
                     <div class="col-12">
                         <input type="hidden">
                         <div class="form-group">
-                          <label>{{__('messages.Category Name ar')}}  </label>
+                          <label>{{__('messages.Category Name ar')}}</label>
                           <input type="text" id="category_name" class="form-control" name="cat_name_ar" placeholder="{{__('messages.Category Name ar')}}">
                           @error('cat_name_ar')
                           <small class="form-text text-danger">{{$message}}</small>
@@ -80,14 +80,15 @@
                           </div>
                       </div>
                     </div>
-                    {{-- <div class="col-12 ">
+                    <div class="col-md-6">
                         <div class="form-group col-sm-8">
-                              <div class="form-check">
-                                <input type="random" checked class="form-check-input" name="status" id="active">
-                                <label class="form-check-label" for="exampleCheck2">status</label>
-                              </div>
+                            <label>{{__('messages.Type Category')}}  </label>
+                            <select class="custom-select" name="status" id="inputGroupSelect02">
+                                <option value="1">Books</opiton>
+                                   <option value="2"> Services</opiton>
+                           </select>
                           </div>
-                        </div> --}}
+                        </div>
 
 
                       {{-- <div class="col-12">
@@ -107,6 +108,22 @@
                                 </div>
                             </div> --}}
                         </div>
+
+                        {{-- <div class="form-group row">
+                            <label class="col-md-3">Catgory  Type</label>
+                            <div class="col-md-9">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="customControlValidation1"   name="status" required>
+                                    <label class="custom-control-label" for="customControlValidation1" value="1">Books</label>
+                                </div>
+                                 <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="customControlValidation2" name="status" required>
+                                    <label class="custom-control-label" for="customControlValidation2"  value="2">Services</label>
+                                </div>
+
+                            </div>
+                        </div> --}}
+
 
                             <div class="col-12">
                                 <label>Parent </label>

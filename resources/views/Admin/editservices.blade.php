@@ -77,6 +77,30 @@
                                           </div>
                                           <div class="col-12">
                                             <input type="hidden">
+                                            <div class="form-group">
+                                            <label>{{__('messages.Servicess sub_services_en')}}  </label>
+                                            <div class="col-12">
+                                                <textarea class="form-control" name="sub_services_en"  placeholder="{{__('messages.sub_services_en')}}"> {{$item->sub_services_en}}</textarea>
+                                                @error('sub_services_en')
+                                                <small class="form-text text-danger">{{$message}}</small>
+                                                @enderror
+                                            </div>
+                                           </div>
+                                         </div>
+                                         <div class="col-12">
+                                            <input type="hidden">
+                                            <div class="form-group">
+                                            <label>{{__('messages.Servicess sub_services_ar')}}  </label>
+                                            <div class="col-12">
+                                                <textarea class="form-control" name="sub_services_ar"  placeholder="{{__('messages.sub_services_ar')}}"> {{$item->sub_services_ar}}</textarea>
+                                                @error('sub_services_ar')
+                                                <small class="form-text text-danger">{{$message}}</small>
+                                                @enderror
+                                            </div>
+                                           </div>
+                                         </div>
+                                          <div class="col-12">
+                                            <input type="hidden">
                                             <label for="exampleFormControlFile1"> @error('ser_images')<small>{{$message}}</small> @enderror</label>
                                             <input type="file" id="file-ip-1" onchange="showPreview(event);"  accept="image/*" class="form-control-file" name='ser_images[]' value="{{$item->ser_images}}">
                                             <input type="hidden"   accept="image/*" name='ser_images2' value="{{$item->ser_images}}">
@@ -85,7 +109,7 @@
                                                   <img  id="file-preview" style="width:50px;height:50px;margin-top:10px;">
                                                 </div>
                                                 </div>
-                                        </div>
+                                          </div>
                                           <div class="col-12">
                                           <input type="hidden">
                                           <div class="form-group">
@@ -109,7 +133,7 @@
                                                 @enderror
                                             </div>
                                            </div>
-                                        </div>
+                                           </div>
 
                                             {{-- <div class="col-12">
                                             <div class="form-group">
@@ -179,4 +203,17 @@
                        }
                     }
                 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.7.0/tinymce.min.js" integrity="sha512-XaygRY58e7fVVWydN6jQsLpLMyf7qb4cKZjIi93WbKjT6+kG/x4H5Q73Tff69trL9K0YDPIswzWe6hkcyuOHlw==" crossorigin="anonymous"></script>
+<script>
+    tinymce.init({
+      selector: 'textarea#mytextarea',
+      plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker textcolor colorpicker',
+        toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table ',
+        toolbar_mode: 'floating',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+    });
+  </script>
+
               @endsection
